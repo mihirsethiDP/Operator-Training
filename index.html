@@ -1,0 +1,779 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui;background:#fafafa}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Water Testing Operator Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Mukta:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: phone-first video "player" card (stage → avatar+caption → controls); home is a scene map; one header holds tabs, language and sound. */
+:root{
+  --bg:#EDF3F8; --card:#FFFFFF; --ink:#102A43; --muted:#5B6E82; --line:#D3DEE8; --soft:#E4F1FA; --soft2:#F4F8FB;
+  --blue:#0B5CAD; --blue-ink:#083F78; --cyan:#1AA3D9; --cyan-soft:#D9F1FB;
+  --ok:#1E9E5A; --ok-soft:#DCF4E6; --warn:#D9890A; --warn-soft:#FFF0D2; --bad:#D63B3B; --bad-soft:#FBE3E3;
+  --glass:#F4FAFD; --wall:#DCE6EE; --ground:#9FC77A; --sky1:#DDF1FB; --sky2:#F3FAFE; --lcd:#DFF5E0; --lcd-ink:#15391D;
+  --display:'Baloo 2','Mukta',system-ui,sans-serif; --body:'Mukta','Noto Sans',system-ui,sans-serif;
+  --r:20px; --shadow:0 8px 28px rgba(16,42,67,.10);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0B1727; --card:#132238; --ink:#EAF2FB; --muted:#A9B8CA; --line:#27405C; --soft:#17304B; --soft2:#0F1E33;
+  --blue:#5AABFF; --blue-ink:#A9D0FF; --cyan:#3CC4F0; --cyan-soft:#11364A;
+  --ok:#3BC97A; --ok-soft:#153A2A; --warn:#F2B544; --warn-soft:#3E2E12; --bad:#F26B6B; --bad-soft:#44201F;
+  --glass:#1C3049; --wall:#2A3F5A; --ground:#3E6B3A; --sky1:#162B44; --sky2:#1A3354; --lcd:#1E3A24; --lcd-ink:#C8F5CF;
+  --shadow:0 8px 28px rgba(0,0,0,.35); color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0B1727; --card:#132238; --ink:#EAF2FB; --muted:#A9B8CA; --line:#27405C; --soft:#17304B; --soft2:#0F1E33;
+  --blue:#5AABFF; --blue-ink:#A9D0FF; --cyan:#3CC4F0; --cyan-soft:#11364A;
+  --ok:#3BC97A; --ok-soft:#153A2A; --warn:#F2B544; --warn-soft:#3E2E12; --bad:#F26B6B; --bad-soft:#44201F;
+  --glass:#1C3049; --wall:#2A3F5A; --ground:#3E6B3A; --sky1:#162B44; --sky2:#1A3354; --lcd:#1E3A24; --lcd-ink:#C8F5CF;
+  --shadow:0 8px 28px rgba(0,0,0,.35); color-scheme:dark }
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;-webkit-text-size-adjust:100%}
+h1,h2,h3,.brand,.chip,.chip5,.opt .lb,.scard .ttl,.btn,.ctl,.valbtn,.cat b,.pstep b,.ftitle,.res,.lcd .val{font-family:var(--display)}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.15}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+[hidden]{display:none!important}
+.em{font-family:'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--card);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:8px 16px;flex-wrap:wrap}
+.brandrow{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
+.logo{font-size:26px;width:44px;height:44px;border-radius:14px;background:var(--cyan-soft);display:grid;place-items:center;flex:none}
+.brand{font-weight:800;font-size:19px;line-height:1.1}
+.sub{font-size:12.5px;color:var(--muted);line-height:1.2}
+.tabs{display:flex;gap:4px;background:var(--soft2);border:1px solid var(--line);border-radius:999px;padding:3px;order:3;width:100%}
+.tab{flex:1;border:0;background:transparent;border-radius:999px;padding:9px 14px;font-weight:700;font-size:15px;color:var(--muted)}
+.tab.on{background:var(--blue);color:#fff}
+.tools{display:flex;gap:8px}
+.tool{width:46px;height:46px;border-radius:14px;border:1px solid var(--line);background:var(--soft2);font-weight:800;font-size:17px;font-family:var(--display)}
+@media (min-width:720px){ .tabs{order:0;width:auto;min-width:300px} }
+
+main{max-width:980px;margin:0 auto;padding-block:16px 40px;padding-inline:16px}
+
+/* ---------- buttons & chips ---------- */
+.btn{border:2px solid var(--line);background:var(--card);border-radius:16px;padding:12px 18px;font-weight:700;font-size:16px;min-height:52px;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .08s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.big{font-size:19px;min-height:62px;padding:14px 26px;border-radius:20px}
+.btn.ghost{background:transparent}
+.btn.lang{font-size:19px;min-height:60px;padding:12px 22px}
+.btn.lang.on{border-color:var(--blue);background:var(--soft);color:var(--blue-ink)}
+.btn:disabled{opacity:.55;cursor:default}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 12px;font-size:13.5px;font-weight:700;letter-spacing:.02em;background:var(--soft);color:var(--blue-ink)}
+.chip.field{background:var(--cyan-soft);color:var(--blue-ink)}
+.chip.lab{background:var(--warn-soft);color:var(--warn)}
+.chip.quiz{background:var(--ok-soft);color:var(--ok)}
+.chip.turn{background:var(--warn-soft);color:var(--warn);font-size:15px}
+.chip.rem{background:var(--ok-soft);color:var(--ok);font-size:15px}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.hint{color:var(--muted);font-size:15px;margin:0}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:12.5px;font-weight:700;color:var(--muted);margin:0 0 4px}
+
+/* ---------- home ---------- */
+.hero{display:grid;grid-template-columns:1fr;gap:16px;background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;margin-bottom:22px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:auto -60px -80px auto;width:260px;height:260px;border-radius:50%;background:var(--cyan-soft);opacity:.7}
+.heroav{width:150px;margin:0 auto;position:relative}
+.herotxt{position:relative;min-width:0}
+.hero h1{font-size:34px;font-weight:800;color:var(--blue-ink)}
+.lead{font-size:18px;margin:8px 0 14px;max-width:60ch}
+.langpick{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.langbtns{display:flex;gap:10px;flex-wrap:wrap}
+.startrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.prog{margin-top:14px}
+.bar{height:10px;border-radius:999px;background:var(--soft2);border:1px solid var(--line);overflow:hidden}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--blue));transition:width .4s}
+.prog small{color:var(--muted);font-size:13.5px}
+@media (min-width:640px){ .hero{grid-template-columns:170px 1fr;align-items:center} .heroav{width:170px} }
+.map h2{font-size:18px;display:flex;align-items:center;gap:8px;margin:18px 0 10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.dot.field{background:var(--cyan)} .dot.lab{background:var(--warn)} .dot.quiz{background:var(--ok)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.scard{text-align:left;border:2px solid var(--line);background:var(--card);border-radius:18px;padding:12px;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:4px 10px;align-items:center;min-height:92px;transition:transform .08s}
+.scard:active{transform:scale(.98)}
+.scard .num{grid-row:1/3;width:36px;height:36px;border-radius:12px;background:var(--soft);display:grid;place-items:center;font-weight:800;font-family:var(--display);color:var(--blue-ink)}
+.scard .em{font-size:24px;line-height:1}
+.scard .ttl{font-weight:700;font-size:15.5px;line-height:1.2}
+.scard .meta{grid-column:2;font-size:12.5px;color:var(--muted)}
+.scard.done{border-color:var(--ok)} .scard.done .num{background:var(--ok-soft);color:var(--ok)} .scard.done .meta{color:var(--ok);font-weight:700}
+
+/* ---------- player ---------- */
+.pbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.ptitle{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.ptitle h2{font-size:21px;font-weight:800;white-space:normal}
+.pprog{display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-variant-numeric:tabular-nums}
+.pnum{font-size:12.5px;color:var(--muted);font-weight:700}
+.dots{display:flex;gap:4px}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--line);display:inline-block}
+.dots i.done{background:var(--blue)} .dots i.now{background:var(--cyan);box-shadow:0 0 0 3px var(--cyan-soft)} .dots i.act{border-radius:3px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow)}
+.stagecard{padding:14px;display:flex;flex-direction:column;gap:12px}
+.stage{min-height:230px;border-radius:16px;background:var(--soft2);border:1px solid var(--line);display:grid;place-items:center;padding:14px;color:var(--ink);opacity:0;transform:translateY(6px)}
+.stage.in{opacity:1;transform:none;transition:opacity .35s,transform .35s}
+.talk{display:grid;grid-template-columns:76px 1fr;gap:10px;align-items:end}
+.avwrap{width:76px}
+.avatar{width:100%;height:auto;display:block}
+.avatar .eye{transform-box:fill-box;transform-origin:center;animation:blink 4.6s infinite}
+.avatar .mouth{opacity:0;transform-box:fill-box;transform-origin:center}
+.avatar.talking .smile{opacity:0}
+.avatar.talking .mouth{opacity:1;animation:talk .22s infinite alternate ease-in-out}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+@keyframes talk{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
+.bubble{position:relative;background:var(--soft);border-radius:18px 18px 18px 4px;padding:12px 16px;min-height:64px;display:flex;align-items:center}
+.bubble::before{content:"";position:absolute;left:-8px;bottom:14px;border:8px solid transparent;border-right-color:var(--soft);border-left:0}
+.cap{margin:0;font-size:19px;line-height:1.45;font-weight:500;max-width:62ch;opacity:0}
+.cap.in{opacity:1;transition:opacity .3s}
+.controls{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ctl{border:2px solid var(--line);background:var(--card);border-radius:14px;min-height:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-weight:700;font-size:13px;padding:6px 4px}
+.ctl .ic{font-size:22px;line-height:1}
+.ctl:active{transform:scale(.97)}
+.notice{margin-top:10px;background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:12px 14px;font-size:14.5px;display:flex;gap:10px;align-items:flex-start}
+.ntext{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1;line-height:1.4}
+.ntext b{font-weight:800}
+.nclose{border:0;background:transparent;font-size:18px;font-weight:800;color:inherit;padding:0 4px;line-height:1}
+@media (min-width:640px){ .talk{grid-template-columns:96px 1fr} .avwrap{width:96px} .cap{font-size:21px} .stage{min-height:280px} }
+
+/* ---------- visuals ---------- */
+.row{display:flex;flex-wrap:wrap;gap:14px 18px;justify-content:center;align-items:flex-end;width:100%}
+.fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:6px;max-width:150px}
+.fig figcaption{font-size:14.5px;font-weight:600;text-align:center;line-height:1.25}
+.fig figcaption small{display:block;color:var(--muted);font-weight:500}
+.bk{display:block}
+.board{display:grid;gap:8px;width:100%;grid-template-columns:repeat(2,1fr)}
+.board.n1,.board.n2{grid-template-columns:repeat(2,1fr)}
+.board.n3{grid-template-columns:repeat(3,1fr)}
+.board.n5,.board.n6,.board.n7,.board.n8,.board.n9{grid-template-columns:repeat(3,1fr)}
+@media (min-width:560px){ .board.n4,.board.n8{grid-template-columns:repeat(4,1fr)} .board.n5{grid-template-columns:repeat(5,1fr)} .board.n6,.board.n9{grid-template-columns:repeat(3,1fr)} .board.n7{grid-template-columns:repeat(4,1fr)} }
+.tile{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;min-height:86px;justify-content:center;animation:pop .35s both;animation-delay:var(--d,0ms)}
+.tile .em{font-size:30px;line-height:1}
+.tile .lb{font-size:14px;font-weight:600;line-height:1.2}
+.tile.bad{border-color:var(--bad);background:var(--bad-soft)} .tile.ok{border-color:var(--ok);background:var(--ok-soft)}
+@keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.steps{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;width:100%}
+.step{flex:1 1 130px;max-width:190px;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;animation:pop .35s both;animation-delay:var(--d,0ms)}
+.step .n{width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800;font-family:var(--display)}
+.step .em{font-size:32px;line-height:1}
+.step .lb{font-size:14.5px;font-weight:600;line-height:1.25}
+.five{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.chip5{background:var(--blue);color:#fff;border-radius:999px;padding:10px 18px;font-weight:800;font-size:18px;display:inline-flex;align-items:center;gap:8px;animation:pop .4s both;animation-delay:var(--d,0ms)}
+.five .arrow{font-size:26px;color:var(--muted);font-weight:800}
+.scene{width:100%;max-width:520px;height:auto}
+.bub{animation:rise 2.2s infinite ease-in;animation-delay:var(--d,0s);transform-box:fill-box}
+@keyframes rise{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-46px);opacity:0}}
+.gauge{width:100%;max-width:340px;height:auto}
+.tankwrap{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;width:100%;max-width:520px}
+.tanksvg{width:100%;height:auto}
+.meter{background:#2B3340;border-radius:16px;padding:10px 12px 8px;color:#fff;width:118px;border:3px solid var(--c,var(--line));text-align:center}
+.lcd{background:var(--lcd);color:var(--lcd-ink);border-radius:8px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;font-variant-numeric:tabular-nums}
+.lcd .val{font-size:28px;font-weight:800;line-height:1}
+.lcd .unit{font-size:12px;font-weight:700}
+.mlabel{font-size:12px;font-weight:800;letter-spacing:.1em;margin-top:6px;color:#CBD5E1}
+.dorange{grid-column:1/-1;display:flex;gap:3px;width:100%}
+.seg{flex:1;text-align:center;font-size:12px;font-weight:700;padding:5px 2px;border-radius:8px;font-variant-numeric:tabular-nums}
+.seg.bad{background:var(--bad-soft);color:var(--bad)} .seg.warn{background:var(--warn-soft);color:var(--warn)} .seg.ok{background:var(--ok-soft);color:var(--ok);flex:1.6}
+.cylsvg{display:block}
+.formula{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:16px 20px;text-align:center;max-width:460px;width:100%}
+.ftitle{font-weight:800;font-size:22px;color:var(--blue-ink);margin-bottom:8px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;gap:4px;font-variant-numeric:tabular-nums}
+.frac .num{font-size:24px;font-weight:800;padding:0 10px;border-bottom:3px solid var(--ink)}
+.frac .den{font-size:17px;font-weight:600;color:var(--muted)}
+.fnote{margin-top:10px;font-size:14px;color:var(--muted)}
+.trophy{display:flex;flex-direction:column;align-items:center;gap:12px}
+.trophy .big{font-size:84px;line-height:1}
+
+/* ---------- activities ---------- */
+.act{border-radius:16px;background:var(--soft2);border:1px solid var(--line);padding:14px}
+.acthead{display:flex;flex-direction:column;gap:8px;align-items:flex-start;margin-bottom:12px}
+.acthead h3{font-size:20px;font-weight:800}
+.actbody{display:flex;flex-direction:column;gap:12px}
+.actbtns{display:flex;gap:10px;flex-wrap:wrap}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(126px,1fr));gap:10px}
+.opt{border:2px solid var(--line);background:var(--card);border-radius:16px;padding:12px 10px;min-height:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;transition:transform .08s,border-color .15s,background .15s}
+.opt:active{transform:scale(.97)}
+.opt .ic{display:grid;place-items:center;line-height:1}
+.opt .ic.em{font-size:32px}
+.opt .lb{font-weight:700;font-size:15.5px;line-height:1.2}
+.opt.on{border-color:var(--blue);background:var(--soft);box-shadow:inset 0 0 0 2px var(--blue)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft);animation:shake .45s}
+.opt:disabled{cursor:default}
+.opt:disabled:not(.right):not(.wrong){opacity:.55}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fb{margin-top:12px;border-radius:14px;padding:12px 16px;font-weight:800;font-size:18px;font-family:var(--display);animation:pop .3s both}
+.fb.good{background:var(--ok-soft);color:var(--ok)} .fb.bad{background:var(--bad-soft);color:var(--bad)}
+.gaugebox{display:grid;place-items:center}
+.cls{display:flex;flex-direction:column;gap:10px}
+.clsrow{display:grid;grid-template-columns:96px 1fr;gap:8px;align-items:stretch}
+.valbtn{border:2px solid var(--line);background:var(--card);border-radius:14px;font-weight:800;font-size:17px;font-variant-numeric:tabular-nums}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.cat{border:2px solid var(--line);background:var(--card);border-radius:14px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:60px;justify-content:center}
+.cat b{font-size:16px} .cat small{font-size:12px;color:var(--muted);line-height:1.1}
+.cat.on{border-color:var(--blue)} .cat.right{border-color:var(--ok);background:var(--ok-soft)} .cat.wrong{border-color:var(--bad);background:var(--bad-soft);animation:shake .45s}
+.cat:disabled{cursor:default}
+.seq{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.slot{width:52px;height:52px;border-radius:14px;border:2px dashed var(--line);display:grid;place-items:center;font-weight:800;font-family:var(--display);color:var(--muted);background:var(--card)}
+.slot.filled{border:2px solid var(--ok);background:var(--ok-soft);font-size:26px}
+.matchgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.matchgrid .col{display:flex;flex-direction:column;gap:10px}
+.opt.m{min-height:84px}
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;align-items:end}
+.field{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:14px}
+.field input{border:2px solid var(--line);border-radius:12px;padding:10px 12px;font-size:19px;font-weight:700;width:100%;min-width:0;background:var(--card);color:var(--ink);font-variant-numeric:tabular-nums}
+.calc .actbtns,.calc .calcout,.calc .hint{grid-column:1/-1}
+.calcout{background:var(--ok-soft);border-radius:14px;padding:12px 16px;text-align:center}
+.res{font-size:26px;font-weight:800;color:var(--ok);font-variant-numeric:tabular-nums}
+.sliderbox{display:flex;flex-direction:column;gap:10px;align-items:center}
+.rng{display:flex;flex-direction:column;gap:6px;width:100%;max-width:520px;font-weight:700;font-size:14.5px;color:var(--muted)}
+.rng input{width:100%;accent-color:var(--blue);height:40px}
+.settlebox{display:flex;flex-direction:column;align-items:center;gap:10px}
+.timer{font-family:var(--display);font-weight:800;font-size:22px;font-variant-numeric:tabular-nums;color:var(--blue-ink)}
+.spotbox{display:grid;place-items:center}
+.oilsvg{width:100%;max-width:460px;height:auto}
+.hot{cursor:pointer;transition:stroke .15s}
+.hot.right{stroke:var(--ok);stroke-width:5;stroke-dasharray:none}
+.hot.wrong{stroke:var(--bad);stroke-width:5;stroke-dasharray:none}
+.done{display:flex;flex-direction:column;gap:12px}
+.rem{background:var(--ok-soft);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.rem p{margin:0;font-size:20px;font-weight:700;line-height:1.35;color:var(--ink)}
+.donebtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.result{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 0}
+.result .big{font-size:84px;line-height:1}
+.result .scoreline{font-size:22px;font-variant-numeric:tabular-nums}
+.result h3{font-size:26px;font-weight:800}
+.result.pass h3{color:var(--ok)} .result.fail h3{color:var(--warn)}
+.cert{background:var(--soft);border-radius:14px;padding:12px 16px;margin:4px 0 0;max-width:46ch}
+.result .donebtns{justify-content:center;margin-top:8px}
+
+/* ---------- production script tab ---------- */
+.brief{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:22px;margin-bottom:22px}
+.briefhead h1{font-size:30px;font-weight:800;color:var(--blue-ink)}
+.pipeline{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0}
+.pstep{flex:1 1 150px;background:var(--soft2);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.pstep .em{font-size:26px} .pstep b{font-size:16px} .pstep small{color:var(--muted);font-size:13px;line-height:1.3}
+.parrow{font-size:28px;font-weight:800;color:var(--muted);display:none}
+@media (min-width:720px){ .parrow{display:block} }
+.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.bcard{border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}
+.bcard h3{font-size:17px;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.bcard ul{margin:0;padding-left:18px;font-size:15px;display:flex;flex-direction:column;gap:6px}
+.scenehead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.scenehead h2{font-size:22px}
+.copybtns{display:flex;gap:8px;flex-wrap:wrap}
+.cpfallback{width:100%;min-height:220px;font:13px/1.4 ui-monospace,Consolas,monospace;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--card);color:var(--ink);margin:8px 0}
+.sc{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden}
+.sc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:12px 14px;flex-wrap:wrap}
+.sc summary::-webkit-details-marker{display:none}
+.sc summary .num{width:32px;height:32px;border-radius:10px;background:var(--soft);display:grid;place-items:center;font-weight:800;font-family:var(--display);color:var(--blue-ink);flex:none}
+.sc summary .em{font-size:22px}
+.sc summary .ttl{font-weight:700;flex:1;min-width:160px}
+.hiTtl{color:var(--muted);font-weight:500}
+.tag{border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:700}
+.tag.field{background:var(--cyan-soft);color:var(--blue-ink)} .tag.lab{background:var(--warn-soft);color:var(--warn)} .tag.quiz{background:var(--ok-soft);color:var(--ok)}
+.sc .dur{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tw{overflow-x:auto;border-top:1px solid var(--line)}
+.tw table{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
+.tw th{text-align:left;padding:10px 12px;background:var(--soft2);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--line)}
+.tw td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+.tw td.n{font-family:var(--display);font-weight:800;white-space:nowrap;color:var(--blue-ink);font-variant-numeric:tabular-nums}
+.tw td.shot{color:var(--muted);min-width:180px}
+.tw td.en,.tw td.hi{min-width:220px}
+.tw tr.cp td{background:var(--warn-soft)} .tw tr.rem td{background:var(--ok-soft)}
+
+@media (prefers-reduced-motion: reduce){ *,*::before,*::after{animation:none!important;transition:none!important} .stage,.cap{opacity:1;transform:none} }
+
+</style>
+<header class="top">
+  <div class="brandrow"><span class="logo em">💧</span><div><div id="brand" class="brand">Water Testing</div><div id="sub" class="sub">Operator training · Chapter 1</div></div></div>
+  <nav class="tabs" aria-label="Sections"><button id="tabLearn" class="tab on">Learn</button><button id="tabScript" class="tab">Video script</button></nav>
+  <div class="tools"><button id="langTog" class="tool" aria-label="Language">हिं</button><button id="sndTog" class="tool em" aria-label="Sound">🔊</button></div>
+</header>
+<main>
+  <section id="learn">
+    <div id="home"></div>
+    <div id="player" hidden>
+      <div class="pbar">
+        <button class="btn ghost" id="btnHome">‹ Home</button>
+        <div class="ptitle"><span class="chip" id="pcat"></span><h2 id="ptitle"></h2></div>
+        <div class="pprog" id="pprog"></div>
+      </div>
+      <div class="card stagecard">
+        <div id="stage" class="stage"></div>
+        <div id="act" class="act" hidden></div>
+        <div id="done" class="done" hidden></div>
+        <div class="talk"><div class="avwrap"></div><div class="bubble"><p id="cap" class="cap"></p></div></div>
+        <div class="controls">
+          <button class="ctl" id="btnBack"><span class="ic">‹</span><span id="lblBack">Back</span></button>
+          <button class="ctl" id="btnPlay"><span class="ic" id="icPlay">⏸</span><span id="lblPlay">Pause</span></button>
+          <button class="ctl" id="btnReplay"><span class="ic">↻</span><span id="lblReplay">Replay</span></button>
+          <button class="ctl" id="btnSkip"><span class="ic">⏭</span><span id="lblSkip">Skip</span></button>
+        </div>
+      </div>
+      <div id="notice" class="notice" hidden></div>
+    </div>
+  </section>
+  <section id="script" hidden></section>
+</main>
+<script>
+/* ---------- UI strings ---------- */
+const UI = {
+en:{brand:'Water Testing',sub:'Operator training · Chapter 1',tabLearn:'Learn',tabScript:'Video script',choose:'Choose your language',start:'Start training',cont:'Continue',again:'Start again',field:'Field check',lab:'Lab test',quiz:'Final quiz',scene:'Scene',yourTurn:'Your turn',check:'Check answer',correct:'Correct!',wrong:'Not quite. Try again.',allRight:'All correct!',remember:'Remember',next:'Next scene',back:'Back',play:'Play',pause:'Pause',replay:'Replay',skip:'Skip to activity',home:'Home',sound:'Sound',noVoice:'No {lang} voice is installed on this device, so this scene shows captions on a timer without sound.',noVoiceHow:'To hear {lang} here: Windows › Settings › Time & language › Language & region › Add a language › Hindi, tick "Text-to-speech". Android phones with Google Text-to-speech already have Hindi. iPhone › Settings › Accessibility › Spoken Content › Voices › Hindi.',tapOrder:'Tap the steps in the correct order',tapAll:'Tap all that apply, then press Check',tapPair:'Tap an item on the left, then its match on the right',calc:'Calculate',result:'Result',startTest:'Start the 30-minute test (fast forward)',watching:'Watching the sludge settle…',score:'Your score',badge:'Water Testing Champion',showSup:'Show this screen to your supervisor and sign the logbook.',retryQuiz:'Try the quiz again',doneAll:'All scenes complete',progress:'Progress',low:'Low',ok:'OK',high:'High',tryNumbers:'Change the numbers and calculate again',phlow:'Acidic',phok:'Normal',phhigh:'Alkaline',question:'Question',pass:'Great work!',fail:'Good try. Watch the scenes again and retry.',date:'Date',dur:'~2 min',finished:'Finished',langName:'English',copyEn:'Copy English narration',copyHi:'Copy Hindi narration',copied:'Copied to clipboard',fallbackCopy:'Copying is blocked here. Select the text below and copy it.',scenes:'Scenes',listen:'Listen',moveSlider:'Move the slider and watch the tank',minutes:'min',tapOil:'Tap the oil',iSee:'I understand, continue',stepsDone:'Steps in order',sceneDone:'Scene complete',of:'of',welcome:'Namaste! I am Ritu. Let us learn water testing together.',chooseHint:'Tap a language to hear Ritu speak.',tryAgain:'Try again'},
+hi:{brand:'पानी की जाँच',sub:'ऑपरेटर ट्रेनिंग · अध्याय 1',tabLearn:'सीखें',tabScript:'वीडियो स्क्रिप्ट',choose:'अपनी भाषा चुनें',start:'ट्रेनिंग शुरू करें',cont:'आगे बढ़ें',again:'फिर से शुरू करें',field:'फ़ील्ड चेक',lab:'लैब टेस्ट',quiz:'फ़ाइनल क्विज़',scene:'सीन',yourTurn:'अब आपकी बारी',check:'जवाब चेक करें',correct:'सही!',wrong:'नहीं। फिर कोशिश करें।',allRight:'सब सही!',remember:'याद रखें',next:'अगला सीन',back:'पीछे',play:'चलाएँ',pause:'रोकें',replay:'दोबारा सुनें',skip:'एक्टिविटी पर जाएँ',home:'होम',sound:'आवाज़',noVoice:'इस डिवाइस पर {lang} आवाज़ इंस्टॉल नहीं है, इसलिए यह सीन बिना आवाज़ के, टाइमर पर कैप्शन दिखाएगा।',noVoiceHow:'{lang} सुनने के लिए: Windows › Settings › Time & language › Language & region › Add a language › Hindi, "Text-to-speech" चुनें। Google Text-to-speech वाले Android फ़ोन में हिंदी पहले से होती है। iPhone › Settings › Accessibility › Spoken Content › Voices › Hindi.',tapOrder:'सही क्रम में स्टेप टैप करें',tapAll:'जो सही हैं सब टैप करें, फिर चेक दबाएँ',tapPair:'बाएँ एक आइटम टैप करें, फिर दाएँ उसका जोड़ा',calc:'हिसाब करें',result:'नतीजा',startTest:'30 मिनट का टेस्ट शुरू करें (फ़ास्ट)',watching:'स्लज बैठ रहा है…',score:'आपका स्कोर',badge:'वॉटर टेस्टिंग चैंपियन',showSup:'यह स्क्रीन सुपरवाइज़र को दिखाएँ और लॉगबुक में साइन करें।',retryQuiz:'क्विज़ फिर से दें',doneAll:'सभी सीन पूरे',progress:'प्रगति',low:'कम',ok:'ठीक',high:'ज़्यादा',tryNumbers:'नंबर बदलकर फिर हिसाब करें',phlow:'एसिडिक',phok:'नॉर्मल',phhigh:'अल्कलाइन',question:'सवाल',pass:'बहुत बढ़िया!',fail:'अच्छी कोशिश। सीन फिर देखें और दोबारा कोशिश करें।',date:'तारीख',dur:'~2 मिनट',finished:'पूरा हुआ',langName:'हिंदी',copyEn:'अंग्रेज़ी नैरेशन कॉपी करें',copyHi:'हिंदी नैरेशन कॉपी करें',copied:'कॉपी हो गया',fallbackCopy:'यहाँ कॉपी ब्लॉक है। नीचे का टेक्स्ट चुनकर कॉपी करें।',scenes:'सीन',listen:'सुनें',moveSlider:'स्लाइडर हिलाएँ और टैंक देखें',minutes:'मिनट',tapOil:'तेल पर टैप करें',iSee:'समझ गया, आगे बढ़ें',stepsDone:'स्टेप सही क्रम में',sceneDone:'सीन पूरा',of:'में से',welcome:'नमस्ते! मैं रितु हूँ। आइए साथ में पानी की जाँच सीखें।',chooseHint:'रितु की आवाज़ सुनने के लिए भाषा टैप करें।',tryAgain:'फिर कोशिश करें'}
+};
+
+/* ---------- Pronunciation map for text-to-speech ---------- */
+const PRON = {
+en:[['BOD5','B O D five'],['DO1','D O one'],['DO2','D O two'],['W1','W one'],['W2','W two'],['pH','P H'],['DO','D O'],['MLSS','M L S S'],['TSS','T S S'],['SVI','S V I'],['COD','C O D'],['BOD','B O D'],['EQT','E Q T'],['STP','S T P'],['ETP','E T P'],['NTU','N T U'],['mg/L','milligrams per litre'],['°C',' degrees Celsius'],['RAS','R A S'],['SAS','S A S']],
+hi:[['BOD5','बी ओ डी फ़ाइव'],['DO1','डी ओ वन'],['DO2','डी ओ टू'],['W1','डब्ल्यू वन'],['W2','डब्ल्यू टू'],['pH','पी एच'],['DO','डी ओ'],['MLSS','एम एल एस एस'],['TSS','टी एस एस'],['SVI','एस वी आई'],['COD','सी ओ डी'],['BOD','बी ओ डी'],['EQT','ई क्यू टी'],['STP','एस टी पी'],['ETP','ई टी पी'],['NTU','एन टी यू'],['mg/L','मिलीग्राम प्रति लीटर'],['°C',' डिग्री'],['RAS','आर ए एस'],['SAS','एस ए एस']]
+};
+
+/* ---------- Lessons (scenes) ---------- */
+const LESSONS = [
+/* 1 ─ Purpose */
+{id:'why',cat:'field',em:'🎯',title:{en:'Why test water every day?',hi:'रोज़ पानी की जाँच क्यों?'},
+ lines:[
+  {v:{k:'plant'},shot:'Avatar waves. Wide shot of the STP: clarifier, aeration tank, building.',en:'Namaste! I am Ritu, an STP operator like you. Today we learn on-site water testing.',hi:'नमस्ते! मैं रितु हूँ, आपकी तरह एक STP ऑपरेटर। आज हम साइट पर पानी की जाँच सीखेंगे।'},
+  {v:{k:'board',items:[{i:'🏭',en:'Plant',hi:'प्लांट'},{i:'🩺',en:'Daily check-up',hi:'रोज़ का चेक-अप'},{i:'📒',en:'Logbook',hi:'लॉगबुक'}]},shot:'Stethoscope icon over the plant: "daily health check-up".',en:'Water testing is like a daily health check-up of the plant.',hi:'पानी की जाँच प्लांट का रोज़ का हेल्थ चेक-अप है।'},
+  {v:{k:'board',items:[{i:'🧪',en:'pH'},{i:'🫧',en:'DO'},{i:'🥛',en:'Turbidity',hi:'टर्बिडिटी'},{i:'🟤',en:'MLSS'},{i:'⚪',en:'TSS'},{i:'📈',en:'COD / BOD signs',hi:'COD / BOD संकेत'},{i:'🛢️',en:'Oil & grease',hi:'तेल और ग्रीस'},{i:'⏳',en:'Sludge settling',hi:'स्लज सेटलिंग'},{i:'👀',en:'Colour & smell',hi:'रंग और गंध'}]},shot:'Clipboard "Daily Check" list, items tick one by one.',en:'Every day we check: pH, DO, turbidity, MLSS, TSS, COD and BOD signs, oil and grease, sludge settling, colour and smell.',hi:'हर दिन हम देखते हैं: pH, DO, टर्बिडिटी, MLSS, TSS, COD और BOD के संकेत, तेल और ग्रीस, स्लज का बैठना, रंग और गंध।'},
+  {v:{k:'board',items:[{i:'🔍',en:'Find problems early',hi:'समस्या जल्दी पकड़ो'},{i:'🚫',en:'No bad smell',hi:'बदबू नहीं'},{i:'🛡️',en:'Good treated water',hi:'अच्छा ट्रीटेड पानी'},{i:'🫧',en:'Right aeration',hi:'सही एरेशन'},{i:'⚗️',en:'Right dosing',hi:'सही डोज़िंग'},{i:'🪣',en:'Sludge control',hi:'स्लज कंट्रोल'},{i:'🙂',en:'Fewer complaints',hi:'कम शिकायतें'},{i:'✅',en:'Smooth plant',hi:'स्मूद प्लांट'}]},shot:'Eight benefit icons pop in one by one.',en:'Why? To find problems early, and take action before water quality fails.',hi:'क्यों? ताकि समस्या जल्दी पकड़ में आए, और पानी की क्वालिटी बिगड़ने से पहले हम कदम उठा सकें।'},
+  {v:{k:'five'},shot:'Five big word chips slide in: Check, Record, Understand, Act, Improve.',en:'Remember five words: Check, Record, Understand, Act, Improve.',hi:'पाँच शब्द याद रखें: चेक, रिकॉर्ड, समझो, एक्शन, सुधार।'}],
+ activity:{type:'order',prompt:{en:'Tap the five steps in the correct order.',hi:'पाँचों स्टेप सही क्रम में टैप करें।'},items:[{i:'👀',en:'Check',hi:'चेक'},{i:'📝',en:'Record',hi:'रिकॉर्ड'},{i:'💡',en:'Understand',hi:'समझो'},{i:'🔧',en:'Act',hi:'एक्शन'},{i:'📈',en:'Improve',hi:'सुधार'}]},
+ remember:{en:'Find problems early. Act before water quality fails.',hi:'समस्या जल्दी पकड़ो। पानी बिगड़ने से पहले एक्शन लो।'}},
+
+/* 2 ─ Colour */
+{id:'colour',cat:'field',em:'🎨',title:{en:'Colour: just look',hi:'रंग: बस देखिए'},
+ lines:[
+  {v:{k:'beakers',list:[{kind:'grey',en:'Inlet',hi:'इनलेट'},{kind:'mixed',en:'Aeration',hi:'एरेशन'},{kind:'clear',en:'Treated',hi:'ट्रीटेड'}]},shot:'Avatar holds a clear beaker up to the light.',en:'Colour is the first sign of water quality. Just look.',hi:'रंग पानी की क्वालिटी का पहला संकेत है। बस देखिए।'},
+  {v:{k:'beakers',list:[{kind:'grey',en:'Inlet sewage: grey or dark is normal',hi:'इनलेट सीवेज: ग्रे या गहरा नॉर्मल है',ok:true}]},shot:'Grey inlet beaker with green tick.',en:'Inlet sewage may be grey or dark. That is normal.',hi:'इनलेट का सीवेज ग्रे या गहरा हो सकता है। यह नॉर्मल है।'},
+  {v:{k:'beakers',list:[{kind:'mixed',en:'Aeration tank: brown, not black',hi:'एरेशन टैंक: भूरा, काला नहीं',ok:true},{kind:'clear',en:'Treated: clear or light',hi:'ट्रीटेड: साफ़ या हल्का',ok:true}]},shot:'Aeration tank (brown) and clear treated water, both with ticks.',en:'The aeration tank should not be black. Treated water should be clear or light.',hi:'एरेशन टैंक काला नहीं होना चाहिए। ट्रीटेड पानी साफ़ या हल्के रंग का होना चाहिए।'},
+  {v:{k:'beakers',list:[{kind:'black',en:'Black',hi:'काला',bad:true},{kind:'brown',en:'Very dark brown',hi:'बहुत गहरा भूरा',bad:true},{kind:'yellow',en:'Yellow treated',hi:'पीला ट्रीटेड',bad:true},{kind:'muddy',en:'Muddy outlet',hi:'गंदला आउटलेट',bad:true},{kind:'scum',en:'Floating sludge',hi:'तैरता स्लज',bad:true}]},shot:'Five abnormal beakers, each with a red warning mark.',en:'Black water, very dark brown water, yellow treated water, muddy outlet, or floating sludge and scum: these are problems.',hi:'काला पानी, बहुत गहरा भूरा पानी, पीला ट्रीटेड पानी, गंदला आउटलेट, या तैरता हुआ स्लज और झाग: ये समस्या हैं।'},
+  {v:{k:'board',items:[{i:'🫧',en:'Low aeration',hi:'कम एरेशन'},{i:'🦨',en:'Septic sewage',hi:'सेप्टिक सीवेज'},{i:'🦠',en:'Poor bio treatment',hi:'कमज़ोर बायो ट्रीटमेंट'},{i:'🪣',en:'Sludge carryover',hi:'स्लज कैरीओवर'},{i:'🧱',en:'Filter problem',hi:'फ़िल्टर समस्या'}]},shot:'Possible reasons as icons.',en:'Possible reasons: low aeration, septic sewage, poor biological treatment, sludge carryover, or a filter problem.',hi:'संभावित कारण: कम एरेशन, सेप्टिक सीवेज, कमज़ोर बायोलॉजिकल ट्रीटमेंट, स्लज कैरीओवर, या फ़िल्टर की समस्या।'},
+  {v:{k:'board',items:[{i:'📟',en:'Check DO',hi:'DO चेक करें'},{i:'🌀',en:'Check blower',hi:'ब्लोअर चेक करें'},{i:'⏳',en:'Check sludge settling',hi:'स्लज सेटलिंग देखें'},{i:'🚿',en:'Check backwash',hi:'बैकवॉश चेक करें'},{i:'📞',en:'Inform supervisor',hi:'सुपरवाइज़र को बताएँ'}]},shot:'Action icons; avatar points to each.',en:'Your actions: check DO in the aeration tank, check the blower, check sludge settling, check filter backwash. If colour stays abnormal, inform your supervisor.',hi:'आपके एक्शन: एरेशन टैंक में DO चेक करें, ब्लोअर चेक करें, स्लज का बैठना देखें, फ़िल्टर बैकवॉश चेक करें। रंग ठीक न हो तो सुपरवाइज़र को बताएँ।'}],
+ activity:{type:'multi',prompt:{en:'Tap every beaker that shows a problem.',hi:'हर वह बीकर टैप करें जो समस्या दिखाता है।'},options:[{kind:'clear',en:'Clear treated',hi:'साफ़ ट्रीटेड',ok:false},{kind:'black',en:'Black',hi:'काला',ok:true},{kind:'grey',en:'Grey inlet',hi:'ग्रे इनलेट',ok:false},{kind:'yellow',en:'Yellow treated',hi:'पीला ट्रीटेड',ok:true},{kind:'muddy',en:'Muddy outlet',hi:'गंदला आउटलेट',ok:true}]},
+ remember:{en:'Treated water must be clear. Black tank means check the air.',hi:'ट्रीटेड पानी साफ़ होना चाहिए। काला टैंक मतलब हवा चेक करो।'}},
+
+/* 3 ─ Smell */
+{id:'smell',cat:'field',em:'👃',title:{en:'Smell: your free instrument',hi:'गंध: आपका मुफ़्त इंस्ट्रूमेंट'},
+ lines:[
+  {v:{k:'board',items:[{i:'👃',en:'Nose',hi:'नाक'},{i:'🆓',en:'Free instrument',hi:'मुफ़्त इंस्ट्रूमेंट'}]},shot:'Avatar sniffs near the tank, waves hand over sample.',en:'Smell is a very important field check. Your nose is a free instrument.',hi:'गंध बहुत ज़रूरी फ़ील्ड चेक है। आपकी नाक एक मुफ़्त इंस्ट्रूमेंट है।'},
+  {v:{k:'board',items:[{i:'🚰',en:'Inlet: mild smell is normal',hi:'इनलेट: हल्की गंध नॉर्मल',ok:true},{i:'💧',en:'Treated: no strong bad smell',hi:'ट्रीटेड: तेज़ बदबू नहीं',ok:true}]},shot:'Inlet pipe with light stink lines (tick), clear beaker with no lines (tick).',en:'Inlet sewage may have a mild smell. Treated water should not have a strong bad smell.',hi:'इनलेट सीवेज में हल्की गंध हो सकती है। ट्रीटेड पानी में तेज़ बदबू नहीं होनी चाहिए।'},
+  {v:{k:'board',items:[{i:'🥚',en:'Rotten egg smell',hi:'सड़े अंडे की गंध',bad:true},{i:'🏚️',en:'Septic smell',hi:'सेप्टिक गंध',bad:true},{i:'🧪',en:'Strong chemical smell',hi:'तेज़ केमिकल गंध',bad:true},{i:'🫧',en:'Bad smell from aeration tank',hi:'एरेशन टैंक से बदबू',bad:true},{i:'💧',en:'Bad smell from final water',hi:'फ़ाइनल पानी से बदबू',bad:true}]},shot:'Warning icons for each abnormal smell.',en:'Rotten egg smell, septic smell, strong chemical smell, or bad smell from the aeration tank or final water: these are warning signs.',hi:'सड़े अंडे जैसी गंध, सेप्टिक गंध, तेज़ केमिकल गंध, या एरेशन टैंक या फ़ाइनल पानी से बदबू: ये चेतावनी के संकेत हैं।'},
+  {v:{k:'board',items:[{i:'📉',en:'Low DO',hi:'कम DO'},{i:'🌀',en:'Blower not running',hi:'ब्लोअर बंद'},{i:'🕳️',en:'Diffuser choking',hi:'डिफ्यूज़र चोक'},{i:'🛑',en:'Sewage stagnation',hi:'सीवेज रुका हुआ'},{i:'🟫',en:'Old sludge',hi:'पुराना स्लज'},{i:'🦠',en:'Anaerobic condition',hi:'एनएरोबिक कंडीशन'}]},shot:'Reason icons.',en:'Reasons: low DO, blower not running, diffuser choking, sewage stagnation, old sludge, or anaerobic condition.',hi:'कारण: कम DO, ब्लोअर बंद, डिफ्यूज़र चोक, सीवेज का रुका रहना, पुराना स्लज, या एनएरोबिक कंडीशन।'},
+  {v:{k:'board',items:[{i:'📟',en:'Check DO reading',hi:'DO रीडिंग चेक'},{i:'🌀',en:'Check blower & air',hi:'ब्लोअर और हवा चेक'},{i:'🔄',en:'Check EQT mixing',hi:'EQT मिक्सिंग चेक'},{i:'🚛',en:'Check sludge wasting',hi:'स्लज वेस्टिंग चेक'},{i:'📣',en:'Strong smell: inform now',hi:'तेज़ गंध: तुरंत बताएँ'}]},shot:'Action icons; megaphone highlighted on "inform immediately".',en:'Actions: check the DO reading, check the blower and air supply, check equalisation tank mixing, check sludge wasting. If the smell is strong, inform your supervisor immediately.',hi:'एक्शन: DO रीडिंग चेक करें, ब्लोअर और हवा की सप्लाई देखें, EQT की मिक्सिंग देखें, स्लज वेस्टिंग चेक करें। गंध तेज़ हो तो तुरंत सुपरवाइज़र को बताएँ।'}],
+ activity:{type:'choice',prompt:{en:'Strong rotten egg smell from the aeration tank. What do you do?',hi:'एरेशन टैंक से तेज़ सड़े अंडे की गंध आ रही है। आप क्या करेंगे?'},options:[{i:'⏳',en:'Wait, it will go away',hi:'रुको, अपने आप ठीक होगा',ok:false},{i:'📟',en:'Check DO and blower. Inform supervisor now',hi:'DO और ब्लोअर चेक करो। तुरंत सुपरवाइज़र को बताओ',ok:true},{i:'🚰',en:'Add more water to the tank',hi:'टैंक में और पानी डालो',ok:false}]},
+ remember:{en:'Rotten egg smell means low oxygen. Check the blower, inform supervisor.',hi:'सड़े अंडे की गंध मतलब कम ऑक्सीजन। ब्लोअर चेक करो, सुपरवाइज़र को बताओ।'}},
+
+/* 4 ─ pH */
+{id:'ph',cat:'field',em:'🧪',title:{en:'pH: acidic or alkaline?',hi:'pH: एसिडिक या अल्कलाइन?'},
+ lines:[
+  {v:{k:'gauge',value:7.2},shot:'pH gauge 0 to 14, needle at 7.2, green zone 6.5 to 8.5.',en:'pH tells if water is acidic, neutral, or alkaline. Bacteria work well only in the right pH range.',hi:'pH बताता है कि पानी एसिडिक है, न्यूट्रल है या अल्कलाइन। बैक्टीरिया सही pH रेंज में ही अच्छा काम करते हैं।'},
+  {v:{k:'gauge',value:7.2,zones:true},shot:'Zones light up: red below 6.5, green 6.5 to 8.5, blue above 8.5.',en:'Normal range is 6.5 to 8.5. Below 6.5 is acidic. Above 8.5 is alkaline.',hi:'नॉर्मल रेंज 6.5 से 8.5 है। 6.5 से नीचे मतलब एसिडिक। 8.5 से ऊपर मतलब अल्कलाइन।'},
+  {v:{k:'steps',items:[{n:1,i:'🫙',en:'Clean container',hi:'साफ़ कंटेनर'},{n:2,i:'🔄',en:'Rinse with sample',hi:'सैंपल से धोएँ'}]},shot:'Hands take a sample in a clean jar, rinse it with the same water.',en:'How to test: take the sample in a clean container. Rinse the container with the same sample.',hi:'टेस्ट कैसे करें: साफ़ कंटेनर में सैंपल लें। उसी सैंपल से कंटेनर को धो लें।'},
+  {v:{k:'steps',items:[{n:3,i:'🧪',en:'Dip probe or strip',hi:'प्रोब या स्ट्रिप डुबोएँ'},{n:4,i:'⏱️',en:'Wait for stable reading',hi:'रीडिंग स्थिर होने दें'},{n:5,i:'📒',en:'Write in logbook',hi:'लॉगबुक में लिखें'},{n:6,i:'🚿',en:'Clean the probe',hi:'प्रोब साफ़ करें'}]},shot:'pH meter probe in the beaker, display settles on 7.2, hand writes in logbook, probe rinsed.',en:'Dip the pH probe or pH strip. Wait for a stable reading. Note it in the logbook. Clean the probe after testing.',hi:'pH प्रोब या pH स्ट्रिप डुबोएँ। रीडिंग स्थिर होने तक रुकें। लॉगबुक में लिखें। टेस्ट के बाद प्रोब साफ़ करें।'},
+  {v:{k:'board',items:[{i:'🚰',en:'Check inlet',hi:'इनलेट चेक'},{i:'🚪',en:'Check outlet source',hi:'आउटलेट सोर्स चेक'},{i:'⚗️',en:'Check chemical dosing',hi:'केमिकल डोज़िंग चेक'}]},shot:'Avatar points to inlet, outlet, and dosing tank.',en:'If pH is out of range, the problem may be the source water or wastewater discharge. Check the inlet, outlet source, and chemical dosing.',hi:'pH रेंज से बाहर हो तो समस्या सोर्स वॉटर या वेस्टवॉटर डिस्चार्ज से हो सकती है। इनलेट, आउटलेट सोर्स और केमिकल डोज़िंग चेक करें।'}],
+ activity:{type:'classify',prompt:{en:'Three pH readings. Tap Low, OK, or High for each.',hi:'तीन pH रीडिंग। हर एक के लिए कम, ठीक या ज़्यादा टैप करें।'},items:[{val:5.8,ans:0},{val:7.2,ans:1},{val:9.1,ans:2}],cats:[{en:'Low',hi:'कम',sub:{en:'Acidic',hi:'एसिडिक'}},{en:'OK',hi:'ठीक',sub:{en:'6.5 to 8.5',hi:'6.5 से 8.5'}},{en:'High',hi:'ज़्यादा',sub:{en:'Alkaline',hi:'अल्कलाइन'}}]},
+ remember:{en:'pH 6.5 to 8.5 is OK.',hi:'pH 6.5 से 8.5 ठीक है।'}},
+
+/* 5 ─ DO */
+{id:'do',cat:'field',em:'🫧',title:{en:'DO: oxygen for bacteria',hi:'DO: बैक्टीरिया की ऑक्सीजन'},
+ lines:[
+  {v:{k:'tank',value:2.2},shot:'Aeration tank with bubbles; bacteria cartoon "eating" pollution.',en:'DO means dissolved oxygen in the water. Bacteria need oxygen to break down pollution.',hi:'DO मतलब पानी में घुली हुई ऑक्सीजन। बैक्टीरिया को गंदगी तोड़ने के लिए ऑक्सीजन चाहिए।'},
+  {v:{k:'tank',value:2.2,range:true},shot:'DO meter reads 2.2 mg/L; green band 1.5 to 3.0.',en:'Check DO in the aeration tank. Normal range: 1.5 to 3.0 mg/L.',hi:'DO एरेशन टैंक में चेक करें। नॉर्मल रेंज: 1.5 से 3.0 mg/L।'},
+  {v:{k:'steps',items:[{n:1,i:'📟',en:'Take DO meter',hi:'DO मीटर लें'},{n:2,i:'🫧',en:'Dip probe in tank sample',hi:'प्रोब सैंपल में डुबोएँ'},{n:3,i:'⏱️',en:'Wait for stable reading',hi:'रीडिंग स्थिर होने दें'},{n:4,i:'📒',en:'Note the reading',hi:'रीडिंग लिखें'},{n:5,i:'🚿',en:'Clean the probe',hi:'प्रोब साफ़ करें'}]},shot:'Five-step procedure strip.',en:'How to test: take the DO meter. Dip the probe in the aeration tank sample. Wait for a stable reading. Note it. Clean the probe.',hi:'टेस्ट कैसे करें: DO मीटर लें। प्रोब को एरेशन टैंक के सैंपल में डुबोएँ। रीडिंग स्थिर होने तक रुकें। लिखें। प्रोब साफ़ करें।'},
+  {v:{k:'tank',value:0.8,range:true},shot:'Meter reads 0.8; tank goes dark, stink lines, sad face.',en:'Below 1.0 means low oxygen. This causes bad smell, poor treatment, and black sludge.',hi:'1.0 से नीचे मतलब कम ऑक्सीजन। इससे बदबू, कमज़ोर ट्रीटमेंट और काला स्लज होता है।'},
+  {v:{k:'tank',value:4.6,range:true},shot:'Meter reads 4.6; tank foams with too many bubbles.',en:'Above 4 means excess aeration is possible.',hi:'4 से ऊपर मतलब ज़्यादा एरेशन हो सकता है।'},
+  {v:{k:'board',items:[{i:'🌀',en:'Low: check blower',hi:'कम: ब्लोअर चेक'},{i:'🕳️',en:'Low: check diffuser',hi:'कम: डिफ्यूज़र चेक'},{i:'🔩',en:'Low: air valve & leakage',hi:'कम: एयर वाल्व और लीकेज'},{i:'⏲️',en:'High: blower timing',hi:'ज़्यादा: ब्लोअर टाइमिंग'},{i:'📞',en:'High: inform supervisor',hi:'ज़्यादा: सुपरवाइज़र को बताएँ'}]},shot:'Action icons split into Low DO and High DO.',en:'Low DO? Check the blower, diffuser, air valve, and leakage. High DO? Check blower timing and inform your supervisor.',hi:'DO कम है? ब्लोअर, डिफ्यूज़र, एयर वाल्व और लीकेज चेक करें। DO ज़्यादा है? ब्लोअर की टाइमिंग देखें और सुपरवाइज़र को बताएँ।'}],
+ activity:{type:'slider',prompt:{en:'Move the DO slider. Then answer: DO reads 0.8. What is your first check?',hi:'DO स्लाइडर हिलाएँ। फिर जवाब दें: DO 0.8 है। पहला चेक क्या?'},options:[{i:'🌀',en:'Blower, diffuser, air valve',hi:'ब्लोअर, डिफ्यूज़र, एयर वाल्व',ok:true},{i:'🚿',en:'Filter backwash',hi:'फ़िल्टर बैकवॉश',ok:false},{i:'🛢️',en:'Oil and grease trap',hi:'ऑयल ग्रीस ट्रैप',ok:false}]},
+ remember:{en:'Keep DO between 1.5 and 3.0 mg/L.',hi:'DO 1.5 से 3.0 mg/L के बीच रखें।'}},
+
+/* 6 ─ Turbidity & TSS */
+{id:'clarity',cat:'field',em:'🥛',title:{en:'Turbidity and TSS: is it clear?',hi:'टर्बिडिटी और TSS: पानी साफ़ है?'},
+ lines:[
+  {v:{k:'beakers',list:[{kind:'clear',en:'Clear',hi:'साफ़',ok:true},{kind:'muddy',en:'Muddy with particles',hi:'गंदला, कणों के साथ',bad:true}]},shot:'Two beakers side by side: clear vs muddy with particles.',en:'Turbidity means how clear the water is. TSS means solid particles in the water. Both tell us about clarity.',hi:'टर्बिडिटी मतलब पानी कितना साफ़ है। TSS मतलब पानी में ठोस कण। दोनों पानी की सफ़ाई बताते हैं।'},
+  {v:{k:'compare'},shot:'Three sampling points: clarifier outlet, filter outlet, final treated water.',en:'Check at three places: clarifier outlet, filter outlet, and final treated water.',hi:'तीन जगह चेक करें: क्लैरिफ़ायर आउटलेट, फ़िल्टर आउटलेट, और फ़ाइनल ट्रीटेड पानी।'},
+  {v:{k:'compare',marks:true},shot:'Same three beakers: slightly cloudy, slightly hazy, clear with sparkle.',en:'Clarifier outlet may be slightly cloudy. Filter outlet slightly hazy. Final treated water must be clear and clean.',hi:'क्लैरिफ़ायर आउटलेट थोड़ा धुंधला हो सकता है। फ़िल्टर आउटलेट हल्का धुंधला। फ़ाइनल ट्रीटेड पानी साफ़ और स्वच्छ होना चाहिए।'},
+  {v:{k:'steps',items:[{n:1,i:'🫙',en:'Clean transparent container',hi:'साफ़ पारदर्शी कंटेनर'},{n:2,i:'☀️',en:'Hold against light',hi:'रोशनी के सामने देखें'},{n:3,i:'👁️',en:'Look for cloudiness & particles',hi:'धुंधलापन और कण देखें'},{n:4,i:'📟',en:'Turbidity meter if available',hi:'मीटर हो तो इस्तेमाल करें'},{n:5,i:'🔍',en:'Compare the three samples',hi:'तीनों की तुलना करें'}]},shot:'Avatar holds sample to the sun, then compares three bottles.',en:'How to check: take the sample in a clean transparent container. Hold it against light. Look for cloudiness and particles. Use a turbidity meter if available. Compare the three samples.',hi:'कैसे चेक करें: साफ़ पारदर्शी कंटेनर में सैंपल लें। रोशनी के सामने देखें। धुंधलापन और कण देखें। टर्बिडिटी मीटर हो तो इस्तेमाल करें। तीनों सैंपल की तुलना करें।'},
+  {v:{k:'beakers',list:[{kind:'muddy',en:'Muddy',hi:'गंदला',bad:true},{kind:'particles',en:'Visible particles',hi:'दिखने वाले कण',bad:true},{kind:'sludgeout',en:'Sludge in outlet',hi:'आउटलेट में स्लज',bad:true}]},shot:'Abnormal beakers with red crosses.',en:'Muddy water, visible particles, or sludge particles in the outlet are abnormal.',hi:'गंदला पानी, दिखने वाले कण, या आउटलेट में स्लज के कण: ये असामान्य हैं।'},
+  {v:{k:'board',items:[{i:'⏳',en:'Poor settling',hi:'खराब सेटलिंग'},{i:'🟤',en:'High MLSS',hi:'ज़्यादा MLSS'},{i:'🧱',en:'Filter choking',hi:'फ़िल्टर चोक'},{i:'🚿',en:'Backwash not done',hi:'बैकवॉश नहीं हुआ'},{i:'🌊',en:'Excess flow',hi:'ज़्यादा फ्लो'},{i:'🚛',en:'Improper sludge wasting',hi:'गलत स्लज वेस्टिंग'}]},shot:'Reason icons.',en:'Reasons: poor settling, high MLSS, filter choking, backwash not done properly, excess flow, or improper sludge wasting.',hi:'कारण: खराब सेटलिंग, ज़्यादा MLSS, फ़िल्टर चोक, बैकवॉश ठीक से न होना, ज़्यादा फ्लो, या गलत स्लज वेस्टिंग।'},
+  {v:{k:'board',items:[{i:'🔵',en:'Check clarifier settling',hi:'क्लैरिफ़ायर सेटलिंग देखें'},{i:'🟤',en:'Check sludge condition',hi:'स्लज की हालत देखें'},{i:'🧱',en:'Check filter',hi:'फ़िल्टर चेक करें'},{i:'🚿',en:'Backwash if required',hi:'ज़रूरत हो तो बैकवॉश'},{i:'📞',en:'Inform supervisor',hi:'सुपरवाइज़र को बताएँ'}]},shot:'Action icons.',en:'Actions: check clarifier settling, check sludge condition, check the filter, do backwash if required, and inform your supervisor.',hi:'एक्शन: क्लैरिफ़ायर की सेटलिंग देखें, स्लज की हालत देखें, फ़िल्टर चेक करें, ज़रूरत हो तो बैकवॉश करें, और सुपरवाइज़र को बताएँ।'}],
+ activity:{type:'choice',prompt:{en:'Which sample must be the clearest?',hi:'कौन सा सैंपल सबसे साफ़ होना चाहिए?'},options:[{kind:'cloudy',en:'Clarifier outlet',hi:'क्लैरिफ़ायर आउटलेट',ok:false},{kind:'hazy',en:'Filter outlet',hi:'फ़िल्टर आउटलेट',ok:false},{kind:'clear',en:'Final treated water',hi:'फ़ाइनल ट्रीटेड पानी',ok:true}]},
+ remember:{en:'Clear water means good treatment.',hi:'साफ़ पानी मतलब अच्छा ट्रीटमेंट।'}},
+
+/* 7 ─ SVI */
+{id:'svi',cat:'field',em:'⏳',title:{en:'SVI: the 30-minute settling test',hi:'SVI: 30 मिनट का सेटलिंग टेस्ट'},
+ lines:[
+  {v:{k:'cylinder',sludge:0.3,top:'clear'},shot:'Measuring cylinder with settled sludge and clear water on top.',en:'SVI tells us how well the sludge settles in the aeration tank.',hi:'SVI बताता है कि एरेशन टैंक का स्लज कितनी अच्छी तरह बैठता है।'},
+  {v:{k:'steps',items:[{n:1,i:'🧫',en:'1 litre in cylinder',hi:'सिलेंडर में 1 लीटर'},{n:2,i:'⏱️',en:'30 minutes, do not disturb',hi:'30 मिनट, हिलाएँ नहीं'}]},shot:'Hand dips cylinder into aeration tank; 30-minute clock.',en:'Take 1 litre of aeration tank sample in a measuring cylinder. Keep it undisturbed for 30 minutes.',hi:'मेज़रिंग सिलेंडर में एरेशन टैंक का 1 लीटर सैंपल लें। 30 मिनट तक बिना हिलाए रखें।'},
+  {v:{k:'steps',items:[{n:3,i:'👁️',en:'Watch it settle',hi:'बैठते हुए देखें'},{n:4,i:'💧',en:'Clear layer on top',hi:'ऊपर साफ़ परत'},{n:5,i:'📏',en:'Sludge volume at bottom',hi:'नीचे स्लज की मात्रा'},{n:6,i:'📒',en:'Record it',hi:'रिकॉर्ड करें'}]},shot:'Cylinder settles: clear top, sludge bottom; hand records mL/L.',en:'Watch how the sludge settles. Check the clear water layer on top. Check the sludge volume at the bottom. Record it.',hi:'देखें स्लज कैसे बैठता है। ऊपर साफ़ पानी की परत देखें। नीचे स्लज की मात्रा देखें। रिकॉर्ड करें।'},
+  {v:{k:'cylinders',list:[{sludge:0.08,en:'Very low: low biomass',hi:'बहुत कम: कम बायोमास'},{sludge:0.85,en:'Very high: excess sludge',hi:'बहुत ज़्यादा: एक्स्ट्रा स्लज'}]},shot:'Two cylinders: almost no sludge vs almost full.',en:'Very low sludge means low biomass: inform your supervisor. Very high sludge means excess sludge: check sludge wasting.',hi:'बहुत कम स्लज मतलब कम बायोमास: सुपरवाइज़र को बताएँ। बहुत ज़्यादा स्लज मतलब एक्स्ट्रा स्लज: स्लज वेस्टिंग चेक करें।'},
+  {v:{k:'cylinders',list:[{sludge:0.95,mixed:true,en:'Not settling: bulking',hi:'नहीं बैठता: बल्किंग'},{sludge:0.3,black:true,en:'Black: septic',hi:'काला: सेप्टिक'},{sludge:0.3,floating:true,en:'Floating: old sludge or gas',hi:'तैरता: पुराना स्लज या गैस'}]},shot:'Three cylinders: not settling, black, floating sludge.',en:'Sludge not settling means bulking or a process issue: check pH, DO, and sludge return. Black sludge means septic condition: check aeration. Floating sludge means old sludge or gas: check wasting and DO.',hi:'स्लज न बैठे तो बल्किंग या प्रोसेस की समस्या: pH, DO और स्लज रिटर्न चेक करें। काला स्लज मतलब सेप्टिक: एरेशन चेक करें। तैरता स्लज मतलब पुराना स्लज या गैस: वेस्टिंग और DO चेक करें।'}],
+ activity:{type:'settle',prompt:{en:'Run the settling test. Then tap the cylinder that shows a septic condition.',hi:'सेटलिंग टेस्ट चलाएँ। फिर वह सिलेंडर टैप करें जो सेप्टिक कंडीशन दिखाता है।'},options:[{cyl:{sludge:0.3},en:'Good settling',hi:'अच्छी सेटलिंग',ok:false},{cyl:{sludge:0.3,black:true},en:'Black sludge',hi:'काला स्लज',ok:true},{cyl:{sludge:0.3,floating:true},en:'Floating sludge',hi:'तैरता स्लज',ok:false}]},
+ remember:{en:'1 litre, 30 minutes, record the sludge volume.',hi:'1 लीटर, 30 मिनट, स्लज की मात्रा रिकॉर्ड करो।'}},
+
+/* 8 ─ MLSS */
+{id:'mlss',cat:'field',em:'🟤',title:{en:'MLSS: how much working sludge?',hi:'MLSS: कितना काम करने वाला स्लज?'},
+ lines:[
+  {v:{k:'cylinder',sludge:0.45,mixed:true},shot:'Aeration tank sample, brown mixed liquor; cartoon bacteria inside.',en:'MLSS means mixed liquor suspended solids. In simple words: how much active bacteria sludge is in the aeration tank.',hi:'MLSS मतलब मिक्स्ड लिकर सस्पेंडेड सॉलिड्स। आसान भाषा में: एरेशन टैंक में कितना एक्टिव बैक्टीरिया स्लज है।'},
+  {v:{k:'cylinders',list:[{sludge:0.08,en:'Low MLSS: weak treatment',hi:'कम MLSS: कमज़ोर ट्रीटमेंट',bad:true}]},shot:'Thin sludge, few bacteria, weak treatment icon.',en:'Low MLSS means fewer bacteria and weak treatment.',hi:'कम MLSS मतलब कम बैक्टीरिया और कमज़ोर ट्रीटमेंट।'},
+  {v:{k:'cylinders',list:[{sludge:0.85,en:'High MLSS: poor settling, carryover, more oxygen',hi:'ज़्यादा MLSS: खराब सेटलिंग, कैरीओवर, ज़्यादा ऑक्सीजन',bad:true}]},shot:'Thick sludge; clarifier overflowing with sludge; oxygen demand arrow up.',en:'High MLSS means excess sludge, poor settling, sludge carryover, and higher oxygen demand.',hi:'ज़्यादा MLSS मतलब एक्स्ट्रा स्लज, खराब सेटलिंग, स्लज कैरीओवर, और ज़्यादा ऑक्सीजन की ज़रूरत।'},
+  {v:{k:'board',items:[{i:'📉',en:'Very low or very high sludge',hi:'बहुत कम या बहुत ज़्यादा स्लज'},{i:'⏳',en:'Not settling',hi:'नहीं बैठता'},{i:'⚫',en:'Black sludge',hi:'काला स्लज'},{i:'🫧',en:'Floating sludge',hi:'तैरता स्लज'},{i:'🚰',en:'High TSS in outlet',hi:'आउटलेट में ज़्यादा TSS'},{i:'🧼',en:'Foaming in tank',hi:'टैंक में झाग'}]},shot:'Six abnormal observation icons.',en:'Watch for: very low or very high sludge, sludge not settling, black sludge, floating sludge, high TSS in the outlet, and foaming in the aeration tank.',hi:'ध्यान दें: बहुत कम या बहुत ज़्यादा स्लज, स्लज न बैठना, काला स्लज, तैरता स्लज, आउटलेट में ज़्यादा TSS, और एरेशन टैंक में झाग।'},
+  {v:{k:'board',items:[{i:'📟',en:'DO & pH',hi:'DO और pH'},{i:'🚛',en:'Sludge wasting',hi:'स्लज वेस्टिंग'},{i:'🌀',en:'Aeration, blower, diffuser',hi:'एरेशन, ब्लोअर, डिफ्यूज़र'},{i:'🔵',en:'Clarifier & return sludge',hi:'क्लैरिफ़ायर और रिटर्न स्लज'},{i:'📞',en:'Inform supervisor',hi:'सुपरवाइज़र को बताएँ'}]},shot:'Action icons.',en:'Most actions are the same: check DO, pH, sludge wasting, aeration, blower and diffuser, clarifier and return sludge. And always inform your supervisor.',hi:'ज़्यादातर एक्शन एक जैसे हैं: DO, pH, स्लज वेस्टिंग, एरेशन, ब्लोअर और डिफ्यूज़र, क्लैरिफ़ायर और रिटर्न स्लज चेक करें। और हमेशा सुपरवाइज़र को बताएँ।'}],
+ activity:{type:'match',prompt:{en:'Match what you see with what you check.',hi:'जो दिखता है उसे सही चेक से जोड़ें।'},pairs:[{l:{i:'📈',en:'Very high sludge',hi:'बहुत ज़्यादा स्लज'},r:{i:'🚛',en:'Check sludge wasting',hi:'स्लज वेस्टिंग चेक'}},{l:{i:'⚫',en:'Black sludge',hi:'काला स्लज'},r:{i:'🌀',en:'Check aeration & blower',hi:'एरेशन और ब्लोअर चेक'}},{l:{i:'⏳',en:'Sludge not settling',hi:'स्लज नहीं बैठता'},r:{i:'📟',en:'Check DO, pH, return sludge',hi:'DO, pH, रिटर्न स्लज चेक'}}]},
+ remember:{en:'Low MLSS: weak treatment. High MLSS: poor settling.',hi:'कम MLSS: कमज़ोर ट्रीटमेंट। ज़्यादा MLSS: खराब सेटलिंग।'}},
+
+/* 9 ─ COD / BOD signs */
+{id:'codbod',cat:'field',em:'📈',title:{en:'COD and BOD: signs of high load',hi:'COD और BOD: ज़्यादा लोड के संकेत'},
+ lines:[
+  {v:{k:'board',items:[{i:'🏭',en:'Organic load',hi:'ऑर्गेनिक लोड'},{i:'👀',en:'Watch the signs',hi:'संकेत देखें'}]},shot:'Dark inlet pipe; "organic pollution load" label.',en:'COD and BOD show the organic pollution load in wastewater. On-site, we watch for the signs.',hi:'COD और BOD वेस्टवॉटर में ऑर्गेनिक गंदगी का लोड बताते हैं। साइट पर हम इसके संकेत देखते हैं।'},
+  {v:{k:'steps',items:[{n:1,i:'🎨',en:'Inlet colour',hi:'इनलेट का रंग'},{n:2,i:'👃',en:'Smell',hi:'गंध'},{n:3,i:'🧼',en:'Foam',hi:'झाग'},{n:4,i:'🫧',en:'Aeration tank',hi:'एरेशन टैंक'},{n:5,i:'⏳',en:'Settling',hi:'सेटलिंग'}]},shot:'Five observation icons in a row with arrows.',en:'Observe five things: inlet colour, smell, foam, the aeration tank, and settling.',hi:'पाँच चीज़ें देखें: इनलेट का रंग, गंध, झाग, एरेशन टैंक, और सेटलिंग।'},
+  {v:{k:'board',items:[{i:'🦨',en:'Strong bad smell',hi:'तेज़ बदबू',bad:true},{i:'🟫',en:'Dark inlet',hi:'गहरा इनलेट',bad:true},{i:'📉',en:'Low DO',hi:'कम DO',bad:true},{i:'🧼',en:'High foam',hi:'ज़्यादा झाग',bad:true},{i:'⏳',en:'Poor settling',hi:'खराब सेटलिंग',bad:true},{i:'🦠',en:'Septic condition',hi:'सेप्टिक कंडीशन',bad:true},{i:'🥛',en:'High turbidity',hi:'ज़्यादा टर्बिडिटी',bad:true},{i:'📈',en:'Sudden change',hi:'अचानक बदलाव',bad:true}]},shot:'Eight warning icons.',en:'Warning signs: strong bad smell, dark inlet, low DO, high foam, poor settling, septic condition, high turbidity, or a sudden change in water quality.',hi:'चेतावनी के संकेत: तेज़ बदबू, गहरा इनलेट, कम DO, ज़्यादा झाग, खराब सेटलिंग, सेप्टिक कंडीशन, ज़्यादा टर्बिडिटी, या पानी की क्वालिटी में अचानक बदलाव।'},
+  {v:{k:'board',items:[{i:'🚰',en:'Check inlet',hi:'इनलेट चेक'},{i:'📟',en:'Check DO',hi:'DO चेक'},{i:'🫧',en:'Check aeration tank',hi:'एरेशन टैंक चेक'},{i:'⏳',en:'Check settling',hi:'सेटलिंग चेक'},{i:'📞',en:'Sudden load: inform',hi:'अचानक लोड: बताएँ'}]},shot:'Action icons.',en:'Actions: check inlet condition, check DO, check the aeration tank, check sludge settling. Inform your supervisor if a sudden load is observed.',hi:'एक्शन: इनलेट की हालत देखें, DO चेक करें, एरेशन टैंक देखें, स्लज सेटलिंग देखें। अचानक लोड दिखे तो सुपरवाइज़र को बताएँ।'}],
+ activity:{type:'multi',prompt:{en:'Which of these are warning signs of high organic load?',hi:'इनमें से कौन से ज़्यादा ऑर्गेनिक लोड के चेतावनी संकेत हैं?'},options:[{i:'🦨',en:'Strong bad smell',hi:'तेज़ बदबू',ok:true},{i:'💧',en:'Clear final water',hi:'साफ़ फ़ाइनल पानी',ok:false},{i:'🧼',en:'High foam',hi:'ज़्यादा झाग',ok:true},{i:'📉',en:'Low DO',hi:'कम DO',ok:true},{i:'🚰',en:'Mild inlet smell',hi:'इनलेट की हल्की गंध',ok:false}]},
+ remember:{en:'Sudden change in smell, colour, foam, DO or settling means high load.',hi:'गंध, रंग, झाग, DO या सेटलिंग में अचानक बदलाव मतलब ज़्यादा लोड।'}},
+
+/* 10 ─ Oil & grease */
+{id:'oil',cat:'field',em:'🛢️',title:{en:'Oil and grease: check the trap',hi:'तेल और ग्रीस: ट्रैप चेक करें'},
+ lines:[
+  {v:{k:'board',items:[{i:'🍳',en:'Kitchen',hi:'किचन'},{i:'🍽️',en:'Canteen',hi:'कैंटीन'},{i:'🏨',en:'Hotel',hi:'होटल'},{i:'🏢',en:'Commercial',hi:'कमर्शियल'}]},shot:'Kitchen sink draining into the plant inlet.',en:'Oil and grease come mainly from kitchens, canteens, hotels, and commercial wastewater.',hi:'तेल और ग्रीस ज़्यादातर किचन, कैंटीन, होटल और कमर्शियल वेस्टवॉटर से आते हैं।'},
+  {v:{k:'oil'},shot:'Tank top view with floating yellow oil layer and sticky scum; slippery floor sign.',en:'Look for: floating oil layers, grease deposits, sticky scum, bad smell, and slippery surfaces.',hi:'देखें: तैरती तेल की परत, ग्रीस के जमाव, चिपचिपा झाग, बदबू, और फिसलन वाली सतह।'},
+  {v:{k:'board',items:[{i:'🧺',en:'Trap not cleaned',hi:'ट्रैप साफ़ नहीं'},{i:'🍳',en:'Kitchen water enters directly',hi:'किचन का पानी सीधे अंदर'}]},shot:'Dirty grease trap; kitchen pipe bypassing the trap.',en:'Reasons: the oil and grease trap is not cleaned, or kitchen wastewater is entering the plant directly.',hi:'कारण: ऑयल एंड ग्रीस ट्रैप साफ़ नहीं हुआ, या किचन का पानी सीधे प्लांट में आ रहा है।'},
+  {v:{k:'board',items:[{i:'🧺',en:'Check the trap',hi:'ट्रैप चेक करें'},{i:'🥄',en:'Remove floating grease',hi:'तैरता ग्रीस हटाएँ'},{i:'📅',en:'Clean trap on schedule',hi:'शेड्यूल पर ट्रैप साफ़'},{i:'📞',en:'Heavy load: inform',hi:'भारी लोड: बताएँ'}]},shot:'Action icons; calendar with cleaning schedule.',en:'Actions: check the oil and grease trap, remove floating grease, clean the trap as per schedule. Inform your supervisor if a heavy load is coming.',hi:'एक्शन: ऑयल एंड ग्रीस ट्रैप चेक करें, तैरता ग्रीस हटाएँ, शेड्यूल के अनुसार ट्रैप साफ़ करें। भारी लोड आ रहा हो तो सुपरवाइज़र को बताएँ।'}],
+ activity:{type:'spot',prompt:{en:'Look at the tank. Tap where you see oil.',hi:'टैंक देखें। जहाँ तेल दिखे वहाँ टैप करें।'}},
+ remember:{en:'Clean the trap on schedule. Stop kitchen water entering directly.',hi:'ट्रैप शेड्यूल पर साफ़ करो। किचन का पानी सीधे अंदर न आने दो।'}},
+
+/* 11 ─ TSS lab */
+{id:'tsslab',cat:'lab',em:'⚖️',title:{en:'Lab: how to measure TSS',hi:'लैब: TSS कैसे नापें'},
+ lines:[
+  {v:{k:'board',items:[{i:'🫙',en:'Sample bottle',hi:'सैंपल बोतल'},{i:'🧫',en:'Measuring cylinder',hi:'मेज़रिंग सिलेंडर'},{i:'⚪',en:'Filter paper',hi:'फ़िल्टर पेपर'},{i:'⚖️',en:'Weighing balance',hi:'वेइंग बैलेंस'},{i:'⏳',en:'Filtration setup',hi:'फ़िल्ट्रेशन सेटअप'},{i:'🔥',en:'Oven',hi:'ओवन'},{i:'🫧',en:'Desiccator',hi:'डेसिकेटर'}]},shot:'Lab bench with the seven items labelled.',en:'TSS test in the lab. Items: sample bottle, measuring cylinder, filter paper, weighing balance, filtration setup, oven, desiccator.',hi:'लैब में TSS टेस्ट। सामान: सैंपल बोतल, मेज़रिंग सिलेंडर, फ़िल्टर पेपर, वेइंग बैलेंस, फ़िल्ट्रेशन सेटअप, ओवन, डेसिकेटर।'},
+  {v:{k:'steps',items:[{n:1,i:'🫙',en:'Treated water in clean bottle',hi:'साफ़ बोतल में ट्रीटेड पानी'},{n:2,i:'🧫',en:'Fixed volume: less if dirty, more if clear',hi:'तय मात्रा: गंदा तो कम, साफ़ तो ज़्यादा'}]},shot:'Two cylinders: small volume of dirty water, large volume of clear water.',en:'Take treated water in a clean bottle. Measure a fixed volume: less for dirty water, more for clear water.',hi:'साफ़ बोतल में ट्रीटेड पानी लें। तय मात्रा नापें: गंदे पानी के लिए कम, साफ़ पानी के लिए ज़्यादा।'},
+  {v:{k:'steps',items:[{n:3,i:'⚖️',en:'Dry filter paper, weigh: W1',hi:'सूखा फ़िल्टर पेपर तौलें: W1'}]},shot:'Balance reads W1 = 0.567 g.',en:'Dry the filter paper and weigh it. This is W1.',hi:'फ़िल्टर पेपर सुखाकर तौलें। यह W1 है।'},
+  {v:{k:'steps',items:[{n:4,i:'⏳',en:'Filter the sample',hi:'सैंपल छानें'}]},shot:'Water poured through filter funnel; solids stay on paper.',en:'Pass the sample through the filter paper. Solids stay on the paper.',hi:'सैंपल को फ़िल्टर पेपर से छानें। ठोस कण पेपर पर रह जाते हैं।'},
+  {v:{k:'steps',items:[{n:5,i:'🔥',en:'Oven 103 to 105 °C',hi:'ओवन 103 से 105 °C'},{n:6,i:'🫧',en:'Cool in desiccator, weigh: W2',hi:'डेसिकेटर में ठंडा, तौलें: W2'}]},shot:'Oven at 104 °C; desiccator; balance reads W2 = 0.789 g.',en:'Dry the paper in an oven at 103 to 105 °C. Cool it in a desiccator. Weigh again. This is W2.',hi:'पेपर को ओवन में 103 से 105 °C पर सुखाएँ। डेसिकेटर में ठंडा करें। फिर तौलें। यह W2 है।'},
+  {v:{k:'formula',title:'TSS (mg/L)',num:'(W2 − W1) × 1000',den:{en:'Sample volume (litres)',hi:'सैंपल की मात्रा (लीटर)'}},shot:'Formula card: TSS = (W2 − W1) × 1000 ÷ sample volume in litres.',en:'TSS in mg/L equals W2 minus W1, times 1000, divided by sample volume in litres.',hi:'TSS mg/L = W2 माइनस W1, गुणा 1000, भाग सैंपल की मात्रा लीटर में।'}],
+ activity:{type:'calc',prompt:{en:'Calculate TSS with these lab numbers.',hi:'इन लैब नंबरों से TSS का हिसाब करें।'},fields:[{id:'w1',label:'W1 (g)',val:0.567,step:0.001},{id:'w2',label:'W2 (g)',val:0.789,step:0.001},{id:'vol',label:{en:'Volume (L)',hi:'मात्रा (L)'},val:0.5,step:0.05}],fn:'tss',unit:'mg/L',name:'TSS'},
+ remember:{en:'TSS = (W2 − W1) × 1000 ÷ litres.',hi:'TSS = (W2 − W1) × 1000 ÷ लीटर।'}},
+
+/* 12 ─ MLSS lab */
+{id:'mlsslab',cat:'lab',em:'🧫',title:{en:'Lab: how to measure MLSS',hi:'लैब: MLSS कैसे नापें'},
+ lines:[
+  {v:{k:'cylinder',sludge:0.45,mixed:true},shot:'Well-mixed brown sample from the aeration tank.',en:'MLSS test is the same method, but with a well-mixed sample from the aeration tank.',hi:'MLSS टेस्ट वही तरीका है, लेकिन एरेशन टैंक का अच्छी तरह मिला हुआ सैंपल लेते हैं।'},
+  {v:{k:'steps',items:[{n:2,i:'🧫',en:'50, 100 or 250 mL',hi:'50, 100 या 250 mL'}]},shot:'Three cylinders: 50, 100, 250 mL.',en:'Measure 50, 100, or 250 millilitres, depending on sludge concentration.',hi:'स्लज की मात्रा के अनुसार 50, 100 या 250 मिलीलीटर नापें।'},
+  {v:{k:'steps',items:[{n:3,i:'⚖️',en:'Weigh dry paper: W1',hi:'सूखा पेपर तौलें: W1'},{n:4,i:'⏳',en:'Filter',hi:'छानें'},{n:5,i:'🔥',en:'Dry 103 to 105 °C',hi:'103 से 105 °C सुखाएँ'},{n:6,i:'🫧',en:'Cool, weigh: W2',hi:'ठंडा करें, तौलें: W2'}]},shot:'Balance W1 = 1.234 g, filtration, oven, desiccator, balance W2 = 1.567 g.',en:'Weigh dry filter paper: W1. Filter the sample. Dry at 103 to 105 °C. Cool in desiccator. Weigh again: W2.',hi:'सूखा फ़िल्टर पेपर तौलें: W1। सैंपल छानें। 103 से 105 °C पर सुखाएँ। डेसिकेटर में ठंडा करें। फिर तौलें: W2।'},
+  {v:{k:'formula',title:'MLSS (mg/L)',num:'(W2 − W1) × 1000',den:{en:'Sample volume (litres)',hi:'सैंपल की मात्रा (लीटर)'}},shot:'Formula card on a chalkboard.',en:'MLSS in mg/L equals W2 minus W1, times 1000, divided by sample volume in litres.',hi:'MLSS mg/L = W2 माइनस W1, गुणा 1000, भाग सैंपल की मात्रा लीटर में।'}],
+ activity:{type:'order',prompt:{en:'Tap the MLSS test steps in the correct order.',hi:'MLSS टेस्ट के स्टेप सही क्रम में टैप करें।'},items:[{i:'🫙',en:'Take well-mixed sample',hi:'अच्छी तरह मिला सैंपल लें'},{i:'🧫',en:'Measure volume',hi:'मात्रा नापें'},{i:'⚖️',en:'Weigh dry paper (W1)',hi:'सूखा पेपर तौलें (W1)'},{i:'⏳',en:'Filter the sample',hi:'सैंपल छानें'},{i:'🔥',en:'Dry and cool',hi:'सुखाएँ और ठंडा करें'},{i:'🧮',en:'Weigh (W2) and calculate',hi:'तौलें (W2) और हिसाब करें'}]},
+ remember:{en:'Same formula as TSS. Sample from the aeration tank.',hi:'TSS वाला ही फ़ॉर्मूला। सैंपल एरेशन टैंक से।'}},
+
+/* 13 ─ COD lab */
+{id:'codlab',cat:'lab',em:'🔬',title:{en:'Lab: COD open reflux method',hi:'लैब: COD ओपन रिफ्लक्स तरीका'},
+ lines:[
+  {v:{k:'board',items:[{i:'🔬',en:'Chemical oxygen demand',hi:'केमिकल ऑक्सीजन डिमांड'},{i:'🧪',en:'Lab test',hi:'लैब टेस्ट'}]},shot:'Lab bench with COD digestion flask and condenser.',en:'COD means chemical oxygen demand: the oxygen needed to chemically oxidise organic matter. This is a lab test.',hi:'COD मतलब केमिकल ऑक्सीजन डिमांड: ऑर्गेनिक पदार्थ को केमिकल से ऑक्सीडाइज़ करने के लिए ज़रूरी ऑक्सीजन। यह लैब टेस्ट है।'},
+  {v:{k:'steps',items:[{n:1,i:'🫙',en:'Well-mixed sample',hi:'अच्छी तरह मिला सैंपल'},{n:2,i:'🧫',en:'50 mL into digestion flask',hi:'50 mL डाइजेशन फ्लास्क में'}]},shot:'50 mL measured into COD flask.',en:'Take a well-mixed sample. Measure 50 millilitres into a COD digestion flask.',hi:'अच्छी तरह मिला सैंपल लें। COD डाइजेशन फ्लास्क में 50 मिलीलीटर नापें।'},
+  {v:{k:'steps',items:[{n:3,i:'🟠',en:'1.5 g potassium dichromate',hi:'1.5 g पोटैशियम डाइक्रोमेट'},{n:4,i:'⚠️',en:'20 mL sulfuric acid, slowly',hi:'20 mL सल्फ्यूरिक एसिड, धीरे'},{n:5,i:'🪨',en:'2 to 3 boiling chips',hi:'2 से 3 बॉइलिंग चिप्स'}]},shot:'Reagent added; acid poured slowly with "HOT" warning; boiling chips.',en:'Add 1.5 grams of potassium dichromate reagent. Add 20 millilitres of sulfuric acid reagent slowly. It becomes hot. Add 2 to 3 boiling chips.',hi:'1.5 ग्राम पोटैशियम डाइक्रोमेट रीएजेंट डालें। 20 मिलीलीटर सल्फ्यूरिक एसिड रीएजेंट धीरे-धीरे डालें। यह गरम हो जाता है। 2 से 3 बॉइलिंग चिप्स डालें।'},
+  {v:{k:'steps',items:[{n:6,i:'🧊',en:'Attach reflux condenser',hi:'रिफ्लक्स कंडेंसर लगाएँ'},{n:7,i:'🔥',en:'Reflux 2 hours, gentle boil',hi:'2 घंटे रिफ्लक्स, धीमी उबाल'},{n:8,i:'🌡️',en:'Cool to room temperature',hi:'कमरे के तापमान तक ठंडा'}]},shot:'Condenser on flask; 2-hour clock; flask cooling.',en:'Attach the reflux condenser. Heat and reflux for 2 hours with gentle boiling. Then cool to room temperature.',hi:'रिफ्लक्स कंडेंसर लगाएँ। 2 घंटे धीमी उबाल पर रिफ्लक्स करें। फिर कमरे के तापमान तक ठंडा करें।'},
+  {v:{k:'steps',items:[{n:9,i:'💧',en:'Dilute to about 150 mL',hi:'लगभग 150 mL तक पतला करें'},{n:10,i:'🧪',en:'Titrate with FAS, 2 to 3 drops ferroin',hi:'FAS से टाइट्रेट, 2 से 3 बूंद फ़ेरोइन'}]},shot:'Distilled water added; burette titration with ferroin indicator.',en:'Dilute with distilled water to about 150 millilitres. Titrate with ferrous ammonium sulfate using 2 to 3 drops of ferroin indicator.',hi:'डिस्टिल्ड पानी से लगभग 150 मिलीलीटर तक पतला करें। 2 से 3 बूंद फ़ेरोइन इंडिकेटर डालकर फ़ेरस अमोनियम सल्फ़ेट से टाइट्रेट करें।'},
+  {v:{k:'formula',title:'COD (mg/L)',num:'(A − B) × N × 8000',den:{en:'Sample volume (mL)',hi:'सैंपल की मात्रा (mL)'},note:{en:'A = mL FAS for sample · B = mL FAS for blank · N = normality of FAS',hi:'A = सैंपल के लिए FAS mL · B = ब्लैंक के लिए FAS mL · N = FAS की नॉर्मैलिटी'}},shot:'Colour change green to reddish brown; formula card.',en:'End point: colour changes from green to reddish brown. COD equals A minus B, times N, times 8000, divided by sample volume in millilitres.',hi:'एंड पॉइंट: रंग हरे से लाल-भूरा हो जाता है। COD = A माइनस B, गुणा एन, गुणा 8000, भाग सैंपल की मात्रा मिलीलीटर में।'},
+  {v:{k:'board',items:[{i:'🧤',en:'Gloves',hi:'दस्ताने'},{i:'🥽',en:'Goggles',hi:'चश्मा'},{i:'🥼',en:'Apron',hi:'एप्रन'},{i:'🐢',en:'Acid slowly',hi:'एसिड धीरे'},{i:'🌬️',en:'Ventilated area',hi:'हवादार जगह'},{i:'🧼',en:'Clean glassware',hi:'साफ़ ग्लासवेयर'}]},shot:'Safety icons: gloves, goggles, apron, ventilation.',en:'Safety first: wear gloves, goggles, and apron. Add acid slowly. Work in a well-ventilated area. Keep glassware clean.',hi:'सुरक्षा पहले: दस्ताने, चश्मा और एप्रन पहनें। एसिड धीरे डालें। हवादार जगह पर काम करें। ग्लासवेयर साफ़ रखें।'}],
+ activity:{type:'multi',prompt:{en:'Before starting the COD test, tap everything you must do.',hi:'COD टेस्ट शुरू करने से पहले जो ज़रूरी है सब टैप करें।'},options:[{i:'🧤',en:'Wear gloves',hi:'दस्ताने पहनें',ok:true},{i:'🥽',en:'Wear goggles',hi:'चश्मा पहनें',ok:true},{i:'⚡',en:'Add acid quickly',hi:'एसिड जल्दी डालें',ok:false},{i:'🥼',en:'Wear apron',hi:'एप्रन पहनें',ok:true},{i:'🚪',en:'Close all windows',hi:'सारी खिड़कियाँ बंद करें',ok:false},{i:'🌬️',en:'Work in ventilated area',hi:'हवादार जगह पर काम',ok:true}]},
+ remember:{en:'Acid slowly. Reflux 2 hours. Green to reddish brown.',hi:'एसिड धीरे। 2 घंटे रिफ्लक्स। हरे से लाल-भूरा।'}},
+
+/* 14 ─ BOD5 lab */
+{id:'bodlab',cat:'lab',em:'📅',title:{en:'Lab: BOD 5-day method',hi:'लैब: BOD 5 दिन का तरीका'},
+ lines:[
+  {v:{k:'board',items:[{i:'🦠',en:'Microorganisms use oxygen',hi:'सूक्ष्मजीव ऑक्सीजन लेते हैं'},{i:'📅',en:'5 days',hi:'5 दिन'},{i:'🌡️',en:'20 °C',hi:'20 °C'}]},shot:'Incubator at 20 °C with two bottles; 5-day calendar.',en:'BOD5 means biochemical oxygen demand for 5 days: the oxygen microorganisms use to break down organic matter in 5 days at 20 °C.',hi:'BOD5 मतलब 5 दिन की बायोकेमिकल ऑक्सीजन डिमांड: 20 °C पर 5 दिन में सूक्ष्मजीव ऑर्गेनिक पदार्थ तोड़ने के लिए जितनी ऑक्सीजन लेते हैं।'},
+  {v:{k:'steps',items:[{n:1,i:'🫙',en:'Well-mixed sample',hi:'अच्छी तरह मिला सैंपल'},{n:2,i:'💧',en:'Prepare dilutions',hi:'डाइल्यूशन बनाएँ'},{n:3,i:'🍶',en:'Sample bottle + blank bottle',hi:'सैंपल बोतल + ब्लैंक बोतल'}]},shot:'Two DO bottles labelled Sample and Blank.',en:'Take a well-mixed sample. Prepare dilutions if required. Take two DO bottles: a sample bottle and a blank bottle with dilution water.',hi:'अच्छी तरह मिला सैंपल लें। ज़रूरत हो तो डाइल्यूशन बनाएँ। दो DO बोतल लें: एक सैंपल बोतल और एक ब्लैंक बोतल डाइल्यूशन पानी के साथ।'},
+  {v:{k:'steps',items:[{n:4,i:'🚫',en:'Fill fully, no air bubbles',hi:'पूरा भरें, बुलबुला नहीं'},{n:5,i:'📟',en:'Measure DO now: DO1',hi:'अभी DO नापें: DO1'},{n:6,i:'🌡️',en:'Dark, 20 °C, 5 days',hi:'अंधेरा, 20 °C, 5 दिन'}]},shot:'Bottles overflow 2 to 3 times and seal; DO meter reads 8.25; incubator door closes.',en:'Fill both bottles completely with no air bubbles. Overflow 2 to 3 times and seal. Measure DO immediately in both bottles. Record as DO1. Incubate both in the dark at 20 °C for 5 days.',hi:'दोनों बोतलें पूरी भरें, हवा का बुलबुला न रहे। 2 से 3 बार ओवरफ्लो करके सील करें। दोनों बोतलों में तुरंत DO नापें। इसे DO1 लिखें। दोनों को अंधेरे में 20 °C पर 5 दिन इनक्यूबेट करें।'},
+  {v:{k:'formula',title:'BOD5 (mg/L)',num:'(DO1 − DO2) × DF',den:'',note:{en:'DO1 = initial DO · DO2 = DO after 5 days · DF = dilution factor',hi:'DO1 = शुरू का DO · DO2 = 5 दिन बाद DO · DF = डाइल्यूशन फ़ैक्टर'}},shot:'5-day calendar flips; DO meter reads 2.45; formula card.',en:'After 5 days, measure DO again. Record as DO2. BOD5 equals DO1 minus DO2, times the dilution factor.',hi:'5 दिन बाद फिर DO नापें। इसे DO2 लिखें। BOD5 = DO1 माइनस DO2, गुणा डाइल्यूशन फ़ैक्टर।'},
+  {v:{k:'board',items:[{i:'✅',en:'Blank DO change ≤ 0.2',hi:'ब्लैंक DO बदलाव ≤ 0.2'},{i:'💧',en:'DO after 5 days > 1',hi:'5 दिन बाद DO > 1'},{i:'🚫',en:'No air bubbles',hi:'हवा का बुलबुला नहीं'},{i:'🧼',en:'Clean bottles and probe',hi:'बोतलें और प्रोब साफ़'}]},shot:'Quality check icons; cleaning bottles and probe.',en:'Quality check: the blank bottle DO must not change by more than 0.2. Choose dilution so DO after 5 days stays above 1. Clean bottles, caps and probe after testing.',hi:'क्वालिटी चेक: ब्लैंक बोतल का DO 0.2 से ज़्यादा नहीं बदलना चाहिए। डाइल्यूशन ऐसा चुनें कि 5 दिन बाद DO 1 से ऊपर रहे। टेस्ट के बाद बोतलें, ढक्कन और प्रोब साफ़ करें।'}],
+ activity:{type:'calc',prompt:{en:'Calculate BOD5 with these readings.',hi:'इन रीडिंग से BOD5 का हिसाब करें।'},fields:[{id:'do1',label:'DO1 (mg/L)',val:8.25,step:0.01},{id:'do2',label:'DO2 (mg/L)',val:2.45,step:0.01},{id:'df',label:{en:'Dilution factor',hi:'डाइल्यूशन फ़ैक्टर'},val:10,step:1}],fn:'bod',unit:'mg/L',name:'BOD5'},
+ remember:{en:'No air bubbles. 5 days, 20 °C, in the dark.',hi:'हवा का बुलबुला नहीं। 5 दिन, 20 °C, अंधेरे में।'}},
+
+/* 15 ─ Quiz */
+{id:'quiz',cat:'quiz',em:'🏆',title:{en:'Final quiz',hi:'फ़ाइनल क्विज़'},
+ lines:[{v:{k:'trophy'},shot:'Trophy and badge; avatar gives thumbs up.',en:'Nine quick questions. Tap the right answer. Let us see what you remember!',hi:'नौ छोटे सवाल। सही जवाब टैप करें। देखें आपको क्या याद है!'}],
+ questions:[
+  {q:{en:'What is the normal pH range?',hi:'नॉर्मल pH रेंज क्या है?'},o:[{en:'6.5 to 8.5',ok:true},{en:'4 to 6'},{en:'9 to 11'}]},
+  {q:{en:'Where do you check DO?',hi:'DO कहाँ चेक करते हैं?'},o:[{i:'🫧',en:'Aeration tank',hi:'एरेशन टैंक',ok:true},{i:'🚰',en:'Inlet chamber',hi:'इनलेट चैंबर'},{i:'🛢️',en:'Oil trap',hi:'ऑयल ट्रैप'}]},
+  {q:{en:'DO is 0.8 mg/L. What can happen?',hi:'DO 0.8 mg/L है। क्या हो सकता है?'},o:[{i:'🦨',en:'Bad smell and black sludge',hi:'बदबू और काला स्लज',ok:true},{i:'✨',en:'Water becomes clearer',hi:'पानी और साफ़ होगा'},{i:'😴',en:'Nothing',hi:'कुछ नहीं'}]},
+  {q:{en:'Treated water looks yellow. Normal or problem?',hi:'ट्रीटेड पानी पीला दिखता है। नॉर्मल या समस्या?'},o:[{i:'⚠️',en:'Problem',hi:'समस्या',ok:true},{i:'✅',en:'Normal',hi:'नॉर्मल'}]},
+  {q:{en:'Rotten egg smell from the tank means?',hi:'टैंक से सड़े अंडे की गंध का मतलब?'},o:[{i:'📉',en:'Low oxygen',hi:'कम ऑक्सीजन',ok:true},{i:'📈',en:'Too much oxygen',hi:'ज़्यादा ऑक्सीजन'},{i:'💧',en:'Clean water',hi:'साफ़ पानी'}]},
+  {q:{en:'SVI settling test: how long do you wait?',hi:'SVI सेटलिंग टेस्ट: कितनी देर रुकते हैं?'},o:[{en:'30 minutes',hi:'30 मिनट',ok:true},{en:'3 minutes',hi:'3 मिनट'},{en:'3 hours',hi:'3 घंटे'}]},
+  {q:{en:'Final treated water should be?',hi:'फ़ाइनल ट्रीटेड पानी कैसा होना चाहिए?'},o:[{kind:'clear',en:'Clear',hi:'साफ़',ok:true},{kind:'cloudy',en:'Slightly cloudy',hi:'थोड़ा धुंधला'},{kind:'muddy',en:'Muddy',hi:'गंदला'}]},
+  {q:{en:'Oil is floating on the tank. First action?',hi:'टैंक पर तेल तैर रहा है। पहला एक्शन?'},o:[{i:'🧺',en:'Check and clean the oil-grease trap',hi:'ऑयल-ग्रीस ट्रैप चेक और साफ़ करें',ok:true},{i:'⚗️',en:'Add chemicals',hi:'केमिकल डालें'},{i:'🌀',en:'Increase the blower',hi:'ब्लोअर बढ़ाएँ'}]},
+  {q:{en:'The five words to remember?',hi:'याद रखने वाले पाँच शब्द?'},o:[{en:'Check, Record, Understand, Act, Improve',hi:'चेक, रिकॉर्ड, समझो, एक्शन, सुधार',ok:true},{en:'Wait, Watch, Guess, Hope, Rest',hi:'रुको, देखो, अंदाज़ा, उम्मीद, आराम'}]}
+ ]}
+];
+
+/* ---------- Production brief (avatar + localization agents) ---------- */
+const BRIEF = {
+avatar:[
+ 'Presenter "Ritu": Indian female STP operator, early 30s, hair tied back under a white hard hat marked STP/ETP, navy uniform with reflective strips, warm and encouraging. Her voice in both languages is Sarvam Bulbul v3 "ritu"; the avatar should lip-sync to those tracks. Match the illustration style of the source chapter so the video and this module read as one product.',
+ 'Framing: medium shot in the left third; right two-thirds reserved for the B-roll or graphic listed per shot. Avatar points to the graphic on the cue words (numbers, names of equipment).',
+ 'Delivery: slow and clear, at most 110 words per minute, one idea per sentence, a one-second pause after every sentence. No jokes, no idioms.',
+ 'Captions: burned in, same language as the voice, at most 6 words per line, large sans-serif. Keep pH, DO, MLSS, TSS, SVI, COD, BOD in Latin letters on screen.',
+ 'Scene length: 20 to 45 seconds. End every scene with a 3-second "Your turn" card so an LMS or WhatsApp flow can pause for the checkpoint.',
+ 'Exports: 1080p 16:9 for TV and laptop; 9:16 vertical cut for phones and WhatsApp with the avatar at the bottom and the graphic on top.'
+],
+localization:[
+ 'Master language: Hindi narration in this pack is the timing master. The Learn tab plays it as recorded clips from Sarvam Bulbul v3, speaker "ritu", pace 0.9, 22.05 kHz MP3; reuse those clips as the avatar track or regenerate from the Hindi column with the same settings. Other languages may run up to 15% longer; the avatar tool should stretch the B-roll, not speed up the voice.',
+ 'Priority languages after Hindi: Odia, Marathi, Tamil, Telugu, Kannada, Bengali, Gujarati. Pick per plant location.',
+ 'Keep in Latin letters on screen and spell out letter by letter in the voice: pH, DO, MLSS, TSS, SVI, COD, BOD, NTU, mg/L, W1, W2, DO1, DO2.',
+ 'Transliterate, do not translate, the words operators already use: blower, diffuser, clarifier, backwash, aeration tank, sludge, filter, trap, logbook, supervisor, sample, probe.',
+ 'Respectful second person (aap form or regional equivalent). Short sentences. Numbers spoken as digits: "six point five", never a translated decimal format.',
+ 'Quality gate: back-translate three random scenes to English; a site supervisor reads the glossary aloud before dubbing; one operator watches scene 4 (pH) and repeats the range unprompted.'
+],
+onsite:[
+ 'One scene per toolbox talk (2 to 3 minutes), then do the real check at the tank together. Operators retain the action, not the slide.',
+ 'Replay is free: the Listen button repeats any line. Never ask an operator to read aloud.',
+ 'The final quiz screen shows a badge and date. Supervisor signs the logbook against it. Repeat the quiz monthly.'
+]
+};
+
+</script>
+<script>
+(function(){
+'use strict';
+const $ = (s,r)=> (r||document).querySelector(s);
+const $$ = (s,r)=> Array.from((r||document).querySelectorAll(s));
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function load(k,d){ try{ const v=localStorage.getItem(k); return v===null?d:JSON.parse(v) }catch(e){ return d } }
+function save(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)) }catch(e){} }
+function shuffle(a){ const b=a.slice(); for(let i=b.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [b[i],b[j]]=[b[j],b[i]] } if(b.length>2 && b.every((x,i)=>x===a[i])){ b.push(b.shift()) } return b }
+
+const state = { lang: load('wt_lang', null), sound:true, tab:'learn', scene:-1, line:0, phase:'home', done: load('wt_done',[]), best: load('wt_best',null), timer:null, utter:null, sayId:0, paused:false, q:0, scoreN:0, noticed:{} };
+const cur = ()=> state.lang || 'en';
+const t = k => { const o = UI[cur()]; return (o && o[k]!==undefined) ? o[k] : (UI.en[k]!==undefined ? UI.en[k] : k) };
+const L = s => { if(s==null) return ''; if(typeof s==='string') return s; const l=cur(); return s[l]!==undefined ? s[l] : (s.en!==undefined ? s.en : '') };
+
+/* ============ Visual builders ============ */
+let uid=0;
+const BEAKER_PATH = 'M30 18 h40 v84 a10 10 0 0 1 -10 10 h-20 a10 10 0 0 1 -10 -10 z';
+const SV = {
+ beaker(kind, opts){ opts=opts||{}; const id='cp'+(++uid);
+  const K = {clear:{fill:'#CDEBFA',hl:true},grey:{fill:'#8E9AA6'},mixed:{fill:'#8C6A45'},black:{fill:'#1E2328'},brown:{fill:'#3E2410'},yellow:{fill:'#E6C23A'},muddy:{fill:'#9A7247',dots:'#5A3E1F'},particles:{fill:'#B9D9E8',dots:'#5A6B7A'},sludgeout:{fill:'#B8CFDC',dots:'#6B4A2B',big:true},scum:{fill:'#9FC9DD',scum:true},cloudy:{fill:'#B8C7CF'},hazy:{fill:'#C9DCE6'}}[kind] || {fill:'#CDEBFA'};
+  const w = opts.size||110;
+  const dots = K.dots ? [[42,60],[58,70],[50,84],[38,95],[62,96],[46,105],[56,52],[64,110]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="${K.big?3.2:2}" fill="${K.dots}"/>`).join('') : '';
+  const scum = K.scum ? `<ellipse cx="42" cy="42" rx="9" ry="4" fill="#5B4028"/><ellipse cx="58" cy="41" rx="7" ry="3.5" fill="#6B4A2B"/><ellipse cx="50" cy="45" rx="6" ry="3" fill="#4E3620"/>` : '';
+  const hl = K.hl ? `<path d="M36 50 v45" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><path d="M60 30 l3 6 l6 3 l-6 3 l-3 6 l-3 -6 l-6 -3 l6 -3z" fill="#fff" opacity=".9"/>` : '';
+  const mark = opts.ok ? `<circle cx="84" cy="22" r="12" fill="var(--ok)"/><path d="M78 22 l4 4 l8 -8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>` : opts.bad ? `<circle cx="84" cy="22" r="12" fill="var(--bad)"/><path d="M79 17 l10 10 M89 17 l-10 10" stroke="#fff" stroke-width="3" stroke-linecap="round"/>` : '';
+  return `<svg viewBox="0 0 100 124" width="${w}" height="${Math.round(w*1.24)}" class="bk" aria-hidden="true"><defs><clipPath id="${id}"><path d="${BEAKER_PATH}"/></clipPath></defs><path d="${BEAKER_PATH}" fill="var(--glass)"/><g clip-path="url(#${id})"><rect x="30" y="40" width="40" height="80" fill="${K.fill}"/>${dots}${scum}${hl}</g><path d="${BEAKER_PATH}" fill="none" stroke="currentColor" stroke-width="3"/><path d="M24 18 h52" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>${mark}</svg>`;
+ },
+ beakers(spec){ const sz = spec.list.length>3 ? 84 : 110; return `<div class="row">${spec.list.map(b=>`<figure class="fig"><div class="figsvg">${SV.beaker(b.kind,{ok:b.ok,bad:b.bad,size:sz})}</div><figcaption>${esc(L(b))}</figcaption></figure>`).join('')}</div>` },
+ board(spec){ const n=spec.items.length; return `<div class="board n${Math.min(n,9)}">${spec.items.map((it,i)=>`<div class="tile${it.bad?' bad':''}${it.ok?' ok':''}" style="--d:${i*70}ms"><span class="em">${it.i||''}</span><span class="lb">${esc(L(it))}</span></div>`).join('')}</div>` },
+ steps(spec){ return `<div class="steps">${spec.items.map((s,i)=>`<div class="step" style="--d:${i*90}ms"><span class="n">${s.n}</span><span class="em">${s.i}</span><span class="lb">${esc(L(s))}</span></div>`).join('')}</div>` },
+ five(){ const w=[{en:'Check',hi:'चेक',i:'👀'},{en:'Record',hi:'रिकॉर्ड',i:'📝'},{en:'Understand',hi:'समझो',i:'💡'},{en:'Act',hi:'एक्शन',i:'🔧'},{en:'Improve',hi:'सुधार',i:'📈'}]; return `<div class="five">${w.map((x,i)=>`<div class="chip5" style="--d:${i*140}ms"><span class="em">${x.i}</span>${esc(L(x))}</div>${i<4?'<span class="arrow">›</span>':''}`).join('')}</div>` },
+ plant(){ const bubs=[0,1,2,3,4,5].map(i=>`<circle class="bub" style="--d:${(i*0.35).toFixed(2)}s" cx="${226+i*12}" cy="140" r="3" fill="#fff" opacity=".85"/>`).join('');
+  return `<svg viewBox="0 0 420 200" class="scene" aria-hidden="true"><rect width="420" height="200" rx="16" fill="var(--sky1)"/><circle cx="370" cy="40" r="18" fill="#F7C948"/><rect x="0" y="150" width="420" height="50" fill="var(--ground)"/><rect x="300" y="90" width="90" height="60" fill="var(--wall)" stroke="currentColor" stroke-width="2"/><rect x="315" y="105" width="16" height="16" fill="var(--glass)" stroke="currentColor"/><rect x="345" y="105" width="16" height="16" fill="var(--glass)" stroke="currentColor"/><rect x="330" y="125" width="22" height="25" fill="currentColor" opacity=".7"/><rect x="372" y="60" width="10" height="30" fill="var(--wall)" stroke="currentColor" stroke-width="2"/><ellipse cx="110" cy="140" rx="90" ry="26" fill="var(--wall)" stroke="currentColor" stroke-width="2"/><ellipse cx="110" cy="134" rx="80" ry="20" fill="#3B9BD8"/><path d="M30 134 L190 134" stroke="currentColor" stroke-width="3"/><rect x="104" y="112" width="12" height="26" fill="currentColor"/><rect x="215" y="110" width="80" height="40" rx="4" fill="var(--wall)" stroke="currentColor" stroke-width="2"/><rect x="219" y="116" width="72" height="30" fill="#8C6A45"/>${bubs}<circle cx="20" cy="95" r="16" fill="#49A35B"/><rect x="17" y="105" width="6" height="18" fill="#6B4A2B"/><circle cx="405" cy="130" r="12" fill="#49A35B"/><rect x="403" y="138" width="4" height="14" fill="#6B4A2B"/></svg>` },
+ gauge(spec){ const v = spec.value!=null ? spec.value : 7; const cx=150, cy=150, r=110;
+  const ang = val => Math.PI - (val/14)*Math.PI; const pt=(val,rr)=>[cx+rr*Math.cos(ang(val)), cy-rr*Math.sin(ang(val))];
+  const arc=(a,b,color)=>{ const p1=pt(a,r), p2=pt(b,r); return `<path d="M${p1[0].toFixed(1)} ${p1[1].toFixed(1)} A${r} ${r} 0 0 1 ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}" stroke="${color}" stroke-width="26" fill="none"/>` };
+  const n=pt(v, r-38); const zone = v<6.5?'low':v>8.5?'high':'ok'; const col={low:'#E0544A',ok:'#2FA866',high:'#3B7DD8'}[zone]; const lbl={low:t('phlow'),ok:t('phok'),high:t('phhigh')}[zone];
+  const tick=(val,text)=>{ const p=pt(val,r+30); return `<text x="${p[0].toFixed(1)}" y="${(p[1]+5).toFixed(1)}" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">${text}</text>` };
+  return `<svg viewBox="0 -14 300 212" class="gauge" aria-hidden="true">${arc(0,6.5,'#E0544A')}${arc(6.5,8.5,'#2FA866')}${arc(8.5,14,'#3B7DD8')}${tick(0,'0')}${tick(6.5,'6.5')}${tick(8.5,'8.5')}${tick(14,'14')}<line x1="${cx}" y1="${cy}" x2="${n[0].toFixed(1)}" y2="${n[1].toFixed(1)}" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="10" fill="currentColor"/><text x="${cx}" y="${cy+32}" text-anchor="middle" font-size="28" font-weight="800" fill="${col}">pH ${v}</text><text x="${cx}" y="${cy+52}" text-anchor="middle" font-size="15" font-weight="700" fill="${col}">${esc(lbl)}</text></svg>` },
+ tank(spec){ const v = spec.value!=null ? spec.value : 2.2; const nb = v<1?2:v<1.5?4:v<=3?8:v<=4?12:18; const water = v<1?'#2B2420':'#8C6A45'; const face = v<1?'😟':v>4?'😮':(v<1.5||v>3)?'😐':'😊'; const col = v<1?'var(--bad)':(v>4||v<1.5||v>3)?'var(--warn)':'var(--ok)';
+  let bubs=''; for(let i=0;i<nb;i++){ const x=30+((i*37)%220); const d=((i*0.23)%1.8).toFixed(2); const rr=3+((i*7)%3); bubs+=`<circle class="bub" style="--d:${d}s" cx="${x}" cy="${120+((i*13)%30)}" r="${rr}" fill="#fff" opacity=".85"/>` }
+  const stink = v<1 ? `<g fill="none" stroke="#7A8B66" stroke-width="3" stroke-linecap="round"><path d="M90 62 q6 -8 0 -16 q-6 -8 0 -16"/><path d="M190 62 q6 -8 0 -16 q-6 -8 0 -16"/></g>` : '';
+  const range = spec.range ? `<div class="dorange"><span class="seg bad">&lt;1.0</span><span class="seg warn">1.0–1.5</span><span class="seg ok">1.5–3.0</span><span class="seg warn">3.0–4.0</span><span class="seg bad">&gt;4.0</span></div>` : '';
+  return `<div class="tankwrap"><svg viewBox="0 0 280 170" class="tanksvg" aria-hidden="true"><rect x="10" y="70" width="260" height="90" rx="8" fill="var(--wall)" stroke="currentColor" stroke-width="3"/><rect x="16" y="86" width="248" height="68" rx="4" fill="${water}"/>${bubs}${stink}<rect x="16" y="86" width="248" height="4" fill="#fff" opacity=".35"/><text x="140" y="44" font-size="34" text-anchor="middle">${face}</text></svg><div class="meter" style="--c:${col}"><div class="lcd"><span class="val">${v.toFixed(1)}</span><span class="unit">mg/L</span></div><div class="mlabel">DO</div></div>${range}</div>` },
+ cyl(c, size){ size=size||110; const id='cy'+(++uid); const top=20, bottom=190, inner=bottom-top-8; const sl=Math.max(0,Math.min(1,c.sludge!=null?c.sludge:0.3));
+  const sludgeCol = c.black?'#1E2328':(c.mixed?'#8C6A45':'#6B4A2B'); const topCol = c.mixed?'#8C6A45':(c.black?'#8A9099':'#CDEBFA');
+  const sh = c.mixed ? inner : inner*sl; const sy = bottom - sh;
+  const floating = c.floating ? `<ellipse cx="46" cy="${top+16}" rx="12" ry="5" fill="#6B4A2B"/><ellipse cx="70" cy="${top+14}" rx="9" ry="4" fill="#5B4028"/><ellipse cx="58" cy="${top+22}" rx="7" ry="3" fill="#4E3620"/>` : '';
+  const grads=[0.2,0.4,0.6,0.8].map(f=>{ const y=(bottom-inner*f).toFixed(0); return `<line x1="34" x2="46" y1="${y}" y2="${y}" stroke="currentColor" stroke-width="2" opacity=".5"/>` }).join('');
+  const P = `M32 ${top} h56 v${bottom-top-8} a8 8 0 0 1 -8 8 h-40 a8 8 0 0 1 -8 -8 z`;
+  return `<svg viewBox="0 0 120 210" width="${Math.round(size*0.57)}" height="${size}" class="cylsvg" aria-hidden="true"><defs><clipPath id="${id}"><path d="${P}"/></clipPath></defs><path d="${P}" fill="var(--glass)"/><g clip-path="url(#${id})"><rect x="32" y="${top+8}" width="56" height="${inner}" fill="${topCol}"/><rect x="32" y="${sy.toFixed(1)}" width="56" height="${sh.toFixed(1)}" fill="${sludgeCol}"/>${floating}</g>${grads}<path d="${P}" fill="none" stroke="currentColor" stroke-width="3"/><path d="M26 ${top} h68" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>` },
+ cylinder(spec){ return `<div class="row"><figure class="fig"><div class="figsvg">${SV.cyl(spec,170)}</div></figure></div>` },
+ cylinders(spec){ return `<div class="row">${spec.list.map(c=>`<figure class="fig"><div class="figsvg">${SV.cyl(c,150)}</div><figcaption>${esc(L(c))}</figcaption></figure>`).join('')}</div>` },
+ compare(spec){ const list=[{kind:'cloudy',en:'Clarifier outlet',hi:'क्लैरिफ़ायर आउटलेट',sub:{en:'slightly cloudy',hi:'थोड़ा धुंधला'}},{kind:'hazy',en:'Filter outlet',hi:'फ़िल्टर आउटलेट',sub:{en:'slightly hazy',hi:'हल्का धुंधला'}},{kind:'clear',en:'Final treated',hi:'फ़ाइनल ट्रीटेड',sub:{en:'clear and clean',hi:'साफ़ और स्वच्छ'},ok:true}];
+  return `<div class="row">${list.map(b=>`<figure class="fig"><div class="figsvg">${SV.beaker(b.kind,{ok:spec.marks&&b.ok})}</div><figcaption>${esc(L(b))}${spec.marks?`<small>${esc(L(b.sub))}</small>`:''}</figcaption></figure>`).join('')}</div>` },
+ oil(spec){ const hot = spec && spec.spot; const H=(x,y,rx,ry,ok)=> hot ? `<ellipse class="hot" data-ok="${ok?1:0}" cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="transparent" pointer-events="all" stroke="var(--muted)" stroke-dasharray="7 6" stroke-width="2"/>` : '';
+  return `<svg viewBox="0 0 340 220" class="oilsvg" aria-hidden="true"><rect width="340" height="220" rx="16" fill="var(--sky1)"/><circle cx="300" cy="40" r="16" fill="#F7C948"/><ellipse cx="170" cy="130" rx="150" ry="70" fill="var(--wall)" stroke="currentColor" stroke-width="3"/><ellipse cx="170" cy="126" rx="136" ry="58" fill="#3B9BD8"/><ellipse cx="120" cy="120" rx="46" ry="18" fill="#E3B52C"/><ellipse cx="200" cy="140" rx="34" ry="13" fill="#E3B52C"/><ellipse cx="225" cy="108" rx="18" ry="7" fill="#D9A520"/><ellipse cx="128" cy="118" rx="18" ry="6" fill="#F2CB4E" opacity=".9"/><g fill="none" stroke="#8A9B6E" stroke-width="3" stroke-linecap="round"><path d="M140 86 q6 -8 0 -16 q-6 -8 0 -16"/><path d="M160 90 q6 -8 0 -16 q-6 -8 0 -16"/></g>${H(150,124,76,26,true)}${H(265,168,34,16,false)}${H(60,44,40,24,false)}${H(300,96,30,22,false)}</svg>` },
+ formula(spec){ return `<div class="formula"><div class="ftitle">${esc(spec.title)}</div><div class="frac"><span class="num">${esc(spec.num)}</span>${spec.den?`<span class="den">${esc(L(spec.den))}</span>`:''}</div>${spec.note?`<div class="fnote">${esc(L(spec.note))}</div>`:''}</div>` },
+ trophy(){ return `<div class="trophy"><span class="big">🏆</span><div class="chip5">${esc(t('badge'))}</div></div>` },
+ avatar(){ return `<svg viewBox="0 0 120 150" class="avatar" aria-hidden="true"><path d="M20 150 v-30 a40 40 0 0 1 80 0 v30 z" fill="#1F4E9C"/><path d="M20 130 h80 v6 h-80 z" fill="#C9D3DE" opacity=".9"/><path d="M50 110 l10 12 l10 -12 z" fill="#fff"/><path d="M86 104 q12 16 6 38" stroke="#2A1A10" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M92 126 h8" stroke="#D64545" stroke-width="3" stroke-linecap="round"/><rect x="50" y="92" width="20" height="18" fill="#E2B088"/><ellipse cx="30" cy="73" rx="5" ry="7" fill="#E2B088"/><ellipse cx="90" cy="73" rx="5" ry="7" fill="#E2B088"/><path d="M31 56 q-8 24 2 46 q10 -22 6 -46z" fill="#2A1A10"/><path d="M89 56 q8 24 -2 46 q-10 -22 -6 -46z" fill="#2A1A10"/><ellipse cx="60" cy="71" rx="29" ry="31" fill="#EEC19A"/><path d="M31 62 q29 -14 58 0 v5 q-29 -9 -58 0z" fill="#2A1A10"/><circle cx="31" cy="83" r="2.4" fill="#E0B13A"/><circle cx="89" cy="83" r="2.4" fill="#E0B13A"/><path d="M22 54 q38 -50 76 0 z" fill="#F4F6F8" stroke="#C9D3DE" stroke-width="2"/><rect x="16" y="50" width="88" height="9" rx="4" fill="#E8ECF0" stroke="#C9D3DE" stroke-width="2"/><text x="60" y="46" text-anchor="middle" font-size="9" font-weight="800" fill="#1F4E9C" font-family="system-ui,sans-serif">STP</text><ellipse class="eye" cx="48" cy="75" rx="4.2" ry="5.2" fill="#222"/><ellipse class="eye" cx="72" cy="75" rx="4.2" ry="5.2" fill="#222"/><circle cx="49.5" cy="73" r="1.3" fill="#fff"/><circle cx="73.5" cy="73" r="1.3" fill="#fff"/><path d="M42 68 q6 -3 12 0 M66 68 q6 -3 12 0" stroke="#2A1A10" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M43 67 q5 -4 11 -1 M66 66 q6 -3 11 1" stroke="#2A1A10" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M60 79 q-4 6 2 8" stroke="#D39B72" stroke-width="2" fill="none" stroke-linecap="round"/><path class="smile" d="M49 92 q11 9 22 0" stroke="#B34A5A" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse class="mouth" cx="60" cy="93" rx="8.5" ry="5" fill="#8A2E3E"/></svg>` }
+};
+
+/* ============ Recorded clips (Sarvam Bulbul v3, voice "ritu") ============ */
+const AudioBank = {
+ manifests:{}, loading:{}, blobs:{}, pending:{}, player:null, unlocked:false,
+ init(){ try{ this.player = new Audio(); this.player.preload='auto' }catch(e){ this.player=null } this.load('hi'); this.load('en') },
+ load(lang){ if(this.loading[lang]) return this.loading[lang]; this.loading[lang] = fetch(`audio/${lang}/manifest.json`,{cache:'force-cache'}).then(r=>r.ok?r.json():null).then(m=>{ this.manifests[lang]=m||{}; return this.manifests[lang] }).catch(()=>{ this.manifests[lang]={}; return this.manifests[lang] }); return this.loading[lang] },
+ ready(lang, ms){ return Promise.race([this.load(lang), new Promise(res=>setTimeout(()=>res(null), ms||2500))]) },
+ has(lang, text){ const m=this.manifests[lang]; return !!(m && m[text]) },
+ count(lang){ const m=this.manifests[lang]; return m ? Object.keys(m).length : 0 },
+ url(lang, text){ const m=this.manifests[lang]; const rel=m && m[text]; if(!rel) return Promise.resolve(null); if(this.blobs[rel]) return Promise.resolve(this.blobs[rel]); if(!this.pending[rel]){ this.pending[rel] = fetch(rel,{cache:'force-cache'}).then(r=>{ if(!r.ok) throw 0; return r.blob() }).then(b=>{ const u=URL.createObjectURL(b.type?b:new Blob([b],{type:'audio/mpeg'})); this.blobs[rel]=u; return u }).catch(()=>null).finally(()=>{ delete this.pending[rel] }) } return this.pending[rel] },
+ prefetch(lang, texts){ (texts||[]).forEach(t=>{ if(this.has(lang,t)) this.url(lang,t) }) },
+ unlock(){ if(this.unlocked || !this.player) return; this.unlocked=true; try{ this.player.src='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAIlYAAESsAAACABAAZGF0YQAAAAA='; const p=this.player.play(); if(p&&p.catch) p.catch(()=>{}) }catch(e){} },
+ stop(){ if(!this.player) return; try{ this.player.onended=null; this.player.onerror=null; this.player.pause() }catch(e){} }
+};
+function sceneTexts(ls, lang){ const out=[]; ls.lines.forEach(l=>out.push(l[lang])); if(ls.activity) out.push(ls.activity.prompt[lang]); if(ls.remember) out.push(ls.remember[lang]); (ls.questions||[]).forEach(q=>out.push(q.q[lang])); return out }
+
+/* ============ Speech ============ */
+const Speech = {
+ ok: (typeof window!=='undefined') && ('speechSynthesis' in window) && ('SpeechSynthesisUtterance' in window),
+ voices: [],
+ init(){ if(!this.ok) return; const upd=()=>{ try{ this.voices = speechSynthesis.getVoices()||[] }catch(e){ this.voices=[] } }; upd(); try{ speechSynthesis.addEventListener('voiceschanged', upd) }catch(e){ try{ speechSynthesis.onvoiceschanged = upd }catch(e2){} } },
+ voiceFor(lang){ if(!this.ok) return null; if(!this.voices.length){ try{ this.voices = speechSynthesis.getVoices()||[] }catch(e){} } const pref = lang==='hi' ? ['hi-in','hi'] : ['en-in','en-gb','en-us','en-au','en']; const vs=this.voices.map(v=>({v,l:String(v.lang||'').toLowerCase().replace('_','-')})); for(const p of pref){ const hit = vs.find(x=>x.l===p || x.l.indexOf(p+'-')===0); if(hit) return hit.v } if(lang==='en'){ const any=vs.find(x=>x.l.indexOf('en')===0); if(any) return any.v } return null },
+ has(lang){ return !!this.voiceFor(lang) },
+ hasVoice(lang){ return AudioBank.count(lang)>1 || this.has(lang) },
+ say(text, lang, onend){
+  this.stop(); const id = ++state.sayId; let ended=false;
+  const fin=()=>{ if(ended || id!==state.sayId) return; ended=true; clearTimeout(state.timer); avatarTalk(false); if(onend) onend() };
+  if(!state.sound){ avatarTalk(false); state.timer=setTimeout(fin, 1400 + 60*text.length); return }
+  if(AudioBank.player && AudioBank.has(lang, text)){
+   avatarTalk(true);
+   AudioBank.url(lang, text).then(u=>{ if(id!==state.sayId) return; if(!u){ this.sayTTS(text, lang, fin, id); return }
+    const p=AudioBank.player; p.onended=fin; p.onerror=()=>{ if(id===state.sayId) this.sayTTS(text, lang, fin, id) }; p.src=u;
+    const pr=p.play(); if(pr&&pr.catch) pr.catch(()=>{ if(id===state.sayId) this.sayTTS(text, lang, fin, id) });
+    state.timer=setTimeout(fin, 8000 + 160*text.length); });
+   return;
+  }
+  this.sayTTS(text, lang, fin, id);
+ },
+ sayTTS(text, lang, fin, id){
+  if(id!==state.sayId) return; clearTimeout(state.timer);
+  if(!this.has(lang)){ avatarTalk(true); state.timer=setTimeout(fin, 1400 + 60*text.length); return }
+  const u = new SpeechSynthesisUtterance(pron(text, lang)); const v=this.voiceFor(lang); u.voice=v; u.lang=v.lang; u.rate = lang==='hi'?0.9:0.95; u.pitch=1; u.onend=fin; u.onerror=fin; state.utter=u; avatarTalk(true);
+  try{ speechSynthesis.speak(u) }catch(e){ fin(); return }
+  state.timer=setTimeout(fin, 4000 + 110*text.length);
+ },
+ stop(){ state.sayId++; clearTimeout(state.timer); AudioBank.stop(); if(this.ok){ try{ speechSynthesis.cancel() }catch(e){} } avatarTalk(false) }
+};
+function pron(text, lang){ let s=text; for(const pair of (PRON[lang]||[])){ const re=new RegExp('(^|[^A-Za-z0-9])'+pair[0].replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&')+'(?![A-Za-z0-9])','g'); s=s.replace(re,(m,p)=>p+pair[1]) } return s }
+function avatarTalk(on){ $$('.avatar').forEach(a=>a.classList.toggle('talking', !!on)) }
+
+/* ============ Chrome / tabs / language ============ */
+function renderChrome(){
+ $('#brand').textContent=t('brand'); $('#sub').textContent=t('sub'); $('#tabLearn').textContent=t('tabLearn'); $('#tabScript').textContent=t('tabScript');
+ $('#langTog').textContent = cur()==='hi' ? 'EN' : 'हिं'; $('#langTog').setAttribute('aria-label', cur()==='hi'?'Switch to English':'हिंदी में बदलें');
+ $('#sndTog').textContent = state.sound ? '🔊' : '🔇'; $('#sndTog').setAttribute('aria-label', t('sound'));
+ $('#btnHome').textContent = '‹ '+t('home'); $('#lblBack').textContent=t('back'); $('#lblReplay').textContent=t('replay'); $('#lblSkip').textContent=t('skip');
+ $('#tabLearn').classList.toggle('on', state.tab==='learn'); $('#tabScript').classList.toggle('on', state.tab==='script');
+ $('#learn').hidden = state.tab!=='learn'; $('#script').hidden = state.tab!=='script';
+ document.documentElement.lang = cur()==='hi'?'hi':'en';
+}
+function setLang(l){ state.lang=l; save('wt_lang',l); renderChrome(); if(state.phase!=='home') noticeVoice(); if(state.phase==='home') renderHome(); else if(state.phase==='narr') { renderSceneHeader(); playLine(state.line) } else if(state.phase==='act'){ renderSceneHeader(); startActivity() } else if(state.phase==='done'){ renderSceneHeader(); if(LESSONS[state.scene].questions) quizEnd(); else activityDone() } }
+function setTab(tab){ state.tab=tab; Speech.stop(); if(tab==='script') renderScript(); renderChrome(); window.scrollTo(0,0) }
+
+/* ============ Home ============ */
+function goHome(){ Speech.stop(); state.phase='home'; state.scene=-1; $('#player').hidden=true; $('#home').hidden=false; renderHome(); window.scrollTo(0,0) }
+function renderHome(){
+ const h=$('#home'); const doneSet=new Set(state.done); const total=LESSONS.length; const nd=LESSONS.filter(l=>doneSet.has(l.id)).length; const lang=state.lang;
+ const hero = `<section class="hero"><div class="heroav">${SV.avatar()}</div><div class="herotxt"><p class="eyebrow">${esc(t('sub'))}</p><h1>${esc(t('brand'))}</h1><p class="lead">${esc(t('welcome'))}</p><div class="langpick"><span class="hint">${esc(t('choose'))} · ${esc(t('chooseHint'))}</span><div class="langbtns"><button class="btn lang${lang==='en'?' on':''}" data-lang="en">🇬🇧 English</button><button class="btn lang${lang==='hi'?' on':''}" data-lang="hi">🇮🇳 हिंदी</button></div></div><div class="startrow"><button class="btn primary big" id="btnStartAll">${esc(nd>0&&nd<total?t('cont'):t('start'))} ›</button>${nd>0?`<button class="btn ghost" id="btnReset">${esc(t('again'))}</button>`:''}</div><div class="prog"><div class="bar"><span style="width:${Math.round(nd/total*100)}%"></span></div><small>${esc(t('progress'))}: ${nd} / ${total}${state.best!==null?` · ${esc(t('quiz'))}: ${state.best} / ${LESSONS[LESSONS.length-1].questions.length}`:''}</small></div></div></section>`;
+ const group = cat => LESSONS.map((l,i)=>({l,i})).filter(x=>x.l.cat===cat).map(x=>`<button class="scard${doneSet.has(x.l.id)?' done':''}" data-i="${x.i}"><span class="num">${x.i+1}</span><span class="em">${x.l.em}</span><span class="ttl">${esc(L(x.l.title))}</span><span class="meta">${doneSet.has(x.l.id)?'✓ '+esc(t('finished')):esc(t('dur'))}</span></button>`).join('');
+ const map = `<section class="map"><h2><span class="dot field"></span>${esc(t('field'))}</h2><div class="grid">${group('field')}</div><h2><span class="dot lab"></span>${esc(t('lab'))}</h2><div class="grid">${group('lab')}</div><h2><span class="dot quiz"></span>${esc(t('quiz'))}</h2><div class="grid">${group('quiz')}</div></section>`;
+ h.innerHTML = hero+map;
+ $$('.lang',h).forEach(b=>b.onclick=()=>{ setLang(b.dataset.lang); Speech.say(t('welcome'), cur()) });
+ $('#btnStartAll').onclick=()=>{ if(!state.lang) setLang('en'); const next=LESSONS.findIndex(l=>!doneSet.has(l.id)); openScene(next<0?0:next) };
+ const r=$('#btnReset'); if(r) r.onclick=()=>{ state.done=[]; save('wt_done',[]); state.best=null; save('wt_best',null); renderHome() };
+ $$('.scard',h).forEach(b=>b.onclick=()=>{ if(!state.lang) setLang('en'); openScene(+b.dataset.i) });
+}
+function markDone(id){ if(state.done.indexOf(id)<0){ state.done.push(id); save('wt_done',state.done) } }
+
+/* ============ Player ============ */
+function openScene(i){ Speech.stop(); AudioBank.unlock(); state.scene=i; state.line=0; state.phase='narr'; state.tab='learn'; renderChrome(); $('#home').hidden=true; $('#player').hidden=false; renderSceneHeader(); window.scrollTo(0,0);
+ const ls=LESSONS[i]; setVisual(ls.lines[0].v); setCaption('…'); const token=++state.sayId;
+ AudioBank.ready(cur(), 2500).then(()=>{ if(token!==state.sayId || state.scene!==i) return; noticeVoice(); AudioBank.prefetch(cur(), sceneTexts(ls, cur())); playLine(0) }) }
+function renderSceneHeader(){ const ls=LESSONS[state.scene]; $('#pcat').textContent=t(ls.cat); $('#pcat').className='chip '+ls.cat; $('#ptitle').textContent=`${ls.em} ${L(ls.title)}`; updateProgress() }
+function updateProgress(){ const ls=LESSONS[state.scene]; const n=ls.lines.length; const steps = n + (ls.questions ? ls.questions.length : 1); let at = state.phase==='narr' ? state.line : state.phase==='act' ? n + (ls.questions ? state.q : 0) : steps; const dots = Array.from({length:steps},(_,k)=>`<i class="${k<at?'done':k===at?'now':''}${k>=n?' act':''}"></i>`).join(''); $('#pprog').innerHTML = `<span class="pnum">${esc(t('scene'))} ${state.scene+1} / ${LESSONS.length}</span><span class="dots">${dots}</span>` }
+function noticeVoice(){ const nt=$('#notice'); const l=cur(); if(state.sound && !Speech.hasVoice(l) && !state.noticed[l]){ nt.hidden=false; nt.innerHTML = `<div class="ntext"><b>${esc(t('noVoice').replace('{lang}', t('langName')))}</b><span>${esc(t('noVoiceHow').replace(/\{lang\}/g, t('langName')))}</span></div><button class="nclose" aria-label="Close">✕</button>`; $('.nclose',nt).onclick=()=>{ state.noticed[l]=true; nt.hidden=true } } else nt.hidden=true }
+function setVisual(spec){ const st=$('#stage'); const fn = spec && SV[spec.k]; st.innerHTML = fn ? fn(spec) : ''; st.classList.remove('in'); void st.offsetWidth; st.classList.add('in') }
+function setCaption(txt){ const c=$('#cap'); c.textContent=txt; c.classList.remove('in'); void c.offsetWidth; c.classList.add('in') }
+function playLine(i){ const ls=LESSONS[state.scene]; const line=ls.lines[i]; state.line=i; state.phase='narr'; state.paused=false;
+ $('#act').hidden=true; $('#done').hidden=true; $('#stage').hidden=false; setVisual(line.v); setCaption(L(line)); updateControls(); updateProgress();
+ Speech.say(L(line), cur(), ()=>{ if(state.paused) return; if(i+1<ls.lines.length) playLine(i+1); else startActivity() });
+}
+function updateControls(){ const narr = state.phase==='narr'; const playing = narr && !state.paused; $('#icPlay').textContent = playing?'⏸':'▶'; $('#lblPlay').textContent = playing?t('pause'):t('play'); $('#btnSkip').hidden = !narr; $('#btnPlay').hidden = !narr; $('#btnReplay').hidden = state.phase==='done'; $('#btnBack').hidden = false }
+function bindControls(){
+ $('#btnHome').onclick=goHome;
+ $('#btnBack').onclick=()=>{ if(state.phase==='narr' && state.line>0) playLine(state.line-1); else if(state.phase!=='narr'){ const ls=LESSONS[state.scene]; playLine(ls.lines.length-1) } else if(state.scene>0) openScene(state.scene-1); else goHome() };
+ $('#btnPlay').onclick=()=>{ if(state.phase!=='narr') return; if(!state.paused){ state.paused=true; Speech.stop(); updateControls() } else playLine(state.line) };
+ $('#btnReplay').onclick=()=>{ if(state.phase==='narr') playLine(state.line); else if(state.phase==='act'){ const ls=LESSONS[state.scene]; const txt = ls.questions ? L(ls.questions[state.q].q) : L(ls.activity.prompt); Speech.say(txt, cur()) } };
+ $('#btnSkip').onclick=()=>{ Speech.stop(); startActivity() };
+ $('#tabLearn').onclick=()=>setTab('learn'); $('#tabScript').onclick=()=>setTab('script');
+ $('#langTog').onclick=()=>setLang(cur()==='hi'?'en':'hi');
+ $('#sndTog').onclick=()=>{ state.sound=!state.sound; renderChrome(); if(!state.sound) Speech.stop(); else if(state.phase==='narr' && !state.paused) playLine(state.line) };
+ document.addEventListener('visibilitychange',()=>{ if(document.hidden && state.phase==='narr'){ state.paused=true; Speech.stop(); updateControls() } });
+ window.addEventListener('pagehide',()=>Speech.stop());
+}
+
+/* ============ Activities ============ */
+function optIcon(o){ if(o.kind) return `<span class="ic">${SV.beaker(o.kind,{size:52})}</span>`; if(o.cyl) return `<span class="ic">${SV.cyl(o.cyl,86)}</span>`; return `<span class="ic em">${o.i||'•'}</span>` }
+function optBtn(o,i,extra){ return `<button class="opt${extra||''}" data-i="${i}">${optIcon(o)}<span class="lb">${esc(L(o))}</span></button>` }
+function feedback(ok, text, say){ const fb=$('#fb'); if(!fb) return; fb.hidden=false; fb.className='fb '+(ok?'good':'bad'); fb.textContent = text || (ok?t('correct'):t('wrong')); const spoken = say || fb.textContent; if(ok){ Speech.say(spoken, cur(), ()=>activityDone()) } else { Speech.say(spoken, cur()); setTimeout(()=>{ if(fb.classList.contains('bad')) fb.hidden=true }, 2500) } }
+function singleChoice(act, body, opts){ $$('.opt',body).forEach(b=>b.onclick=()=>{ const o=opts[+b.dataset.i]; if(o.ok){ b.classList.add('right'); $$('.opt',body).forEach(x=>x.disabled=true); feedback(true) } else { b.classList.add('wrong'); b.disabled=true; feedback(false) } }) }
+const ACT = {
+ choice(act, body){ body.innerHTML = `<div class="opts">${act.options.map((o,i)=>optBtn(o,i)).join('')}</div>`; singleChoice(act, body, act.options) },
+ multi(act, body){ body.innerHTML = `<p class="hint">${esc(t('tapAll'))}</p><div class="opts">${act.options.map((o,i)=>optBtn(o,i,' sel')).join('')}</div><div class="actbtns"><button class="btn primary" id="btnCheck">${esc(t('check'))}</button></div>`;
+  $$('.opt',body).forEach(b=>b.onclick=()=>{ b.classList.toggle('on'); b.setAttribute('aria-pressed', b.classList.contains('on')?'true':'false') });
+  $('#btnCheck',body).onclick=()=>{ let allOk=true; $$('.opt',body).forEach(b=>{ const o=act.options[+b.dataset.i]; const on=b.classList.contains('on'); b.classList.remove('right','wrong'); if(on&&o.ok) b.classList.add('right'); else if(on&&!o.ok){ b.classList.add('wrong'); allOk=false } else if(!on&&o.ok) allOk=false }); if(allOk){ $$('.opt',body).forEach(x=>x.disabled=true); $('#btnCheck',body).disabled=true; feedback(true, t('allRight')) } else feedback(false) } },
+ classify(act, body){ const ans = act.items.map(()=>null);
+  body.innerHTML = `<div class="gaugebox" id="gbox">${SV.gauge({value:act.items[0].val})}</div><div class="cls">${act.items.map((it,i)=>`<div class="clsrow" data-i="${i}"><button class="valbtn" data-v="${it.val}">pH ${it.val}</button><div class="cats">${act.cats.map((c,j)=>`<button class="cat" data-i="${i}" data-j="${j}"><b>${esc(L(c))}</b><small>${esc(L(c.sub))}</small></button>`).join('')}</div></div>`).join('')}</div>`;
+  $$('.valbtn',body).forEach(b=>b.onclick=()=>{ $('#gbox',body).innerHTML=SV.gauge({value:+b.dataset.v}) });
+  $$('.cat',body).forEach(b=>b.onclick=()=>{ const i=+b.dataset.i, j=+b.dataset.j; const it=act.items[i]; $('#gbox',body).innerHTML=SV.gauge({value:it.val}); const row=b.closest('.clsrow'); $$('.cat',row).forEach(x=>x.classList.remove('on','right','wrong')); b.classList.add('on'); if(j===it.ans){ b.classList.add('right'); ans[i]=true; $$('.cat',row).forEach(x=>x.disabled=true); if(ans.every(Boolean)) feedback(true, t('allRight')); else Speech.say(t('correct'), cur()) } else { b.classList.add('wrong'); ans[i]=false; feedback(false) } }) },
+ order(act, body){ const n=act.items.length; let next=0; const idx=shuffle(act.items.map((_,i)=>i));
+  body.innerHTML = `<p class="hint">${esc(t('tapOrder'))}</p><div class="seq">${act.items.map((_,i)=>`<span class="slot" data-s="${i}">${i+1}</span>`).join('')}</div><div class="opts">${idx.map(i=>optBtn(act.items[i],i)).join('')}</div>`;
+  $$('.opt',body).forEach(b=>b.onclick=()=>{ const i=+b.dataset.i; if(i===next){ b.classList.add('right'); b.disabled=true; const slot=$(`.slot[data-s="${next}"]`,body); slot.classList.add('filled'); slot.innerHTML=`<span class="em">${act.items[i].i}</span>`; next++; if(next===n) feedback(true, t('allRight')); else Speech.say(t('correct'), cur()) } else { b.classList.add('wrong'); setTimeout(()=>b.classList.remove('wrong'),600); feedback(false) } }) },
+ match(act, body){ const n=act.pairs.length; const rIdx=shuffle(act.pairs.map((_,i)=>i)); let sel=null, done=0;
+  body.innerHTML = `<p class="hint">${esc(t('tapPair'))}</p><div class="matchgrid"><div class="col">${act.pairs.map((p,i)=>`<button class="opt m" data-side="l" data-i="${i}"><span class="ic em">${p.l.i}</span><span class="lb">${esc(L(p.l))}</span></button>`).join('')}</div><div class="col">${rIdx.map(i=>`<button class="opt m" data-side="r" data-i="${i}"><span class="ic em">${act.pairs[i].r.i}</span><span class="lb">${esc(L(act.pairs[i].r))}</span></button>`).join('')}</div></div>`;
+  $$('.opt',body).forEach(b=>b.onclick=()=>{ if(b.dataset.side==='l'){ $$('.opt[data-side="l"]',body).forEach(x=>x.classList.remove('on')); b.classList.add('on'); sel=+b.dataset.i; return } if(sel===null){ Speech.say(t('tapPair'), cur()); return } const i=+b.dataset.i; const lb=$(`.opt[data-side="l"][data-i="${sel}"]`,body); if(i===sel){ b.classList.add('right'); b.disabled=true; lb.classList.remove('on'); lb.classList.add('right'); lb.disabled=true; sel=null; done++; if(done===n) feedback(true, t('allRight')); else Speech.say(t('correct'), cur()) } else { b.classList.add('wrong'); setTimeout(()=>b.classList.remove('wrong'),600); feedback(false) } }) },
+ calc(act, body){ const F={ tss:v=>(v.w2-v.w1)*1000/v.vol, bod:v=>(v.do1-v.do2)*v.df };
+  body.innerHTML = `<div class="calc">${act.fields.map(f=>`<label class="field"><span>${esc(L(f.label))}</span><input type="number" inputmode="decimal" id="f_${f.id}" value="${f.val}" step="${f.step}"></label>`).join('')}<div class="actbtns"><button class="btn primary" id="btnCalc">🧮 ${esc(t('calc'))}</button></div><div class="calcout" id="calcout" hidden></div><p class="hint">${esc(t('tryNumbers'))}</p></div>`;
+  let first=true;
+  $('#btnCalc',body).onclick=()=>{ const v={}; let bad=false; act.fields.forEach(f=>{ const x=parseFloat($('#f_'+f.id,body).value); if(!isFinite(x)) bad=true; v[f.id]=x }); if(bad) return; const r=F[act.fn](v); if(!isFinite(r)) return; const val=Math.round(r*10)/10; const out=$('#calcout',body); out.hidden=false; out.innerHTML=`<span class="res">${esc(act.name)} = ${val} ${esc(act.unit)}</span>`; const resTxt = `${act.name} = ${val} ${act.unit}`; if(first){ first=false; feedback(true, resTxt, t('correct')) } else Speech.say(t('correct'), cur()) } },
+ slider(act, body){ body.innerHTML = `<div class="sliderbox"><div id="tankbox">${SV.tank({value:2.2,range:true})}</div><label class="rng"><span>${esc(t('moveSlider'))}</span><input type="range" id="dorng" min="0" max="5" step="0.1" value="2.2" aria-label="DO"></label></div><div class="opts">${act.options.map((o,i)=>optBtn(o,i)).join('')}</div>`;
+  $('#dorng',body).oninput=e=>{ $('#tankbox',body).innerHTML=SV.tank({value:+e.target.value,range:true}) }; singleChoice(act, body, act.options) },
+ settle(act, body){ body.innerHTML = `<div class="settlebox"><div class="cylbig" id="cylbig">${SV.cyl({sludge:1,mixed:true},210)}</div><div class="timer" id="stimer">0 ${esc(t('minutes'))}</div><div class="actbtns"><button class="btn primary" id="btnStart">▶ ${esc(t('startTest'))}</button></div></div><div class="opts" id="settleopts" hidden>${act.options.map((o,i)=>optBtn(o,i)).join('')}</div>`;
+  $('#btnStart',body).onclick=()=>{ const btn=$('#btnStart',body); btn.disabled=true; Speech.say(t('watching'), cur()); const t0=performance.now(), dur=5000; const box=$('#cylbig',body); const tm=$('#stimer',body);
+   const tick=()=>{ const p=Math.min(1,(performance.now()-t0)/dur); const e=1-Math.pow(1-p,2); const sl=1-0.7*e; box.innerHTML=SV.cyl({sludge:sl},210); tm.textContent=`${Math.round(p*30)} ${t('minutes')}`; if(p<1) requestAnimationFrame(tick); else { $('#settleopts',body).hidden=false; btn.parentNode.hidden=true; Speech.say(L(act.prompt), cur()) } };
+   requestAnimationFrame(tick) };
+  singleChoice(act, $('#settleopts',body), act.options) },
+ spot(act, body){ body.innerHTML = `<p class="hint">${esc(t('tapOil'))}</p><div class="spotbox">${SV.oil({spot:true})}</div>`;
+  $$('.hot',body).forEach(h=>h.addEventListener('click',()=>{ if(h.dataset.ok==='1'){ h.classList.add('right'); $$('.hot',body).forEach(x=>x.style.pointerEvents='none'); feedback(true) } else { h.classList.add('wrong'); setTimeout(()=>h.classList.remove('wrong'),600); feedback(false) } })) }
+};
+function startActivity(){ const ls=LESSONS[state.scene]; state.phase='act'; state.paused=false; if(ls.questions){ startQuiz(); return }
+ const act=ls.activity; const box=$('#act'); box.hidden=false; $('#stage').hidden=true; $('#done').hidden=true;
+ box.innerHTML = `<div class="acthead"><span class="chip turn">✋ ${esc(t('yourTurn'))}</span><h3>${esc(L(act.prompt))}</h3></div><div class="actbody" id="actbody"></div><div class="fb" id="fb" hidden></div>`;
+ setCaption(L(act.prompt)); ACT[act.type](act, $('#actbody',box)); updateControls(); updateProgress(); Speech.say(L(act.prompt), cur());
+}
+function nextLabel(){ return state.scene+1 < LESSONS.length ? t('next') : t('home') }
+function nextScene(){ if(state.scene+1 < LESSONS.length) openScene(state.scene+1); else goHome() }
+function activityDone(){ const ls=LESSONS[state.scene]; state.phase='done'; markDone(ls.id); const d=$('#done'); d.hidden=false; $('#act').hidden=true;
+ d.innerHTML = `<div class="rem"><span class="chip rem">💡 ${esc(t('remember'))}</span><p>${esc(L(ls.remember))}</p></div><div class="donebtns"><span class="chip ok">✓ ${esc(t('sceneDone'))}</span><button class="btn primary big" id="btnNext">${esc(nextLabel())} ›</button></div>`;
+ $('#btnNext').onclick=nextScene; setCaption(L(ls.remember)); updateControls(); updateProgress(); Speech.say(L(ls.remember), cur());
+}
+/* ---- quiz ---- */
+function startQuiz(){ state.q=0; state.scoreN=0; state.phase='act'; renderQ() }
+function renderQ(){ const ls=LESSONS[state.scene]; const n=ls.questions.length; if(state.q>=n){ quizEnd(); return } const q=ls.questions[state.q]; const box=$('#act'); box.hidden=false; $('#stage').hidden=true; $('#done').hidden=true;
+ box.innerHTML = `<div class="acthead"><span class="chip turn">${esc(t('question'))} ${state.q+1} / ${n}</span><h3>${esc(L(q.q))}</h3></div><div class="actbody"><div class="opts">${q.o.map((o,i)=>optBtn(o,i)).join('')}</div></div><div class="fb" id="fb" hidden></div>`;
+ let answered=false;
+ $$('.opt',box).forEach(b=>b.onclick=()=>{ if(answered) return; answered=true; const o=q.o[+b.dataset.i]; $$('.opt',box).forEach(x=>x.disabled=true); if(o.ok){ b.classList.add('right'); state.scoreN++ } else { b.classList.add('wrong'); const r=q.o.findIndex(x=>x.ok); if(r>=0) $$('.opt',box)[r].classList.add('right') } const fb=$('#fb',box); fb.hidden=false; fb.className='fb '+(o.ok?'good':'bad'); fb.textContent=o.ok?t('correct'):t('wrong'); Speech.say(fb.textContent, cur(), ()=>{ state.q++; renderQ() }) });
+ setCaption(L(q.q)); updateControls(); updateProgress(); Speech.say(L(q.q), cur());
+}
+function quizEnd(){ const ls=LESSONS[state.scene]; const n=ls.questions.length; const s=state.scoreN; const pass = s>=Math.ceil(n*0.7); if(state.best===null || s>state.best){ state.best=s; save('wt_best',s) } markDone(ls.id); state.phase='done';
+ const d=$('#done'); $('#act').hidden=true; $('#stage').hidden=true; d.hidden=false; let date=''; try{ date=new Date().toLocaleDateString(cur()==='hi'?'hi-IN':'en-IN',{day:'2-digit',month:'short',year:'numeric'}) }catch(e){ date=new Date().toDateString() }
+ d.innerHTML = `<div class="result ${pass?'pass':'fail'}"><span class="big">${pass?'🏅':'💪'}</span><div class="scoreline">${esc(t('score'))}: <b>${s} / ${n}</b></div><h3>${esc(pass?t('badge'):t('fail'))}</h3>${pass?`<p class="cert">${esc(t('showSup'))}<br><small>${esc(t('date'))}: ${esc(date)}</small></p>`:''}<div class="donebtns"><button class="btn" id="btnRetry">↻ ${esc(t('retryQuiz'))}</button><button class="btn primary" id="btnHome2">${esc(t('home'))} ›</button></div></div>`;
+ $('#btnRetry').onclick=startQuiz; $('#btnHome2').onclick=goHome; const scoreSay = cur()==='hi' ? `${n} में से ${s}` : `${s} out of ${n}`; setCaption(`${pass?t('pass'):t('fail')} ${t('score')}: ${scoreSay}`); updateControls(); updateProgress(); Speech.say(pass?t('pass'):t('fail'), cur());
+}
+
+/* ============ Production script tab ============ */
+const ACTNAME = {order:'tap the steps in order',multi:'tap all that apply',choice:'tap the right answer',classify:'sort readings into Low / OK / High',slider:'explore the DO slider, then answer',settle:'run the settling animation, then pick a cylinder',match:'match observation to action',calc:'enter numbers and calculate',spot:'tap the oil on the tank image'};
+function scriptText(lang){ const out=[]; LESSONS.forEach((l,i)=>{ out.push(`SCENE ${i+1} — ${l.title[lang]} [${UI.en[l.cat]}]`); l.lines.forEach((ln,j)=>{ out.push(`  ${i+1}.${j+1}  VISUAL: ${ln.shot||''}`); out.push(`       SAY: ${ln[lang]}`) }); if(l.questions){ out.push(`  CHECKPOINT (quiz):`); l.questions.forEach(q=>out.push(`       Q: ${q.q[lang]}  →  ${q.o.filter(o=>o.ok).map(o=>L2(o,lang)).join(', ')}`)) } else { out.push(`  CHECKPOINT (${ACTNAME[l.activity.type]}): ${l.activity.prompt[lang]}`) } if(l.remember) out.push(`  REMEMBER CARD: ${l.remember[lang]}`); out.push('') }); return out.join('\n') }
+function L2(o,lang){ return o[lang]!==undefined ? o[lang] : o.en }
+function renderScript(){ const s=$('#script');
+ const card = (title, icon, items) => `<div class="bcard"><h3><span class="em">${icon}</span>${esc(title)}</h3><ul>${items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
+ const pipeline = `<div class="pipeline"><div class="pstep"><span class="em">🧠</span><b>Claude</b><small>Script, visuals, checkpoints, this module</small></div><span class="parrow">›</span><div class="pstep"><span class="em">🧑‍🔧</span><b>Avatar agent</b><small>Renders Ritu per shot, 16:9 and 9:16</small></div><span class="parrow">›</span><div class="pstep"><span class="em">🌐</span><b>Localization agent</b><small>Dub + captions from the Hindi master</small></div><span class="parrow">›</span><div class="pstep"><span class="em">📱</span><b>Delivery</b><small>LMS, WhatsApp, toolbox talk</small></div></div>`;
+ const rows = LESSONS.map((l,i)=>{ const shots=l.lines.map((ln,j)=>`<tr><td class="n">${i+1}.${j+1}</td><td class="shot">${esc(ln.shot||'')}</td><td class="en">${esc(ln.en)}</td><td class="hi">${esc(ln.hi)}</td></tr>`).join('');
+  const cp = l.questions ? `<tr class="cp"><td class="n">✋</td><td class="shot">Checkpoint: quiz, ${l.questions.length} questions, 70% to pass</td><td class="en">${l.questions.map(q=>esc(q.q.en)).join('<br>')}</td><td class="hi">${l.questions.map(q=>esc(q.q.hi)).join('<br>')}</td></tr>` : `<tr class="cp"><td class="n">✋</td><td class="shot">Checkpoint: ${esc(ACTNAME[l.activity.type])}</td><td class="en">${esc(l.activity.prompt.en)}</td><td class="hi">${esc(l.activity.prompt.hi)}</td></tr>`;
+  const rem = l.remember ? `<tr class="rem"><td class="n">💡</td><td class="shot">Remember card, end slate, 3 s</td><td class="en">${esc(l.remember.en)}</td><td class="hi">${esc(l.remember.hi)}</td></tr>` : '';
+  const words = l.lines.reduce((a,ln)=>a+ln.en.split(/\s+/).length,0); const secs = Math.round(words/110*60);
+  return `<details class="sc"${i===0?' open':''}><summary><span class="num">${i+1}</span><span class="em">${l.em}</span><span class="ttl">${esc(l.title.en)} <span class="hiTtl">· ${esc(l.title.hi)}</span></span><span class="tag ${l.cat}">${esc(UI.en[l.cat])}</span><span class="dur">${l.lines.length} shots · ~${secs} s narration</span></summary><div class="tw"><table><thead><tr><th>Shot</th><th>Visual / B-roll for the avatar agent</th><th>Narration · English</th><th>Narration · हिंदी (timing master)</th></tr></thead><tbody>${shots}${cp}${rem}</tbody></table></div></details>` }).join('');
+ s.innerHTML = `<section class="brief"><div class="briefhead"><p class="eyebrow">Production pack</p><h1>Avatar video script and localization brief</h1><p class="lead">Every scene below is also what the Learn tab plays. Hand the shot list to the avatar agent, the Hindi column to the localization agent, and keep the checkpoints for the LMS. Source: Chapter 1, Water Parameters and On-site Water Testing.</p></div>${pipeline}<div class="bgrid">${card('Avatar agent brief','🧑‍🔧',BRIEF.avatar)}${card('Localization agent brief','🌐',BRIEF.localization)}${card('Running it on site','🏭',BRIEF.onsite)}</div></section><section class="scenes"><div class="scenehead"><h2>Scene-by-scene script · ${LESSONS.length} scenes</h2><div class="copybtns"><button class="btn" id="cpEn">⧉ ${esc(UI.en.copyEn)}</button><button class="btn" id="cpHi">⧉ ${esc(UI.en.copyHi)}</button></div></div><div id="cpmsg" class="hint" hidden></div><textarea id="cpfallback" class="cpfallback" hidden readonly></textarea>${rows}</section>`;
+ const doCopy = lang => { const txt=scriptText(lang); const msg=$('#cpmsg'); const fb=$('#cpfallback'); const ok=()=>{ msg.hidden=false; msg.textContent=UI.en.copied; fb.hidden=true; setTimeout(()=>{ msg.hidden=true },2500) }; const fail=()=>{ msg.hidden=false; msg.textContent=UI.en.fallbackCopy; fb.hidden=false; fb.value=txt; fb.focus(); fb.select() }; try{ if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok, fail) } else fail() }catch(e){ fail() } };
+ $('#cpEn').onclick=()=>doCopy('en'); $('#cpHi').onclick=()=>doCopy('hi');
+}
+
+/* ============ Init ============ */
+function init(){ Speech.init(); AudioBank.init(); $$('.avwrap').forEach(a=>{ a.innerHTML=SV.avatar() }); renderChrome(); renderHome(); bindControls(); ['touchend','click'].forEach(ev=>document.addEventListener(ev, ()=>AudioBank.unlock(), {once:true, capture:true})); }
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+
+</script>
+</body></html>
