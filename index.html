@@ -1,7 +1,7 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui;background:#fafafa}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Water Testing Operator Training</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0B5CAD"><link rel="icon" href="data:,"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui;background:#fafafa}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Water Plant Operator Training</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Mukta:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Mukta:wght@400;500;600;700&family=Baloo+Thambi+2:wght@700&family=Baloo+Tamma+2:wght@700&family=Baloo+Paaji+2:wght@700&family=Baloo+Bhai+2:wght@700&family=Baloo+Tammudu+2:wght@700&family=Baloo+Da+2:wght@700&family=Baloo+Chettan+2:wght@700&family=Baloo+Bhaina+2:wght@700&display=swap">
 <style>
 /* Layout: phone-first video "player" card (stage → avatar+caption → controls); home is a scene map; one header holds tabs, language and sound. */
 :root{
@@ -9,7 +9,7 @@
   --blue:#0B5CAD; --blue-ink:#083F78; --cyan:#1AA3D9; --cyan-soft:#D9F1FB;
   --ok:#1E9E5A; --ok-soft:#DCF4E6; --warn:#D9890A; --warn-soft:#FFF0D2; --bad:#D63B3B; --bad-soft:#FBE3E3;
   --glass:#F4FAFD; --wall:#DCE6EE; --ground:#9FC77A; --sky1:#DDF1FB; --sky2:#F3FAFE; --lcd:#DFF5E0; --lcd-ink:#15391D;
-  --display:'Baloo 2','Mukta',system-ui,sans-serif; --body:'Mukta','Noto Sans',system-ui,sans-serif;
+  --display:'Baloo 2','Baloo Thambi 2','Baloo Tamma 2','Baloo Paaji 2','Baloo Bhai 2','Baloo Tammudu 2','Baloo Da 2','Baloo Chettan 2','Baloo Bhaina 2','Mukta','Nirmala UI',system-ui,sans-serif; --body:'Mukta','Nirmala UI','Noto Sans',system-ui,sans-serif;
   --r:20px; --shadow:0 8px 28px rgba(16,42,67,.10);
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
@@ -45,7 +45,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .tab{flex:1;border:0;background:transparent;border-radius:999px;padding:9px 14px;font-weight:700;font-size:15px;color:var(--muted)}
 .tab.on{background:var(--blue);color:#fff}
 .tools{display:flex;gap:8px}
-.tool{width:46px;height:46px;border-radius:14px;border:1px solid var(--line);background:var(--soft2);font-weight:800;font-size:17px;font-family:var(--display)}
+.tool{min-width:46px;height:46px;padding:0 12px;border-radius:14px;border:1px solid var(--line);background:var(--soft2);font-weight:800;font-size:16px;font-family:var(--display);white-space:nowrap}
 @media (min-width:720px){ .tabs{order:0;width:auto;min-width:300px} }
 
 main{max-width:980px;margin:0 auto;padding-block:16px 40px;padding-inline:16px}
@@ -279,6 +279,47 @@ main{max-width:980px;margin:0 auto;padding-block:16px 40px;padding-inline:16px}
 .tw tr.cp td{background:var(--warn-soft)} .tw tr.rem td{background:var(--ok-soft)}
 
 @media (prefers-reduced-motion: reduce){ *,*::before,*::after{animation:none!important;transition:none!important} .stage,.cap{opacity:1;transform:none} }
+
+/* ---------- library additions ---------- */
+.langgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px}
+.langgrid .btn.lang{font-size:17px;min-height:54px;padding:8px 10px;font-family:var(--display),'Baloo Thambi 2','Baloo Tamma 2','Baloo Paaji 2','Baloo Bhai 2','Baloo Tammudu 2','Baloo Da 2','Baloo Chettan 2','Baloo Bhaina 2','Nirmala UI',sans-serif}
+.shelf h2{font-size:18px;margin:18px 0 10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.ccard{text-align:left;border:2px solid var(--line);background:var(--card);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:6px;min-height:150px;box-shadow:var(--shadow);transition:transform .08s,border-color .15s}
+.ccard:active{transform:scale(.98)}
+.ccard.done{border-color:var(--ok)}
+.cnum{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-ink);font-family:var(--display)}
+.cem{font-size:34px;line-height:1}
+.cttl{font-family:var(--display);font-weight:800;font-size:18px;line-height:1.2}
+.csum{font-size:14px;color:var(--muted);line-height:1.35}
+.cmeta{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cbar{flex:1;height:8px;border-radius:999px;background:var(--soft2);border:1px solid var(--line);overflow:hidden}
+.cbar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--blue))}
+.chead{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;margin-bottom:22px;display:flex;flex-direction:column;gap:14px}
+.cheadrow{display:flex;gap:14px;align-items:flex-start}
+.cem.big{font-size:44px}
+.chead h1{font-size:28px;font-weight:800;color:var(--blue-ink)}
+.chsel{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;width:100%}
+.fnode{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:96px;max-width:150px;text-align:center;animation:pop .35s both;animation-delay:var(--d,0ms)}
+.fnode .em{font-size:30px;line-height:1} .fnode .lb{font-size:14px;font-weight:700;line-height:1.2}
+.farrow{font-size:28px;font-weight:800;color:var(--muted)}
+.cards{display:grid;gap:10px;width:100%;grid-template-columns:1fr}
+@media (min-width:560px){ .cards.n2,.cards.n4{grid-template-columns:repeat(2,1fr)} .cards.n3{grid-template-columns:repeat(3,1fr)} }
+.vcard{background:var(--card);border:2px solid var(--line);border-left-width:8px;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-width:0;animation:pop .35s both;animation-delay:var(--d,0ms)}
+.vcard.ok{border-left-color:var(--ok)} .vcard.warn{border-left-color:var(--warn)} .vcard.bad{border-left-color:var(--bad)}
+.vhead{display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:16px} .vhead .em{font-size:24px}
+.vcard p{margin:0;font-size:15px;line-height:1.35}
+.rangebox{width:100%;max-width:520px;display:flex;flex-direction:column;gap:8px}
+.rhead{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--display);font-size:18px}
+.rval{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
+.rval.ok{color:var(--ok)} .rval.warn{color:var(--warn)} .rval.bad{color:var(--bad)}
+.rbar{position:relative;display:flex;height:34px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.zone{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0 4px}
+.zone.ok{background:var(--ok-soft);color:var(--ok)} .zone.warn{background:var(--warn-soft);color:var(--warn)} .zone.bad{background:var(--bad-soft);color:var(--bad)}
+.rmark{position:absolute;top:-2px;bottom:-2px;width:5px;margin-left:-2.5px;background:var(--ink);border-radius:3px;box-shadow:0 0 0 2px var(--card)}
+.rends{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bigval{font-family:var(--display);font-size:34px;font-weight:800;color:var(--blue-ink);text-align:center;padding:10px}
 
 </style>
 <header class="top">
@@ -526,6 +567,128 @@ onsite:[
 ]
 };
 
+/* ---------- Library: languages, chapter registry, extra UI strings ---------- */
+const LANGS = [
+ {code:'en', name:'English',  native:'English',  tts:'en-IN'},
+ {code:'hi', name:'Hindi',    native:'हिंदी',    tts:'hi-IN'},
+ {code:'mr', name:'Marathi',  native:'मराठी',    tts:'mr-IN'},
+ {code:'ta', name:'Tamil',    native:'தமிழ்',    tts:'ta-IN'},
+ {code:'kn', name:'Kannada',  native:'ಕನ್ನಡ',    tts:'kn-IN'},
+ {code:'pa', name:'Punjabi',  native:'ਪੰਜਾਬੀ',   tts:'pa-IN'},
+ {code:'gu', name:'Gujarati', native:'ગુજરાતી',  tts:'gu-IN'},
+ {code:'te', name:'Telugu',   native:'తెలుగు',   tts:'te-IN'},
+ {code:'bn', name:'Bengali',  native:'বাংলা',    tts:'bn-IN'},
+ {code:'ml', name:'Malayalam',native:'മലയാളം',   tts:'ml-IN'},
+ {code:'od', name:'Odia',     native:'ଓଡ଼ିଆ',    tts:'od-IN'}
+];
+
+/* Extra UI strings for the library (English + Hindi inline; other languages come from i18n packs keyed by the English text) */
+Object.assign(UI.en, {library:'Training library',libSub:'Operator training centre',chapters:'Chapters',chapter:'Chapter',openChapter:'Open chapter',backLib:'All chapters',scenesN:'scenes',loadingLang:'Loading language…',langMissing:'This language pack is not available yet. Showing English.',chooseChapter:'Choose a chapter to begin.',pickLang:'Language',voiceNote:'Narration by Ritu, recorded for every line.',scriptFor:'Script for'});
+Object.assign(UI.hi, {library:'ट्रेनिंग लाइब्रेरी',libSub:'ऑपरेटर ट्रेनिंग सेंटर',chapters:'अध्याय',chapter:'अध्याय',openChapter:'अध्याय खोलें',backLib:'सभी अध्याय',scenesN:'सीन',loadingLang:'भाषा लोड हो रही है…',langMissing:'यह भाषा अभी उपलब्ध नहीं है। अंग्रेज़ी दिखाई जा रही है।',chooseChapter:'शुरू करने के लिए एक अध्याय चुनें।',pickLang:'भाषा',voiceNote:'हर लाइन रितु की आवाज़ में रिकॉर्ड की गई है।',scriptFor:'स्क्रिप्ट:'});
+UI.en.brand = 'Water Plant Operator Training'; UI.hi.brand = 'वॉटर प्लांट ऑपरेटर ट्रेनिंग';
+UI.en.sub = 'DigitalPaani training library'; UI.hi.sub = 'DigitalPaani ट्रेनिंग लाइब्रेरी';
+
+const CHAPTERS = [];
+CHAPTERS.push({id:'ch1', num:'1', em:'🧪', title:{en:'Water parameters and on-site water testing', hi:'पानी के पैरामीटर और साइट पर पानी की जाँच'},
+ summary:{en:'Check colour, smell, pH, DO, clarity, sludge settling and oil every day, and know what to do when a reading is off.', hi:'रोज़ रंग, गंध, pH, DO, सफ़ाई, स्लज सेटलिंग और तेल चेक करें, और रीडिंग गड़बड़ हो तो क्या करना है, यह जानें।'},
+ lessons: LESSONS});
+
+
+/* ch31.js */
+CHAPTERS.push({
+  id:'ch31', num:'3.1', em:'🌀',
+  title:{en:'Process: Anoxic chamber', hi:'प्रोसेस: एनॉक्सिक चैंबर'},
+  summary:{en:'Run and check the anoxic chamber every day: mixing without air, inlet flow, internal recycle, mixer, sludge condition and the daily checklist.', hi:'एनॉक्सिक चैंबर को रोज़ चलाना और चेक करना: बिना हवा मिक्सिंग, इनलेट फ्लो, इंटरनल रीसाइकल, मिक्सर, स्लज की हालत और रोज़ की चेकलिस्ट।'},
+  lessons:[
+
+/* 1 ─ What is the anoxic chamber */
+{id:'ch31-what',cat:'field',em:'🌀',title:{en:'What is the anoxic chamber?',hi:'एनॉक्सिक चैंबर क्या है?'},
+ lines:[
+  {v:{k:'board',items:[{i:'🌀',en:'Mixing only',hi:'सिर्फ़ मिक्सिंग'},{i:'🚫',en:'No direct air supply',hi:'सीधी हवा नहीं'},{i:'🦠',en:'Bacteria work',hi:'बैक्टीरिया काम करते हैं'}]},shot:'Ritu waves beside the anoxic chamber: a concrete tank with a top mixer, no bubbles, a red "no air" sign.',en:'Namaste! I am Ritu. Today we learn the anoxic chamber. It is a biological treatment tank. Here wastewater is mixed without direct air supply.',hi:'नमस्ते! मैं रितु हूँ। आज हम एनॉक्सिक चैंबर सीखेंगे। यह एक बायोलॉजिकल ट्रीटमेंट टैंक है। यहाँ वेस्टवॉटर को बिना सीधी हवा दिए मिक्स किया जाता है।'},
+  {v:{k:'flow',items:[{i:'🧪',en:'Nitrate',hi:'नाइट्रेट'},{i:'🦠',en:'Bacteria',hi:'बैक्टीरिया'},{i:'🫧',en:'Nitrogen gas',hi:'नाइट्रोजन गैस'},{i:'💧',en:'Cleaner water',hi:'साफ़ पानी'}]},shot:'Nitrate molecules in water; bacteria take them in low oxygen; nitrogen gas bubbles leave; a sparkling clean drop.',en:'In this chamber, bacteria use nitrate oxygen to remove nitrogen from the wastewater. Nitrate is converted into nitrogen gas. The gas escapes to the air.',hi:'इस चैंबर में बैक्टीरिया नाइट्रेट की ऑक्सीजन लेकर वेस्टवॉटर से नाइट्रोजन हटाते हैं। नाइट्रेट नाइट्रोजन गैस में बदल जाता है। गैस हवा में निकल जाती है।'},
+  {v:{k:'cards',items:[{i:'🎯',title:{en:'Main purpose',hi:'मुख्य मकसद'},en:'Denitrification: removal of nitrate from wastewater',hi:'डीनाइट्रिफ़िकेशन: वेस्टवॉटर से नाइट्रेट हटाना',tone:'ok'}]},shot:'Target icon with the word Denitrification; nitrate crossed out.',en:'The main purpose is denitrification. Denitrification means removal of nitrate from wastewater. This reduces nitrogen pollution in the treated water.',hi:'मुख्य मकसद है डीनाइट्रिफ़िकेशन। डीनाइट्रिफ़िकेशन मतलब वेस्टवॉटर से नाइट्रेट हटाना। इससे ट्रीटेड पानी में नाइट्रोजन की गंदगी कम होती है।'},
+  {v:{k:'flow',items:[{i:'🟫',en:'Equalization tank',hi:'इक्वलाइज़ेशन टैंक'},{i:'🌀',en:'Anoxic chamber',hi:'एनॉक्सिक चैंबर'},{i:'🫧',en:'Aeration tank',hi:'एरेशन टैंक'}]},shot:'Three tanks left to right with arrows: equalization, anoxic with mixer, aeration with bubbles.',en:'Simple flow: water comes from the equalization tank, into the anoxic chamber, then to the aeration tank.',hi:'सिंपल फ्लो: पानी इक्वलाइज़ेशन टैंक से आता है, एनॉक्सिक चैंबर में जाता है, फिर एरेशन टैंक में।'},
+  {v:{k:'flow',items:[{i:'🫧',en:'Aeration tank',hi:'एरेशन टैंक'},{i:'🔄',en:'Internal recycle',hi:'इंटरनल रीसाइकल'},{i:'🌀',en:'Anoxic chamber',hi:'एनॉक्सिक चैंबर'}]},shot:'Green arrow loops from the aeration tank back to the anoxic chamber, labelled internal recycle.',en:'With recycling: nitrate-rich water from the aeration tank is sent back to the anoxic chamber. This is the internal recycle.',hi:'रीसाइकलिंग के साथ: एरेशन टैंक का नाइट्रेट वाला पानी वापस एनॉक्सिक चैंबर में भेजा जाता है। इसे इंटरनल रीसाइकल कहते हैं।'},
+  {v:{k:'board',items:[{i:'🧪',en:'Reduce nitrate',hi:'नाइट्रेट कम'},{i:'🦠',en:'Support denitrification',hi:'डीनाइट्रिफ़िकेशन में मदद'},{i:'🛡️',en:'Stable bio treatment',hi:'स्थिर बायो ट्रीटमेंट'},{i:'📉',en:'Less load on aeration',hi:'एरेशन पर कम लोड'},{i:'👃',en:'Odour control',hi:'बदबू कंट्रोल'}]},shot:'Five benefit icons pop in one by one.',en:'Why is it important? It reduces nitrate, supports denitrification, improves treatment stability, reduces load on the aeration tank, and controls odour when operated properly.',hi:'यह ज़रूरी क्यों है? यह नाइट्रेट कम करता है, डीनाइट्रिफ़िकेशन में मदद करता है, ट्रीटमेंट को स्थिर रखता है, एरेशन टैंक पर लोड कम करता है, और सही चलाने पर बदबू कंट्रोल करता है।'},
+  {v:{k:'cards',items:[{i:'🌀',title:{en:'Mixing, not aeration',hi:'मिक्सिंग, एरेशन नहीं'},en:'Remove nitrogen before aeration',hi:'एरेशन से पहले नाइट्रोजन हटाएँ',tone:'ok'}]},shot:'Megaphone "Operator message" card; Ritu points to the mixer.',en:'Operator message: the anoxic chamber needs mixing, not direct aeration. It helps remove nitrogen before aeration.',hi:'ऑपरेटर मैसेज: एनॉक्सिक चैंबर को मिक्सिंग चाहिए, सीधा एरेशन नहीं। यह एरेशन से पहले नाइट्रोजन हटाने में मदद करता है।'}],
+ activity:{type:'choice',prompt:{en:'What does the anoxic chamber need?',hi:'एनॉक्सिक चैंबर को क्या चाहिए?'},options:[{i:'🌀',en:'Mixing, no direct air',hi:'मिक्सिंग, सीधी हवा नहीं',ok:true},{i:'🫧',en:'Direct air from the blower',hi:'ब्लोअर से सीधी हवा',ok:false},{i:'🛑',en:'No mixing, let it settle',hi:'मिक्सिंग नहीं, बैठने दो',ok:false}]},
+ remember:{en:'Anoxic chamber: mixing, not aeration. It removes nitrogen.',hi:'एनॉक्सिक चैंबर: मिक्सिंग, एरेशन नहीं। यह नाइट्रोजन हटाता है।'}},
+
+/* 2 ─ Wastewater inlet */
+{id:'ch31-inlet',cat:'field',em:'🚰',title:{en:'Wastewater inlet: what to check',hi:'वेस्टवॉटर इनलेट: क्या चेक करें'},
+ lines:[
+  {v:{k:'flow',items:[{i:'🟫',en:'Equalization tank',hi:'इक्वलाइज़ेशन टैंक'},{i:'🚰',en:'Inlet',hi:'इनलेट'},{i:'🌀',en:'Anoxic chamber',hi:'एनॉक्सिक चैंबर'},{i:'🫧',en:'To aeration tank',hi:'एरेशन टैंक को'}]},shot:'Brown inlet pipe from the equalization tank enters the anoxic chamber; outlet pipe goes to the aeration tank.',en:'Wastewater enters the anoxic chamber from the equalization tank or the previous treatment unit. From here it goes to the aeration tank.',hi:'वेस्टवॉटर इक्वलाइज़ेशन टैंक या पिछली ट्रीटमेंट यूनिट से एनॉक्सिक चैंबर में आता है। यहाँ से यह एरेशन टैंक में जाता है।'},
+  {v:{k:'board',items:[{i:'⚙️',en:'Mixer: mixing only',hi:'मिक्सर: सिर्फ़ मिक्सिंग'},{i:'🚫',en:'No air supply',hi:'हवा की सप्लाई नहीं'}]},shot:'Photo of a real anoxic chamber: mixer swirl on the surface, no bubbles.',en:'Look at a typical anoxic chamber. There is mixing, but no aeration. The mixer runs. No air is supplied.',hi:'एक आम एनॉक्सिक चैंबर देखिए। यहाँ मिक्सिंग है, लेकिन एरेशन नहीं। मिक्सर चलता है। हवा नहीं दी जाती।'},
+  {v:{k:'board',items:[{i:'🚰',en:'Flow coming or not',hi:'फ्लो आ रहा है या नहीं'},{i:'🌊',en:'Flow normal or very high',hi:'फ्लो नॉर्मल या बहुत ज़्यादा'},{i:'🎨',en:'Wastewater colour',hi:'वेस्टवॉटर का रंग'},{i:'👃',en:'Smell at inlet',hi:'इनलेट पर गंध'},{i:'🧺',en:'Floating waste',hi:'तैरता कचरा'},{i:'🛢️',en:'Oil layer',hi:'तेल की परत'},{i:'⚠️',en:'Unusual discharge',hi:'असामान्य डिस्चार्ज'}]},shot:'Checklist ticks one by one beside the inlet pipe.',en:'What to check at the inlet: is flow coming or not? Is flow normal or very high? Check wastewater colour, smell, floating waste, oil layer, and any unusual discharge.',hi:'इनलेट पर क्या चेक करें: फ्लो आ रहा है या नहीं? फ्लो नॉर्मल है या बहुत ज़्यादा? वेस्टवॉटर का रंग, गंध, तैरता कचरा, तेल की परत, और कोई असामान्य डिस्चार्ज देखें।'},
+  {v:{k:'cards',items:[{i:'🚫',title:{en:'No flow',hi:'फ्लो नहीं'},en:'Pump issue or line blockage: check pump and pipeline',hi:'पंप की समस्या या लाइन ब्लॉक: पंप और पाइपलाइन चेक करें',tone:'bad'},{i:'🌧️',title:{en:'Very high flow',hi:'बहुत ज़्यादा फ्लो'},en:'Rain, peak flow, sudden discharge: inform supervisor',hi:'बारिश, पीक फ्लो, अचानक डिस्चार्ज: सुपरवाइज़र को बताएँ',tone:'warn'}]},shot:'Two problem cards: blocked pipe with red cross; rain cloud over the inlet.',en:'No flow? The reason may be a pump issue or line blockage. Check the pump and pipeline. Very high flow? It may be rainwater entry, peak flow, sudden discharge, or an upstream issue. Inform your supervisor.',hi:'फ्लो नहीं आ रहा? कारण पंप की समस्या या लाइन ब्लॉक हो सकता है। पंप और पाइपलाइन चेक करें। फ्लो बहुत ज़्यादा? बारिश का पानी, पीक फ्लो, अचानक डिस्चार्ज, या अपस्ट्रीम की समस्या हो सकती है। सुपरवाइज़र को बताएँ।'},
+  {v:{k:'cards',items:[{i:'👃',title:{en:'Bad smell',hi:'बदबू'},en:'Septic wastewater: check upstream treatment',hi:'सेप्टिक वेस्टवॉटर: अपस्ट्रीम ट्रीटमेंट चेक करें',tone:'bad'},{i:'🛢️',title:{en:'Oil layer',hi:'तेल की परत'},en:'Oil entering from source: check oil trap',hi:'सोर्स से तेल आ रहा है: ऑयल ट्रैप चेक करें',tone:'warn'}]},shot:'Stink lines over the inlet; floating oil sheen; Ritu points to the oil trap.',en:'Bad smell? The wastewater is septic. Check the upstream treatment. Oil layer? Oil is entering from the source. Check the oil trap.',hi:'बदबू आ रही है? वेस्टवॉटर सेप्टिक है। अपस्ट्रीम ट्रीटमेंट चेक करें। तेल की परत दिख रही है? सोर्स से तेल आ रहा है। ऑयल ट्रैप चेक करें।'}],
+ activity:{type:'multi',prompt:{en:'What do you check at the anoxic chamber inlet? Tap all that apply.',hi:'एनॉक्सिक चैंबर के इनलेट पर क्या चेक करते हैं? जो सही हैं सब टैप करें।'},options:[{i:'🚰',en:'Flow coming or not',hi:'फ्लो आ रहा है या नहीं',ok:true},{i:'🎨',en:'Wastewater colour',hi:'वेस्टवॉटर का रंग',ok:true},{i:'🌀',en:'Blower air pressure',hi:'ब्लोअर की हवा का प्रेशर',ok:false},{i:'👃',en:'Smell',hi:'गंध',ok:true},{i:'🚿',en:'Filter backwash',hi:'फ़िल्टर बैकवॉश',ok:false},{i:'🛢️',en:'Oil layer',hi:'तेल की परत',ok:true}]},
+ remember:{en:'No flow: check pump and pipeline. Very high flow: inform supervisor.',hi:'फ्लो नहीं: पंप और पाइपलाइन चेक करो। बहुत ज़्यादा फ्लो: सुपरवाइज़र को बताओ।'}},
+
+/* 3 ─ Internal recycle flow */
+{id:'ch31-recycle',cat:'field',em:'🔄',title:{en:'Internal recycle: nitrate comes back',hi:'इंटरनल रीसाइकल: नाइट्रेट वापस आता है'},
+ lines:[
+  {v:{k:'flow',items:[{i:'🫧',en:'Aeration tank',hi:'एरेशन टैंक'},{i:'🔩',en:'Recycle pump',hi:'रीसाइकल पंप'},{i:'🌀',en:'Anoxic chamber',hi:'एनॉक्सिक चैंबर'}]},shot:'Blue aeration tank, recycle pump, pipe carrying nitrate-rich water back to the green anoxic chamber.',en:'The internal recycle brings nitrate-rich water from the aeration tank back to the anoxic chamber. A recycle pump does this work.',hi:'इंटरनल रीसाइकल एरेशन टैंक का नाइट्रेट वाला पानी वापस एनॉक्सिक चैंबर में लाता है। यह काम रीसाइकल पंप करता है।'},
+  {v:{k:'flow',items:[{i:'🧪',en:'Nitrate',hi:'नाइट्रेट'},{i:'🦠',en:'Bacteria',hi:'बैक्टीरिया'},{i:'🫧',en:'Nitrogen gas',hi:'नाइट्रोजन गैस'}]},shot:'Bacteria in the anoxic chamber take nitrate; nitrogen gas bubbles rise and escape to the air.',en:'Bacteria in the anoxic chamber use this nitrate as oxygen. They convert it into nitrogen gas, which escapes to the air. This recycle flow is essential for nitrogen removal.',hi:'एनॉक्सिक चैंबर के बैक्टीरिया इस नाइट्रेट को ऑक्सीजन की तरह इस्तेमाल करते हैं। वे इसे नाइट्रोजन गैस में बदलते हैं, जो हवा में निकल जाती है। यह रीसाइकल फ्लो नाइट्रोजन हटाने के लिए ज़रूरी है।'},
+  {v:{k:'cards',items:[{i:'✅',title:{en:'Proper recycle flow',hi:'सही रीसाइकल फ्लो'},en:'Better nitrogen removal',hi:'बेहतर नाइट्रोजन रिमूवल',tone:'ok'},{i:'❌',title:{en:'No recycle flow',hi:'रीसाइकल फ्लो नहीं'},en:'Poor denitrification',hi:'खराब डीनाइट्रिफ़िकेशन',tone:'bad'}]},shot:'Two cards: green tick with a strong flow arrow; red cross with a broken arrow.',en:'Key point: proper recycle flow means better nitrogen removal. No recycle flow means poor denitrification.',hi:'ख़ास बात: सही रीसाइकल फ्लो मतलब बेहतर नाइट्रोजन रिमूवल। रीसाइकल फ्लो नहीं मतलब खराब डीनाइट्रिफ़िकेशन।'},
+  {v:{k:'board',items:[{i:'🔩',en:'Pump running status',hi:'पंप चल रहा है?'},{i:'🌊',en:'Flow from aeration tank',hi:'एरेशन टैंक से फ्लो'},{i:'🔊',en:'Pump noise & vibration',hi:'पंप की आवाज़ और वाइब्रेशन'},{i:'🔧',en:'Valve open or closed',hi:'वाल्व खुला या बंद'},{i:'💧',en:'Pipeline choking or leakage',hi:'पाइपलाइन चोक या लीकेज'},{i:'📟',en:'Electrical panel indication',hi:'इलेक्ट्रिकल पैनल इंडिकेशन'}]},shot:'Ritu with clipboard walks past the pump, valve, pipeline and electrical panel.',en:'What to check: is the recycle pump running? Is flow coming from the aeration tank? Listen for pump noise and vibration. Check the valve position, open or closed. Check the pipeline for choking or leakage. Check the electrical panel indication.',hi:'क्या चेक करें: रीसाइकल पंप चल रहा है? एरेशन टैंक से फ्लो आ रहा है? पंप की आवाज़ और वाइब्रेशन सुनें। वाल्व की पोज़िशन देखें, खुला है या बंद। पाइपलाइन में चोक या लीकेज देखें। इलेक्ट्रिकल पैनल का इंडिकेशन देखें।'},
+  {v:{k:'cards',items:[{i:'🚫',title:{en:'No recycle flow',hi:'रीसाइकल फ्लो नहीं'},en:'Pump issue or line blockage: check pump and pipeline',hi:'पंप समस्या या लाइन ब्लॉक: पंप और पाइपलाइन चेक',tone:'bad'},{i:'📉',title:{en:'Low flow',hi:'कम फ्लो'},en:'Choking or valve closed: clean line and check valve',hi:'चोकिंग या वाल्व बंद: लाइन साफ़ करें, वाल्व चेक',tone:'warn'}]},shot:'Blocked pipe with red cross; half-closed valve with a low flow gauge.',en:'No recycle flow? Pump issue or line blockage. Check the pump and pipeline. Low flow? Choking or valve closed. Clean the line and check the valve.',hi:'रीसाइकल फ्लो नहीं? पंप की समस्या या लाइन ब्लॉक। पंप और पाइपलाइन चेक करें। फ्लो कम? चोकिंग या वाल्व बंद। लाइन साफ़ करें और वाल्व चेक करें।'},
+  {v:{k:'cards',items:[{i:'🔊',title:{en:'Pump vibration',hi:'पंप वाइब्रेशन'},en:'Mechanical issue: inform supervisor',hi:'मैकेनिकल समस्या: सुपरवाइज़र को बताएँ',tone:'bad'},{i:'⚡',title:{en:'Pump trip',hi:'पंप ट्रिप'},en:'Electrical fault: inform supervisor',hi:'इलेक्ट्रिकल फ़ॉल्ट: सुपरवाइज़र को बताएँ',tone:'bad'}]},shot:'Shaking pump; panel with red trip light; Ritu on the walkie-talkie.',en:'Pump vibration? It is a mechanical issue. Inform your supervisor. Pump trip? It is an electrical fault. Inform your supervisor.',hi:'पंप में वाइब्रेशन? यह मैकेनिकल समस्या है। सुपरवाइज़र को बताएँ। पंप ट्रिप? यह इलेक्ट्रिकल फ़ॉल्ट है। सुपरवाइज़र को बताएँ।'}],
+ activity:{type:'match',prompt:{en:'Match the recycle problem with your action.',hi:'रीसाइकल की समस्या को सही एक्शन से जोड़ें।'},pairs:[{l:{i:'🚫',en:'No recycle flow',hi:'रीसाइकल फ्लो नहीं'},r:{i:'🔩',en:'Check pump and pipeline',hi:'पंप और पाइपलाइन चेक'}},{l:{i:'📉',en:'Low flow',hi:'कम फ्लो'},r:{i:'🔧',en:'Clean line, check valve',hi:'लाइन साफ़, वाल्व चेक'}},{l:{i:'⚡',en:'Pump trip',hi:'पंप ट्रिप'},r:{i:'📞',en:'Inform supervisor',hi:'सुपरवाइज़र को बताएँ'}}]},
+ remember:{en:'No recycle flow means poor denitrification. Keep the recycle pump running.',hi:'रीसाइकल फ्लो नहीं मतलब खराब डीनाइट्रिफ़िकेशन। रीसाइकल पंप चालू रखो।'}},
+
+/* 4 ─ Mixer operation */
+{id:'ch31-mixer',cat:'field',em:'⚙️',title:{en:'Mixer: keep the sludge moving',hi:'मिक्सर: स्लज को हिलाते रहें'},
+ lines:[
+  {v:{k:'board',items:[{i:'⚙️',en:'Top mixer',hi:'ऊपर लगा मिक्सर'},{i:'🌀',en:'Mixing only',hi:'सिर्फ़ मिक्सिंग'},{i:'🚫',en:'No aeration',hi:'एरेशन नहीं'}]},shot:'Top-mounted mixer in the anoxic chamber; curved arrows show the water turning; no bubbles.',en:'The mixer keeps wastewater and sludge properly mixed inside the tank. Remember: no aeration, mixing only. This is the anoxic condition.',hi:'मिक्सर टैंक के अंदर वेस्टवॉटर और स्लज को अच्छी तरह मिलाए रखता है। याद रखें: एरेशन नहीं, सिर्फ़ मिक्सिंग। यही एनॉक्सिक कंडीशन है।'},
+  {v:{k:'cards',items:[{i:'✅',title:{en:'Good mixing',hi:'अच्छी मिक्सिंग'},en:'Sludge stays suspended, biological treatment stays stable',hi:'स्लज तैरता रहता है, बायोलॉजिकल ट्रीटमेंट स्थिर रहता है',tone:'ok'}]},shot:'Sludge particles float evenly through the tank; bacteria cartoons active; shield icon.',en:'Good mixing prevents sludge settling and supports biological activity. Proper mixer operation keeps sludge suspended and keeps the biological treatment stable.',hi:'अच्छी मिक्सिंग स्लज को बैठने से रोकती है और बायोलॉजिकल एक्टिविटी में मदद करती है। सही मिक्सर ऑपरेशन स्लज को तैरता हुआ रखता है और बायोलॉजिकल ट्रीटमेंट को स्थिर रखता है।'},
+  {v:{k:'board',items:[{i:'⚙️',en:'Mixer running',hi:'मिक्सर चल रहा है'},{i:'🔊',en:'Sound & vibration',hi:'आवाज़ और वाइब्रेशन'},{i:'🔄',en:'Mixing pattern',hi:'मिक्सिंग पैटर्न'},{i:'🟤',en:'Sludge settling or suspended',hi:'स्लज बैठा या तैरता'},{i:'🛑',en:'Dead zones',hi:'डेड ज़ोन'}]},shot:'Ritu with clipboard looks at the mixer, listens, and points to a still corner of the tank.',en:'What to check: is the mixer running? Listen to the sound and feel the vibration. Watch the mixing pattern inside the tank. Is sludge settling or in suspension? Look for dead zones, where water is not moving.',hi:'क्या चेक करें: मिक्सर चल रहा है? आवाज़ सुनें और वाइब्रेशन देखें। टैंक के अंदर मिक्सिंग पैटर्न देखें। स्लज बैठ रहा है या तैर रहा है? डेड ज़ोन देखें, जहाँ पानी नहीं हिल रहा।'},
+  {v:{k:'cards',items:[{i:'❌',title:{en:'Mixer not running',hi:'मिक्सर बंद'},en:'Power failure or motor fault: inform supervisor',hi:'पावर फ़ेल या मोटर फ़ॉल्ट: सुपरवाइज़र को बताएँ',tone:'bad'},{i:'🟤',title:{en:'Sludge settling',hi:'स्लज बैठ रहा'},en:'Low mixing: check mixer operation',hi:'कम मिक्सिंग: मिक्सर ऑपरेशन चेक',tone:'warn'}]},shot:'Stopped mixer with red cross; brown sludge layer at the tank bottom.',en:'Mixer not running? Power failure or motor fault. Inform your supervisor. Sludge settling at the bottom? Mixing is low. Check the mixer operation.',hi:'मिक्सर नहीं चल रहा? पावर फ़ेल या मोटर फ़ॉल्ट। सुपरवाइज़र को बताएँ। स्लज नीचे बैठ रहा है? मिक्सिंग कम है। मिक्सर का ऑपरेशन चेक करें।'},
+  {v:{k:'cards',items:[{i:'🔊',title:{en:'Noise or vibration',hi:'आवाज़ या वाइब्रेशन'},en:'Mechanical issue: inform supervisor',hi:'मैकेनिकल समस्या: सुपरवाइज़र को बताएँ',tone:'bad'},{i:'🛑',title:{en:'Dead zones',hi:'डेड ज़ोन'},en:'Poor mixing pattern: adjust or check mixer',hi:'खराब मिक्सिंग पैटर्न: मिक्सर एडजस्ट या चेक',tone:'warn'}]},shot:'Mixer shaking with sound waves; tank corners marked as still water.',en:'Noise or vibration? Mechanical issue. Inform your supervisor. Dead zones in the tank? Poor mixing pattern. Adjust or check the mixer.',hi:'आवाज़ या वाइब्रेशन? मैकेनिकल समस्या। सुपरवाइज़र को बताएँ। टैंक में डेड ज़ोन? खराब मिक्सिंग पैटर्न। मिक्सर एडजस्ट करें या चेक करें।'}],
+ activity:{type:'choice',prompt:{en:'The mixer has stopped. What do you do?',hi:'मिक्सर बंद हो गया है। आप क्या करेंगे?'},options:[{i:'📞',en:'Inform supervisor',hi:'सुपरवाइज़र को बताएँ',ok:true},{i:'🫧',en:'Start aeration in the anoxic chamber',hi:'एनॉक्सिक चैंबर में एरेशन शुरू करें',ok:false},{i:'⏳',en:'Wait, the sludge will settle',hi:'रुकें, स्लज बैठ जाएगा',ok:false}]},
+ remember:{en:'Mixer stops: inform supervisor. Sludge settling: check the mixer.',hi:'मिक्सर बंद: सुपरवाइज़र को बताओ। स्लज बैठे: मिक्सर चेक करो।'}},
+
+/* 5 ─ Biological sludge condition */
+{id:'ch31-sludge',cat:'field',em:'🟤',title:{en:'Sludge condition: brown is healthy',hi:'स्लज की हालत: भूरा मतलब सेहतमंद'},
+ lines:[
+  {v:{k:'board',items:[{i:'🟤',en:'Biological sludge',hi:'बायोलॉजिकल स्लज'},{i:'✅',en:'Healthy sludge needed',hi:'सेहतमंद स्लज ज़रूरी'},{i:'🫧',en:'Effective nitrogen removal',hi:'असरदार नाइट्रोजन रिमूवल'}]},shot:'Ritu points into the anoxic chamber at the brown mixed sludge.',en:'Now look at the biological sludge inside the tank. Healthy sludge is required for effective nitrogen removal.',hi:'अब टैंक के अंदर के बायोलॉजिकल स्लज को देखें। असरदार नाइट्रोजन रिमूवल के लिए सेहतमंद स्लज ज़रूरी है।'},
+  {v:{k:'cylinders',list:[{sludge:0.4,en:'Normal brown sludge',hi:'नॉर्मल भूरा स्लज',ok:true},{sludge:0.4,black:true,en:'Septic sludge, settled',hi:'सेप्टिक स्लज, बैठा हुआ',bad:true},{sludge:0.4,floating:true,en:'Floating sludge, scum',hi:'तैरता स्लज, झाग',bad:true}]},shot:'Cross-section of the anoxic chamber: scum on top, brown sludge in the middle, black settled sludge at the bottom.',en:'Normal sludge is brown. Septic sludge is black and settled at the bottom. Floating sludge forms scum on top.',hi:'नॉर्मल स्लज भूरा होता है। सेप्टिक स्लज काला होता है और नीचे बैठा रहता है। तैरता स्लज ऊपर झाग बनाता है।'},
+  {v:{k:'board',items:[{i:'🎨',en:'Sludge colour: brown or black',hi:'स्लज का रंग: भूरा या काला'},{i:'👃',en:'Sludge smell',hi:'स्लज की गंध'},{i:'🟤',en:'Floating sludge',hi:'तैरता स्लज'},{i:'🧼',en:'Foam formation',hi:'झाग बनना'},{i:'⏳',en:'Sludge settling',hi:'स्लज सेटलिंग'}]},shot:'Five check icons tick one by one.',en:'What to check: sludge colour, brown or black. Sludge smell. Floating sludge. Foam formation. And sludge settling conditions.',hi:'क्या चेक करें: स्लज का रंग, भूरा या काला। स्लज की गंध। तैरता स्लज। झाग बनना। और स्लज की सेटलिंग कंडीशन।'},
+  {v:{k:'cards',items:[{i:'⚫',title:{en:'Black sludge',hi:'काला स्लज'},en:'Septic condition: check mixing and flow',hi:'सेप्टिक कंडीशन: मिक्सिंग और फ्लो चेक',tone:'bad'},{i:'🟤',title:{en:'Floating sludge',hi:'तैरता स्लज'},en:'Gas formation: check sludge wasting',hi:'गैस बनना: स्लज वेस्टिंग चेक',tone:'warn'}]},shot:'Black sludge sample; floating sludge mat with gas bubbles.',en:'Black sludge? Septic condition. Check mixing and flow. Floating sludge? Gas formation. Check sludge wasting.',hi:'काला स्लज? सेप्टिक कंडीशन। मिक्सिंग और फ्लो चेक करें। तैरता स्लज? गैस बन रही है। स्लज वेस्टिंग चेक करें।'},
+  {v:{k:'cards',items:[{i:'🧼',title:{en:'Foam formation',hi:'झाग बनना'},en:'Process imbalance: check DO and MLSS',hi:'प्रोसेस असंतुलन: DO और MLSS चेक',tone:'warn'},{i:'👃',title:{en:'Bad smell',hi:'बदबू'},en:'Poor sludge condition: inform supervisor',hi:'खराब स्लज कंडीशन: सुपरवाइज़र को बताएँ',tone:'bad'}]},shot:'Foam on the tank surface; stink lines; Ritu on the walkie-talkie.',en:'Foam formation? Process imbalance. Check DO and MLSS. Bad smell? Poor sludge condition. Inform your supervisor.',hi:'झाग बन रहा है? प्रोसेस में असंतुलन। DO और MLSS चेक करें। बदबू? स्लज की हालत खराब। सुपरवाइज़र को बताएँ।'}],
+ activity:{type:'match',prompt:{en:'Match what you see with what you check.',hi:'जो दिखे उसे सही चेक से जोड़ें।'},pairs:[{l:{i:'⚫',en:'Black sludge',hi:'काला स्लज'},r:{i:'🌀',en:'Check mixing and flow',hi:'मिक्सिंग और फ्लो चेक'}},{l:{i:'🟤',en:'Floating sludge',hi:'तैरता स्लज'},r:{i:'🚛',en:'Check sludge wasting',hi:'स्लज वेस्टिंग चेक'}},{l:{i:'🧼',en:'Foam',hi:'झाग'},r:{i:'📟',en:'Check DO and MLSS',hi:'DO और MLSS चेक'}}]},
+ remember:{en:'Brown sludge is healthy. Black sludge: check mixing and flow.',hi:'भूरा स्लज सेहतमंद। काला स्लज: मिक्सिंग और फ्लो चेक करो।'}},
+
+/* 6 ─ Daily checklist */
+{id:'ch31-daily',cat:'field',em:'📒',title:{en:'Daily checklist: 8 check points',hi:'रोज़ की चेकलिस्ट: 8 चेक पॉइंट'},
+ lines:[
+  {v:{k:'board',items:[{i:'📒',en:'Daily checklist',hi:'रोज़ की चेकलिस्ट'},{i:'🛡️',en:'Stable operation',hi:'स्थिर ऑपरेशन'},{i:'🫧',en:'Better nitrogen removal',hi:'बेहतर नाइट्रोजन रिमूवल'}]},shot:'Ritu holds up the Daily Checklist clipboard.',en:'Every day, check the anoxic chamber with this checklist. Daily checking keeps the operation stable and supports better nitrogen removal.',hi:'हर दिन इस चेकलिस्ट से एनॉक्सिक चैंबर चेक करें। रोज़ की जाँच ऑपरेशन को स्थिर रखती है और बेहतर नाइट्रोजन रिमूवल में मदद करती है।'},
+  {v:{k:'cards',items:[{i:'🚰',title:{en:'Inlet flow',hi:'इनलेट फ्लो'},en:'Normal: stable. No flow or high flow: inform supervisor',hi:'नॉर्मल: स्थिर। फ्लो नहीं या ज़्यादा: सुपरवाइज़र को बताएँ',tone:'ok'},{i:'🔄',title:{en:'Internal recycle',hi:'इंटरनल रीसाइकल'},en:'Normal: flow available. Else check recycle pumps and valve',hi:'नॉर्मल: फ्लो मौजूद। नहीं तो रीसाइकल पंप और वाल्व चेक',tone:'ok'}]},shot:'Checklist rows 1 and 2 highlighted: inlet flow, internal recycle.',en:'Inlet flow should be stable. If there is no flow or high flow, inform your supervisor. Internal recycle flow should be available. If not, check the recycling pumps and valve.',hi:'इनलेट फ्लो स्थिर होना चाहिए। फ्लो न आए या ज़्यादा हो तो सुपरवाइज़र को बताएँ। इंटरनल रीसाइकल फ्लो मौजूद होना चाहिए। न हो तो रीसाइकलिंग पंप और वाल्व चेक करें।'},
+  {v:{k:'cards',items:[{i:'⚙️',title:{en:'Mixer',hi:'मिक्सर'},en:'Normal: runs smoothly. Mixer stops: inform supervisor',hi:'नॉर्मल: ठीक चलता है। मिक्सर बंद: सुपरवाइज़र को बताएँ',tone:'ok'},{i:'📟',title:{en:'DO level',hi:'DO लेवल'},en:'Normal: DO low. Else check air leakage or unwanted aeration',hi:'नॉर्मल: DO कम। नहीं तो हवा की लीकेज या अनचाहा एरेशन चेक',tone:'ok'}]},shot:'Checklist rows 3 and 4 highlighted; DO meter shows a low reading.',en:'The mixer should run smoothly. If the mixer stops, inform your supervisor. DO should be low in the anoxic chamber. If DO is not low, check for air leakage or unwanted aeration.',hi:'मिक्सर ठीक से चलना चाहिए। मिक्सर बंद हो तो सुपरवाइज़र को बताएँ। एनॉक्सिक चैंबर में DO कम होना चाहिए। DO कम न हो तो हवा की लीकेज या अनचाहा एरेशन चेक करें।'},
+  {v:{k:'cards',items:[{i:'🟤',title:{en:'Sludge condition',hi:'स्लज की हालत'},en:'Normal: brown, active. Else check mixing, DO, pH; inform supervisor',hi:'नॉर्मल: भूरा, एक्टिव। नहीं तो मिक्सिंग, DO, pH चेक; सुपरवाइज़र को बताएँ',tone:'ok'},{i:'👃',title:{en:'Smell',hi:'गंध'},en:'Normal: no strong septic smell. Else check mixer and flow',hi:'नॉर्मल: तेज़ सेप्टिक गंध नहीं। नहीं तो मिक्सर और फ्लो चेक',tone:'ok'}]},shot:'Checklist rows 5 and 6 highlighted: sludge condition, smell.',en:'Sludge should be brown and active. If not, check mixing, DO and pH, and inform your supervisor. There should be no strong septic smell. If there is, check the mixer and flow condition.',hi:'स्लज भूरा और एक्टिव होना चाहिए। न हो तो मिक्सिंग, DO और pH चेक करें, और सुपरवाइज़र को बताएँ। तेज़ सेप्टिक गंध नहीं होनी चाहिए। हो तो मिक्सर और फ्लो की हालत चेक करें।'},
+  {v:{k:'cards',items:[{i:'🧼',title:{en:'Floating sludge',hi:'तैरता स्लज'},en:'Normal: no heavy floating sludge. Else check sludge age, mixing, recycle',hi:'नॉर्मल: भारी तैरता स्लज नहीं। नहीं तो स्लज एज, मिक्सिंग, रीसाइकल चेक',tone:'ok'},{i:'🫧',title:{en:'Outlet flow',hi:'आउटलेट फ्लो'},en:'Normal: flow goes to aeration tank. Else check blockage or level rise',hi:'नॉर्मल: फ्लो एरेशन टैंक में जाता है। नहीं तो ब्लॉकेज या लेवल बढ़ना चेक',tone:'ok'}]},shot:'Checklist rows 7 and 8 highlighted; outlet pipe to the aeration tank.',en:'There should be no heavy floating sludge. If there is, check sludge age, mixing and recycle. Outlet flow should go to the aeration tank. If not, check for blockage or level rise.',hi:'भारी तैरता स्लज नहीं होना चाहिए। हो तो स्लज एज, मिक्सिंग और रीसाइकल चेक करें। आउटलेट फ्लो एरेशन टैंक में जाना चाहिए। न जाए तो ब्लॉकेज या लेवल बढ़ना चेक करें।'},
+  {v:{k:'steps',items:[{n:1,i:'👀',en:'Check',hi:'चेक'},{n:2,i:'🔍',en:'Observe',hi:'देखो'},{n:3,i:'📒',en:'Record',hi:'रिकॉर्ड'},{n:4,i:'🔧',en:'Act',hi:'एक्शन'}]},shot:'Four word chips slide in: Check, Observe, Record, Act; eye, clipboard and gear icons.',en:'Remember four words: Check, Observe, Record, Act. Regular daily checks prevent process upset and keep the anoxic chamber healthy.',hi:'चार शब्द याद रखें: चेक, देखो, रिकॉर्ड, एक्शन। रोज़ की जाँच प्रोसेस को बिगड़ने से बचाती है और एनॉक्सिक चैंबर को सेहतमंद रखती है।'}],
+ activity:{type:'order',prompt:{en:'Tap the four daily steps in the correct order.',hi:'चारों रोज़ के स्टेप सही क्रम में टैप करें।'},items:[{i:'👀',en:'Check',hi:'चेक'},{i:'🔍',en:'Observe',hi:'देखो'},{i:'📒',en:'Record',hi:'रिकॉर्ड'},{i:'🔧',en:'Act',hi:'एक्शन'}]},
+ remember:{en:'DO low, mixer running, sludge brown, recycle flowing.',hi:'DO कम, मिक्सर चालू, स्लज भूरा, रीसाइकल चालू।'}},
+
+/* 7 ─ Quiz */
+{id:'ch31-quiz',cat:'quiz',em:'🏆',title:{en:'Final quiz',hi:'फ़ाइनल क्विज़'},
+ lines:[{v:{k:'trophy'},shot:'Trophy and badge; presenter gives thumbs up.',en:'Nine quick questions. Tap the right answer. Let us see what you remember!',hi:'नौ छोटे सवाल। सही जवाब टैप करें। देखें आपको क्या याद है!'}],
+ questions:[
+  {q:{en:'What does the anoxic chamber need?',hi:'एनॉक्सिक चैंबर को क्या चाहिए?'},o:[{i:'🌀',en:'Mixing, not direct aeration',hi:'मिक्सिंग, सीधा एरेशन नहीं',ok:true},{i:'🫧',en:'Direct air supply',hi:'सीधी हवा की सप्लाई'},{i:'⚗️',en:'Chemical dosing',hi:'केमिकल डोज़िंग'}]},
+  {q:{en:'What is the main purpose of the anoxic chamber?',hi:'एनॉक्सिक चैंबर का मुख्य मकसद क्या है?'},o:[{i:'🧪',en:'Denitrification: remove nitrate',hi:'डीनाइट्रिफ़िकेशन: नाइट्रेट हटाना',ok:true},{i:'🛢️',en:'Remove oil and grease',hi:'तेल और ग्रीस हटाना'},{i:'🫧',en:'Add oxygen to water',hi:'पानी में ऑक्सीजन डालना'}]},
+  {q:{en:'Bacteria convert nitrate into what?',hi:'बैक्टीरिया नाइट्रेट को किसमें बदलते हैं?'},o:[{i:'🫧',en:'Nitrogen gas',hi:'नाइट्रोजन गैस',ok:true},{i:'🛢️',en:'Oil',hi:'तेल'},{i:'🟤',en:'Sludge',hi:'स्लज'}]},
+  {q:{en:'Internal recycle brings water from where?',hi:'इंटरनल रीसाइकल पानी कहाँ से लाता है?'},o:[{i:'🫧',en:'Aeration tank',hi:'एरेशन टैंक',ok:true},{i:'🟫',en:'Equalization tank',hi:'इक्वलाइज़ेशन टैंक'},{i:'🛢️',en:'Oil trap',hi:'ऑयल ट्रैप'}]},
+  {q:{en:'No recycle flow means?',hi:'रीसाइकल फ्लो नहीं, मतलब?'},o:[{i:'❌',en:'Poor denitrification',hi:'खराब डीनाइट्रिफ़िकेशन',ok:true},{i:'✅',en:'Better nitrogen removal',hi:'बेहतर नाइट्रोजन रिमूवल'},{i:'😴',en:'No change',hi:'कोई फ़र्क नहीं'}]},
+  {q:{en:'The mixer has stopped. What do you do?',hi:'मिक्सर बंद हो गया। आप क्या करेंगे?'},o:[{i:'📞',en:'Inform supervisor',hi:'सुपरवाइज़र को बताएँ',ok:true},{i:'🫧',en:'Start the blower',hi:'ब्लोअर चालू करें'},{i:'⏳',en:'Wait and watch',hi:'रुको और देखो'}]},
+  {q:{en:'Black sludge in the anoxic chamber. What do you check?',hi:'एनॉक्सिक चैंबर में काला स्लज। क्या चेक करेंगे?'},o:[{i:'🌀',en:'Mixing and flow',hi:'मिक्सिंग और फ्लो',ok:true},{i:'🚿',en:'Filter backwash',hi:'फ़िल्टर बैकवॉश'},{i:'🛢️',en:'Oil trap',hi:'ऑयल ट्रैप'}]},
+  {q:{en:'DO in the anoxic chamber should be?',hi:'एनॉक्सिक चैंबर में DO कैसा होना चाहिए?'},o:[{i:'📉',en:'Low',hi:'कम',ok:true},{i:'📈',en:'Very high',hi:'बहुत ज़्यादा'},{i:'🫧',en:'Same as aeration tank',hi:'एरेशन टैंक जितना'}]},
+  {q:{en:'Very high flow at the inlet after rain. What do you do?',hi:'बारिश के बाद इनलेट पर बहुत ज़्यादा फ्लो। आप क्या करेंगे?'},o:[{i:'📞',en:'Inform supervisor',hi:'सुपरवाइज़र को बताएँ',ok:true},{i:'🔧',en:'Close the inlet valve',hi:'इनलेट वाल्व बंद करें'},{i:'⚗️',en:'Add chemicals',hi:'केमिकल डालें'}]}
+ ]}
+  ]
+});
+
+
 </script>
 <script>
 (function(){
@@ -536,11 +699,24 @@ const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&l
 function load(k,d){ try{ const v=localStorage.getItem(k); return v===null?d:JSON.parse(v) }catch(e){ return d } }
 function save(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)) }catch(e){} }
 function shuffle(a){ const b=a.slice(); for(let i=b.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [b[i],b[j]]=[b[j],b[i]] } if(b.length>2 && b.every((x,i)=>x===a[i])){ b.push(b.shift()) } return b }
+const LANG_OK = new Set(LANGS.map(l=>l.code));
+const langInfo = code => LANGS.find(l=>l.code===code) || LANGS[0];
 
-const state = { lang: load('wt_lang', null), sound:true, tab:'learn', scene:-1, line:0, phase:'home', done: load('wt_done',[]), best: load('wt_best',null), timer:null, utter:null, sayId:0, paused:false, q:0, scoreN:0, noticed:{} };
+const state = { lang: (()=>{ const v=load('wt_lang', null); return LANG_OK.has(v)?v:null })(), sound:true, tab:'learn', chapter:-1, scene:-1, line:0, phase:'library', done: load('wt_done',[]), best: load('wt_best',{}), timer:null, utter:null, sayId:0, paused:false, q:0, scoreN:0, noticed:{}, scriptCh:0 };
+if(state.best===null || typeof state.best!=='object') state.best={};
 const cur = ()=> state.lang || 'en';
-const t = k => { const o = UI[cur()]; return (o && o[k]!==undefined) ? o[k] : (UI.en[k]!==undefined ? UI.en[k] : k) };
-const L = s => { if(s==null) return ''; if(typeof s==='string') return s; const l=cur(); return s[l]!==undefined ? s[l] : (s.en!==undefined ? s.en : '') };
+
+/* ============ Translation packs (i18n/<lang>.json keyed by the English text) ============ */
+const Packs = {
+ data:{}, loading:{},
+ has(lang){ return lang==='en' || lang==='hi' || !!this.data[lang] },
+ load(lang){ if(lang==='en'||lang==='hi') return Promise.resolve(true); if(this.data[lang]) return Promise.resolve(true); if(this.loading[lang]) return this.loading[lang];
+  this.loading[lang] = fetch(`i18n/${lang}.json`,{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{ if(j){ this.data[lang]=j; return true } return false }).catch(()=>false).finally(()=>{ delete this.loading[lang] }); return this.loading[lang] },
+ tr(lang, en){ const p=this.data[lang]; return (p && en!=null && p[en]) ? p[en] : null }
+};
+const t = k => { const l=cur(); const en = UI.en[k]!==undefined ? UI.en[k] : k; if(l==='en') return en; if(UI[l] && UI[l][k]!==undefined) return UI[l][k]; return Packs.tr(l, en) || en };
+const L = s => { if(s==null) return ''; if(typeof s==='string') return s; const l=cur(); if(s[l]!==undefined) return s[l]; const en = s.en!==undefined ? s.en : ''; if(l==='en') return en; return Packs.tr(l, en) || en };
+const CH = ()=> CHAPTERS[state.chapter]; const LS = ()=> CH() ? CH().lessons : [];
 
 /* ============ Visual builders ============ */
 let uid=0;
@@ -557,7 +733,13 @@ const SV = {
  },
  beakers(spec){ const sz = spec.list.length>3 ? 84 : 110; return `<div class="row">${spec.list.map(b=>`<figure class="fig"><div class="figsvg">${SV.beaker(b.kind,{ok:b.ok,bad:b.bad,size:sz})}</div><figcaption>${esc(L(b))}</figcaption></figure>`).join('')}</div>` },
  board(spec){ const n=spec.items.length; return `<div class="board n${Math.min(n,9)}">${spec.items.map((it,i)=>`<div class="tile${it.bad?' bad':''}${it.ok?' ok':''}" style="--d:${i*70}ms"><span class="em">${it.i||''}</span><span class="lb">${esc(L(it))}</span></div>`).join('')}</div>` },
- steps(spec){ return `<div class="steps">${spec.items.map((s,i)=>`<div class="step" style="--d:${i*90}ms"><span class="n">${s.n}</span><span class="em">${s.i}</span><span class="lb">${esc(L(s))}</span></div>`).join('')}</div>` },
+ steps(spec){ return `<div class="steps">${spec.items.map((s,i)=>`<div class="step" style="--d:${i*90}ms"><span class="n">${s.n!=null?s.n:i+1}</span><span class="em">${s.i||''}</span><span class="lb">${esc(L(s))}</span></div>`).join('')}</div>` },
+ flow(spec){ return `<div class="flow">${spec.items.map((it,i)=>`${i?'<span class="farrow">›</span>':''}<div class="fnode" style="--d:${i*110}ms"><span class="em">${it.i||''}</span><span class="lb">${esc(L(it))}</span></div>`).join('')}</div>` },
+ cards(spec){ const n=Math.min(spec.items.length,4); return `<div class="cards n${n}">${spec.items.map((c,i)=>`<div class="vcard ${c.tone||''}" style="--d:${i*90}ms"><div class="vhead"><span class="em">${c.i||''}</span><b>${esc(L(c.title))}</b></div><p>${esc(L(c))}</p></div>`).join('')}</div>` },
+ range(spec){ const min=+spec.min, max=+spec.max, v=+spec.value; const pct=x=>Math.max(0,Math.min(100,(x-min)/(max-min)*100)); let last=min;
+  const zones=(spec.zones||[]).map(z=>{ const w=pct(z.to)-pct(last); const h=`<span class="zone ${z.c||'ok'}" style="width:${w.toFixed(1)}%" title="${esc(L(z))}">${esc(L(z))}</span>`; last=z.to; return h }).join('');
+  const zone=(spec.zones||[]).find(z=>v<=z.to) || (spec.zones||[])[(spec.zones||[]).length-1] || {c:'ok'};
+  return `<div class="rangebox"><div class="rhead"><b>${esc(spec.label||'')}</b><span class="rval ${zone.c||'ok'}">${v} ${esc(spec.unit||'')}</span></div><div class="rbar">${zones}<i class="rmark" style="left:${pct(v).toFixed(1)}%"></i></div><div class="rends"><span>${min} ${esc(spec.unit||'')}</span><span>${max} ${esc(spec.unit||'')}</span></div></div>` },
  five(){ const w=[{en:'Check',hi:'चेक',i:'👀'},{en:'Record',hi:'रिकॉर्ड',i:'📝'},{en:'Understand',hi:'समझो',i:'💡'},{en:'Act',hi:'एक्शन',i:'🔧'},{en:'Improve',hi:'सुधार',i:'📈'}]; return `<div class="five">${w.map((x,i)=>`<div class="chip5" style="--d:${i*140}ms"><span class="em">${x.i}</span>${esc(L(x))}</div>${i<4?'<span class="arrow">›</span>':''}`).join('')}</div>` },
  plant(){ const bubs=[0,1,2,3,4,5].map(i=>`<circle class="bub" style="--d:${(i*0.35).toFixed(2)}s" cx="${226+i*12}" cy="140" r="3" fill="#fff" opacity=".85"/>`).join('');
   return `<svg viewBox="0 0 420 200" class="scene" aria-hidden="true"><rect width="420" height="200" rx="16" fill="var(--sky1)"/><circle cx="370" cy="40" r="18" fill="#F7C948"/><rect x="0" y="150" width="420" height="50" fill="var(--ground)"/><rect x="300" y="90" width="90" height="60" fill="var(--wall)" stroke="currentColor" stroke-width="2"/><rect x="315" y="105" width="16" height="16" fill="var(--glass)" stroke="currentColor"/><rect x="345" y="105" width="16" height="16" fill="var(--glass)" stroke="currentColor"/><rect x="330" y="125" width="22" height="25" fill="currentColor" opacity=".7"/><rect x="372" y="60" width="10" height="30" fill="var(--wall)" stroke="currentColor" stroke-width="2"/><ellipse cx="110" cy="140" rx="90" ry="26" fill="var(--wall)" stroke="currentColor" stroke-width="2"/><ellipse cx="110" cy="134" rx="80" ry="20" fill="#3B9BD8"/><path d="M30 134 L190 134" stroke="currentColor" stroke-width="3"/><rect x="104" y="112" width="12" height="26" fill="currentColor"/><rect x="215" y="110" width="80" height="40" rx="4" fill="var(--wall)" stroke="currentColor" stroke-width="2"/><rect x="219" y="116" width="72" height="30" fill="#8C6A45"/>${bubs}<circle cx="20" cy="95" r="16" fill="#49A35B"/><rect x="17" y="105" width="6" height="18" fill="#6B4A2B"/><circle cx="405" cy="130" r="12" fill="#49A35B"/><rect x="403" y="138" width="4" height="14" fill="#6B4A2B"/></svg>` },
@@ -593,7 +775,7 @@ const SV = {
 /* ============ Recorded clips (Sarvam Bulbul v3, voice "ritu") ============ */
 const AudioBank = {
  manifests:{}, loading:{}, blobs:{}, pending:{}, player:null, unlocked:false,
- init(){ try{ this.player = new Audio(); this.player.preload='auto' }catch(e){ this.player=null } this.load('hi'); this.load('en') },
+ init(){ try{ this.player = new Audio(); this.player.preload='auto' }catch(e){ this.player=null } this.load(cur()); if(cur()!=='en') this.load('en') },
  load(lang){ if(this.loading[lang]) return this.loading[lang]; this.loading[lang] = fetch(`audio/${lang}/manifest.json`,{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(m=>{ this.manifests[lang]=m||{}; return this.manifests[lang] }).catch(()=>{ this.manifests[lang]={}; return this.manifests[lang] }); return this.loading[lang] },
  ready(lang, ms){ return Promise.race([this.load(lang), new Promise(res=>setTimeout(()=>res(null), ms||2500))]) },
  has(lang, text){ const m=this.manifests[lang]; return !!(m && m[text]) },
@@ -603,14 +785,14 @@ const AudioBank = {
  unlock(){ if(this.unlocked || !this.player) return; this.unlocked=true; try{ this.player.src='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAIlYAAESsAAACABAAZGF0YQAAAAA='; const p=this.player.play(); if(p&&p.catch) p.catch(()=>{}) }catch(e){} },
  stop(){ if(!this.player) return; try{ this.player.onended=null; this.player.onerror=null; this.player.pause() }catch(e){} }
 };
-function sceneTexts(ls, lang){ const out=[]; ls.lines.forEach(l=>out.push(l[lang])); if(ls.activity) out.push(ls.activity.prompt[lang]); if(ls.remember) out.push(ls.remember[lang]); (ls.questions||[]).forEach(q=>out.push(q.q[lang])); return out }
+function sceneTexts(ls, lang){ const out=[]; ls.lines.forEach(l=>out.push(L(l))); if(ls.activity) out.push(L(ls.activity.prompt)); if(ls.remember) out.push(L(ls.remember)); (ls.questions||[]).forEach(q=>out.push(L(q.q))); return out }
 
 /* ============ Speech ============ */
 const Speech = {
  ok: (typeof window!=='undefined') && ('speechSynthesis' in window) && ('SpeechSynthesisUtterance' in window),
  voices: [],
  init(){ if(!this.ok) return; const upd=()=>{ try{ this.voices = speechSynthesis.getVoices()||[] }catch(e){ this.voices=[] } }; upd(); try{ speechSynthesis.addEventListener('voiceschanged', upd) }catch(e){ try{ speechSynthesis.onvoiceschanged = upd }catch(e2){} } },
- voiceFor(lang){ if(!this.ok) return null; if(!this.voices.length){ try{ this.voices = speechSynthesis.getVoices()||[] }catch(e){} } const pref = lang==='hi' ? ['hi-in','hi'] : ['en-in','en-gb','en-us','en-au','en']; const vs=this.voices.map(v=>({v,l:String(v.lang||'').toLowerCase().replace('_','-')})); for(const p of pref){ const hit = vs.find(x=>x.l===p || x.l.indexOf(p+'-')===0); if(hit) return hit.v } if(lang==='en'){ const any=vs.find(x=>x.l.indexOf('en')===0); if(any) return any.v } return null },
+ voiceFor(lang){ if(!this.ok) return null; if(!this.voices.length){ try{ this.voices = speechSynthesis.getVoices()||[] }catch(e){} } const code=langInfo(lang).tts.toLowerCase(); const base=code.split('-')[0]; const pref = lang==='en' ? ['en-in','en-gb','en-us','en-au','en'] : [code, base]; const vs=this.voices.map(v=>({v,l:String(v.lang||'').toLowerCase().replace('_','-')})); for(const p of pref){ const hit = vs.find(x=>x.l===p || x.l.indexOf(p+'-')===0); if(hit) return hit.v } if(lang==='en'){ const any=vs.find(x=>x.l.indexOf('en')===0); if(any) return any.v } return null },
  has(lang){ return !!this.voiceFor(lang) },
  hasVoice(lang){ return AudioBank.count(lang)>1 || this.has(lang) },
  say(text, lang, onend){
@@ -630,65 +812,82 @@ const Speech = {
  sayTTS(text, lang, fin, id){
   if(id!==state.sayId) return; clearTimeout(state.timer);
   if(!this.has(lang)){ avatarTalk(true); state.timer=setTimeout(fin, 1400 + 60*text.length); return }
-  const u = new SpeechSynthesisUtterance(pron(text, lang)); const v=this.voiceFor(lang); u.voice=v; u.lang=v.lang; u.rate = lang==='hi'?0.9:0.95; u.pitch=1; u.onend=fin; u.onerror=fin; state.utter=u; avatarTalk(true);
+  const u = new SpeechSynthesisUtterance(pron(text, lang)); const v=this.voiceFor(lang); u.voice=v; u.lang=v.lang; u.rate = lang==='en'?0.95:0.9; u.pitch=1; u.onend=fin; u.onerror=fin; state.utter=u; avatarTalk(true);
   try{ speechSynthesis.speak(u) }catch(e){ fin(); return }
   state.timer=setTimeout(fin, 4000 + 110*text.length);
  },
  stop(){ state.sayId++; clearTimeout(state.timer); AudioBank.stop(); if(this.ok){ try{ speechSynthesis.cancel() }catch(e){} } avatarTalk(false) }
 };
-function pron(text, lang){ let s=text; for(const pair of (PRON[lang]||[])){ const re=new RegExp('(^|[^A-Za-z0-9])'+pair[0].replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&')+'(?![A-Za-z0-9])','g'); s=s.replace(re,(m,p)=>p+pair[1]) } return s }
+function pron(text, lang){ let s=text; const map = PRON[lang] || PRON.en; for(const pair of map){ const re=new RegExp('(^|[^A-Za-z0-9])'+pair[0].replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&')+'(?![A-Za-z0-9])','g'); s=s.replace(re,(m,p)=>p+pair[1]) } return s }
 function avatarTalk(on){ $$('.avatar').forEach(a=>a.classList.toggle('talking', !!on)) }
 
 /* ============ Chrome / tabs / language ============ */
 function renderChrome(){
  $('#brand').textContent=t('brand'); $('#sub').textContent=t('sub'); $('#tabLearn').textContent=t('tabLearn'); $('#tabScript').textContent=t('tabScript');
- $('#langTog').textContent = cur()==='hi' ? 'EN' : 'हिं'; $('#langTog').setAttribute('aria-label', cur()==='hi'?'Switch to English':'हिंदी में बदलें');
+ $('#langTog').textContent = langInfo(cur()).native; $('#langTog').setAttribute('aria-label', t('pickLang'));
  $('#sndTog').textContent = state.sound ? '🔊' : '🔇'; $('#sndTog').setAttribute('aria-label', t('sound'));
- $('#btnHome').textContent = '‹ '+t('home'); $('#lblBack').textContent=t('back'); $('#lblReplay').textContent=t('replay'); $('#lblSkip').textContent=t('skip');
+ $('#btnHome').textContent = '‹ '+t('chapters'); $('#lblBack').textContent=t('back'); $('#lblReplay').textContent=t('replay'); $('#lblSkip').textContent=t('skip');
  $('#tabLearn').classList.toggle('on', state.tab==='learn'); $('#tabScript').classList.toggle('on', state.tab==='script');
  $('#learn').hidden = state.tab!=='learn'; $('#script').hidden = state.tab!=='script';
- document.documentElement.lang = cur()==='hi'?'hi':'en';
+ document.documentElement.lang = cur();
 }
-function setLang(l){ state.lang=l; save('wt_lang',l); renderChrome(); if(state.phase!=='home') noticeVoice(); if(state.phase==='home') renderHome(); else if(state.phase==='narr') { renderSceneHeader(); playLine(state.line) } else if(state.phase==='act'){ renderSceneHeader(); startActivity() } else if(state.phase==='done'){ renderSceneHeader(); if(LESSONS[state.scene].questions) quizEnd(); else activityDone() } }
+function rerender(){ renderChrome(); if(state.tab==='script'){ renderScript(); return } if(state.phase==='library') renderLibrary(); else if(state.phase==='chapter') renderChapter(); else if(state.phase==='narr'){ renderSceneHeader(); playLine(state.line) } else if(state.phase==='act'){ renderSceneHeader(); startActivity() } else if(state.phase==='done'){ renderSceneHeader(); if(LS()[state.scene].questions) quizEnd(); else activityDone() } }
+function setLang(l){ if(!LANG_OK.has(l)) l='en'; state.lang=l; save('wt_lang',l); Speech.stop(); AudioBank.load(l);
+ if(Packs.has(l)){ rerender(); if(state.phase!=='library' && state.phase!=='chapter') noticeVoice(); return }
+ const nt=$('#notice'); nt.hidden=false; nt.innerHTML=`<div class="ntext"><b>${esc(t('loadingLang'))}</b></div>`;
+ Packs.load(l).then(ok=>{ if(state.lang!==l) return; if(!ok){ nt.innerHTML=`<div class="ntext"><b>${esc(UI.en.langMissing)}</b></div><button class="nclose" aria-label="Close">✕</button>`; $('.nclose',nt).onclick=()=>{ nt.hidden=true } } else nt.hidden=true; rerender(); if(ok && state.phase!=='library' && state.phase!=='chapter') noticeVoice() }) }
 function setTab(tab){ state.tab=tab; Speech.stop(); if(tab==='script') renderScript(); renderChrome(); window.scrollTo(0,0) }
 
-/* ============ Home ============ */
-function goHome(){ Speech.stop(); state.phase='home'; state.scene=-1; $('#player').hidden=true; $('#home').hidden=false; renderHome(); window.scrollTo(0,0) }
-function renderHome(){
- const h=$('#home'); const doneSet=new Set(state.done); const total=LESSONS.length; const nd=LESSONS.filter(l=>doneSet.has(l.id)).length; const lang=state.lang;
- const hero = `<section class="hero"><div class="heroav">${SV.avatar()}</div><div class="herotxt"><p class="eyebrow">${esc(t('sub'))}</p><h1>${esc(t('brand'))}</h1><p class="lead">${esc(t('welcome'))}</p><div class="langpick"><span class="hint">${esc(t('choose'))} · ${esc(t('chooseHint'))}</span><div class="langbtns"><button class="btn lang${lang==='en'?' on':''}" data-lang="en">🇬🇧 English</button><button class="btn lang${lang==='hi'?' on':''}" data-lang="hi">🇮🇳 हिंदी</button></div></div><div class="startrow"><button class="btn primary big" id="btnStartAll">${esc(nd>0&&nd<total?t('cont'):t('start'))} ›</button>${nd>0?`<button class="btn ghost" id="btnReset">${esc(t('again'))}</button>`:''}</div><div class="prog"><div class="bar"><span style="width:${Math.round(nd/total*100)}%"></span></div><small>${esc(t('progress'))}: ${nd} / ${total}${state.best!==null?` · ${esc(t('quiz'))}: ${state.best} / ${LESSONS[LESSONS.length-1].questions.length}`:''}</small></div></div></section>`;
- const group = cat => LESSONS.map((l,i)=>({l,i})).filter(x=>x.l.cat===cat).map(x=>`<button class="scard${doneSet.has(x.l.id)?' done':''}" data-i="${x.i}"><span class="num">${x.i+1}</span><span class="em">${x.l.em}</span><span class="ttl">${esc(L(x.l.title))}</span><span class="meta">${doneSet.has(x.l.id)?'✓ '+esc(t('finished')):esc(t('dur'))}</span></button>`).join('');
- const map = `<section class="map"><h2><span class="dot field"></span>${esc(t('field'))}</h2><div class="grid">${group('field')}</div><h2><span class="dot lab"></span>${esc(t('lab'))}</h2><div class="grid">${group('lab')}</div><h2><span class="dot quiz"></span>${esc(t('quiz'))}</h2><div class="grid">${group('quiz')}</div></section>`;
- h.innerHTML = hero+map;
- $$('.lang',h).forEach(b=>b.onclick=()=>{ setLang(b.dataset.lang); Speech.say(t('welcome'), cur()) });
- $('#btnStartAll').onclick=()=>{ if(!state.lang) setLang('en'); const next=LESSONS.findIndex(l=>!doneSet.has(l.id)); openScene(next<0?0:next) };
- const r=$('#btnReset'); if(r) r.onclick=()=>{ state.done=[]; save('wt_done',[]); state.best=null; save('wt_best',null); renderHome() };
- $$('.scard',h).forEach(b=>b.onclick=()=>{ if(!state.lang) setLang('en'); openScene(+b.dataset.i) });
+/* ============ Library (chapter shelf) ============ */
+const doneSet = ()=> new Set(state.done);
+function chapterProgress(ch){ const d=doneSet(); const n=ch.lessons.filter(l=>d.has(l.id)).length; return {n, total:ch.lessons.length, pct:Math.round(n/ch.lessons.length*100)} }
+function langPicker(){ return `<div class="langpick"><span class="hint">${esc(t('choose'))} · ${esc(t('chooseHint'))}</span><div class="langgrid">${LANGS.map(l=>`<button class="btn lang${cur()===l.code?' on':''}" data-lang="${l.code}" lang="${l.code}">${esc(l.native)}</button>`).join('')}</div></div>` }
+function goLibrary(){ Speech.stop(); state.phase='library'; state.chapter=-1; state.scene=-1; $('#player').hidden=true; $('#home').hidden=false; try{ history.replaceState(null,'',location.pathname+location.search) }catch(e){} renderLibrary(); window.scrollTo(0,0) }
+function renderLibrary(){
+ const h=$('#home');
+ const hero = `<section class="hero"><div class="heroav">${SV.avatar()}</div><div class="herotxt"><p class="eyebrow">${esc(t('libSub'))}</p><h1>${esc(t('library'))}</h1><p class="lead">${esc(t('welcome'))} ${esc(t('voiceNote'))}</p>${langPicker()}<p class="hint">${esc(t('chooseChapter'))}</p></div></section>`;
+ const cards = CHAPTERS.map((ch,i)=>{ const p=chapterProgress(ch); return `<button class="ccard${p.n===p.total?' done':''}" data-i="${i}"><span class="cnum">${esc(t('chapter'))} ${esc(ch.num)}</span><span class="cem em">${ch.em}</span><span class="cttl">${esc(L(ch.title))}</span><span class="csum">${esc(L(ch.summary))}</span><span class="cmeta"><span>${ch.lessons.length} ${esc(t('scenesN'))}</span><span class="cbar"><i style="width:${p.pct}%"></i></span><span>${p.n}/${p.total}</span></span></button>` }).join('');
+ h.innerHTML = hero + `<section class="shelf"><h2>${esc(t('chapters'))}</h2><div class="cgrid">${cards}</div></section>`;
+ $$('.lang',h).forEach(b=>b.onclick=()=>{ AudioBank.unlock(); setLang(b.dataset.lang); Speech.say(t('welcome'), cur()) });
+ $$('.ccard',h).forEach(b=>b.onclick=()=>{ if(!state.lang) setLang('en'); openChapter(+b.dataset.i) });
+}
+function openChapter(i){ Speech.stop(); state.chapter=i; state.phase='chapter'; state.tab='learn'; renderChrome(); $('#player').hidden=true; $('#home').hidden=false; try{ history.replaceState(null,'','#'+CHAPTERS[i].id) }catch(e){} renderChapter(); window.scrollTo(0,0) }
+function renderChapter(){
+ const h=$('#home'); const ch=CH(); const d=doneSet(); const p=chapterProgress(ch);
+ const head = `<section class="chead"><button class="btn ghost" id="btnLib">‹ ${esc(t('backLib'))}</button><div class="cheadrow"><span class="cem em big">${ch.em}</span><div><p class="eyebrow">${esc(t('chapter'))} ${esc(ch.num)}</p><h1>${esc(L(ch.title))}</h1><p class="lead">${esc(L(ch.summary))}</p></div></div><div class="startrow"><button class="btn primary big" id="btnStartAll">${esc(p.n>0&&p.n<p.total?t('cont'):t('start'))} ›</button><button class="btn ghost" id="btnLang2">🌐 ${esc(langInfo(cur()).native)}</button>${p.n>0?`<button class="btn ghost" id="btnReset">${esc(t('again'))}</button>`:''}</div><div class="prog"><div class="bar"><span style="width:${p.pct}%"></span></div><small>${esc(t('progress'))}: ${p.n} / ${p.total}${state.best[ch.id]!=null?` · ${esc(t('quiz'))}: ${state.best[ch.id]} / ${(ch.lessons[ch.lessons.length-1].questions||[]).length}`:''}</small></div></section>`;
+ const group = cat => ch.lessons.map((l,i)=>({l,i})).filter(x=>x.l.cat===cat).map(x=>`<button class="scard${d.has(x.l.id)?' done':''}" data-i="${x.i}"><span class="num">${x.i+1}</span><span class="em">${x.l.em}</span><span class="ttl">${esc(L(x.l.title))}</span><span class="meta">${d.has(x.l.id)?'✓ '+esc(t('finished')):esc(t('dur'))}</span></button>`).join('');
+ const sec = (cat)=>{ const g=group(cat); return g ? `<h2><span class="dot ${cat}"></span>${esc(t(cat))}</h2><div class="grid">${g}</div>` : '' };
+ h.innerHTML = head + `<section class="map">${sec('field')}${sec('lab')}${sec('quiz')}</section>`;
+ $('#btnLib').onclick=goLibrary;
+ $('#btnStartAll').onclick=()=>{ const next=ch.lessons.findIndex(l=>!d.has(l.id)); openScene(next<0?0:next) };
+ $('#btnLang2').onclick=()=>{ const i=LANGS.findIndex(l=>l.code===cur()); setLang(LANGS[(i+1)%LANGS.length].code) };
+ const r=$('#btnReset'); if(r) r.onclick=()=>{ const ids=new Set(ch.lessons.map(l=>l.id)); state.done=state.done.filter(id=>!ids.has(id)); save('wt_done',state.done); delete state.best[ch.id]; save('wt_best',state.best); renderChapter() };
+ $$('.scard',h).forEach(b=>b.onclick=()=>openScene(+b.dataset.i));
 }
 function markDone(id){ if(state.done.indexOf(id)<0){ state.done.push(id); save('wt_done',state.done) } }
 
 /* ============ Player ============ */
 function openScene(i){ Speech.stop(); AudioBank.unlock(); state.scene=i; state.line=0; state.phase='narr'; state.tab='learn'; renderChrome(); $('#home').hidden=true; $('#player').hidden=false; renderSceneHeader(); window.scrollTo(0,0);
- const ls=LESSONS[i]; setVisual(ls.lines[0].v); setCaption('…'); const token=++state.sayId;
- AudioBank.ready(cur(), 2500).then(()=>{ if(token!==state.sayId || state.scene!==i) return; noticeVoice(); AudioBank.prefetch(cur(), sceneTexts(ls, cur())); playLine(0) }) }
-function renderSceneHeader(){ const ls=LESSONS[state.scene]; $('#pcat').textContent=t(ls.cat); $('#pcat').className='chip '+ls.cat; $('#ptitle').textContent=`${ls.em} ${L(ls.title)}`; updateProgress() }
-function updateProgress(){ const ls=LESSONS[state.scene]; const n=ls.lines.length; const steps = n + (ls.questions ? ls.questions.length : 1); let at = state.phase==='narr' ? state.line : state.phase==='act' ? n + (ls.questions ? state.q : 0) : steps; const dots = Array.from({length:steps},(_,k)=>`<i class="${k<at?'done':k===at?'now':''}${k>=n?' act':''}"></i>`).join(''); $('#pprog').innerHTML = `<span class="pnum">${esc(t('scene'))} ${state.scene+1} / ${LESSONS.length}</span><span class="dots">${dots}</span>` }
-function noticeVoice(){ const nt=$('#notice'); const l=cur(); if(state.sound && !Speech.hasVoice(l) && !state.noticed[l]){ nt.hidden=false; nt.innerHTML = `<div class="ntext"><b>${esc(t('noVoice').replace('{lang}', t('langName')))}</b><span>${esc(t('noVoiceHow').replace(/\{lang\}/g, t('langName')))}</span></div><button class="nclose" aria-label="Close">✕</button>`; $('.nclose',nt).onclick=()=>{ state.noticed[l]=true; nt.hidden=true } } else nt.hidden=true }
-function setVisual(spec){ const st=$('#stage'); const fn = spec && SV[spec.k]; st.innerHTML = fn ? fn(spec) : ''; st.classList.remove('in'); void st.offsetWidth; st.classList.add('in') }
+ const ls=LS()[i]; setVisual(ls.lines[0].v); setCaption('…'); const token=++state.sayId;
+ Promise.all([AudioBank.ready(cur(), 2500), Packs.load(cur())]).then(()=>{ if(token!==state.sayId || state.scene!==i) return; noticeVoice(); AudioBank.prefetch(cur(), sceneTexts(ls, cur())); playLine(0) }) }
+function renderSceneHeader(){ const ls=LS()[state.scene]; $('#pcat').textContent=t(ls.cat); $('#pcat').className='chip '+ls.cat; $('#ptitle').textContent=`${ls.em} ${L(ls.title)}`; updateProgress() }
+function updateProgress(){ const ls=LS()[state.scene]; const n=ls.lines.length; const steps = n + (ls.questions ? ls.questions.length : 1); let at = state.phase==='narr' ? state.line : state.phase==='act' ? n + (ls.questions ? state.q : 0) : steps; const dots = Array.from({length:steps},(_,k)=>`<i class="${k<at?'done':k===at?'now':''}${k>=n?' act':''}"></i>`).join(''); $('#pprog').innerHTML = `<span class="pnum">${esc(t('scene'))} ${state.scene+1} / ${LS().length}</span><span class="dots">${dots}</span>` }
+function noticeVoice(){ const nt=$('#notice'); const l=cur(); if(state.sound && !Speech.hasVoice(l) && !state.noticed[l]){ nt.hidden=false; nt.innerHTML = `<div class="ntext"><b>${esc(t('noVoice').replace('{lang}', langInfo(l).name))}</b><span>${esc(t('noVoiceHow').replace(/\{lang\}/g, langInfo(l).name))}</span></div><button class="nclose" aria-label="Close">✕</button>`; $('.nclose',nt).onclick=()=>{ state.noticed[l]=true; nt.hidden=true } } else nt.hidden=true }
+function setVisual(spec){ const st=$('#stage'); const fn = spec && SV[spec.k]; let html=''; try{ html = fn ? fn(spec) : '' }catch(e){ html='' } st.innerHTML = html; st.classList.remove('in'); void st.offsetWidth; st.classList.add('in') }
 function setCaption(txt){ const c=$('#cap'); c.textContent=txt; c.classList.remove('in'); void c.offsetWidth; c.classList.add('in') }
-function playLine(i){ const ls=LESSONS[state.scene]; const line=ls.lines[i]; state.line=i; state.phase='narr'; state.paused=false;
- $('#act').hidden=true; $('#done').hidden=true; $('#stage').hidden=false; setVisual(line.v); setCaption(L(line)); updateControls(); updateProgress();
+function playLine(i){ const ls=LS()[state.scene]; const line=ls.lines[i]; state.line=i; state.phase='narr'; state.paused=false;
+ $('#act').hidden=true; $('#done').hidden=true; $('#stage').hidden=false; setVisual(line.v || (i>0 ? ls.lines[i-1].v : null)); setCaption(L(line)); updateControls(); updateProgress();
  Speech.say(L(line), cur(), ()=>{ if(state.paused) return; if(i+1<ls.lines.length) playLine(i+1); else startActivity() });
 }
 function updateControls(){ const narr = state.phase==='narr'; const playing = narr && !state.paused; $('#icPlay').textContent = playing?'⏸':'▶'; $('#lblPlay').textContent = playing?t('pause'):t('play'); $('#btnSkip').hidden = !narr; $('#btnPlay').hidden = !narr; $('#btnReplay').hidden = state.phase==='done'; $('#btnBack').hidden = false }
 function bindControls(){
- $('#btnHome').onclick=goHome;
- $('#btnBack').onclick=()=>{ if(state.phase==='narr' && state.line>0) playLine(state.line-1); else if(state.phase!=='narr'){ const ls=LESSONS[state.scene]; playLine(ls.lines.length-1) } else if(state.scene>0) openScene(state.scene-1); else goHome() };
+ $('#btnHome').onclick=()=>openChapter(state.chapter);
+ $('#btnBack').onclick=()=>{ if(state.phase==='narr' && state.line>0) playLine(state.line-1); else if(state.phase!=='narr'){ playLine(LS()[state.scene].lines.length-1) } else if(state.scene>0) openScene(state.scene-1); else openChapter(state.chapter) };
  $('#btnPlay').onclick=()=>{ if(state.phase!=='narr') return; if(!state.paused){ state.paused=true; Speech.stop(); updateControls() } else playLine(state.line) };
- $('#btnReplay').onclick=()=>{ if(state.phase==='narr') playLine(state.line); else if(state.phase==='act'){ const ls=LESSONS[state.scene]; const txt = ls.questions ? L(ls.questions[state.q].q) : L(ls.activity.prompt); Speech.say(txt, cur()) } };
+ $('#btnReplay').onclick=()=>{ if(state.phase==='narr') playLine(state.line); else if(state.phase==='act'){ const ls=LS()[state.scene]; const txt = ls.questions ? L(ls.questions[state.q].q) : L(ls.activity.prompt); Speech.say(txt, cur()) } };
  $('#btnSkip').onclick=()=>{ Speech.stop(); startActivity() };
  $('#tabLearn').onclick=()=>setTab('learn'); $('#tabScript').onclick=()=>setTab('script');
- $('#langTog').onclick=()=>setLang(cur()==='hi'?'en':'hi');
+ $('#langTog').onclick=()=>{ const i=LANGS.findIndex(l=>l.code===cur()); setLang(LANGS[(i+1)%LANGS.length].code) };
  $('#sndTog').onclick=()=>{ state.sound=!state.sound; renderChrome(); if(!state.sound) Speech.stop(); else if(state.phase==='narr' && !state.paused) playLine(state.line) };
  document.addEventListener('visibilitychange',()=>{ if(document.hidden && state.phase==='narr'){ state.paused=true; Speech.stop(); updateControls() } });
  window.addEventListener('pagehide',()=>Speech.stop());
@@ -699,25 +898,27 @@ function optIcon(o){ if(o.kind) return `<span class="ic">${SV.beaker(o.kind,{siz
 function optBtn(o,i,extra){ return `<button class="opt${extra||''}" data-i="${i}">${optIcon(o)}<span class="lb">${esc(L(o))}</span></button>` }
 function feedback(ok, text, say){ const fb=$('#fb'); if(!fb) return; fb.hidden=false; fb.className='fb '+(ok?'good':'bad'); fb.textContent = text || (ok?t('correct'):t('wrong')); const spoken = say || fb.textContent; if(ok){ Speech.say(spoken, cur(), ()=>activityDone()) } else { Speech.say(spoken, cur()); setTimeout(()=>{ if(fb.classList.contains('bad')) fb.hidden=true }, 2500) } }
 function singleChoice(act, body, opts){ $$('.opt',body).forEach(b=>b.onclick=()=>{ const o=opts[+b.dataset.i]; if(o.ok){ b.classList.add('right'); $$('.opt',body).forEach(x=>x.disabled=true); feedback(true) } else { b.classList.add('wrong'); b.disabled=true; feedback(false) } }) }
+function safeExpr(expr, vars){ if(!/^[\sA-Za-z0-9_+\-*/().]+$/.test(expr)) return NaN; const names=Object.keys(vars); try{ return Function(...names, 'return ('+expr+')')(...names.map(n=>vars[n])) }catch(e){ return NaN } }
 const ACT = {
  choice(act, body){ body.innerHTML = `<div class="opts">${act.options.map((o,i)=>optBtn(o,i)).join('')}</div>`; singleChoice(act, body, act.options) },
  multi(act, body){ body.innerHTML = `<p class="hint">${esc(t('tapAll'))}</p><div class="opts">${act.options.map((o,i)=>optBtn(o,i,' sel')).join('')}</div><div class="actbtns"><button class="btn primary" id="btnCheck">${esc(t('check'))}</button></div>`;
   $$('.opt',body).forEach(b=>b.onclick=()=>{ b.classList.toggle('on'); b.setAttribute('aria-pressed', b.classList.contains('on')?'true':'false') });
   $('#btnCheck',body).onclick=()=>{ let allOk=true; $$('.opt',body).forEach(b=>{ const o=act.options[+b.dataset.i]; const on=b.classList.contains('on'); b.classList.remove('right','wrong'); if(on&&o.ok) b.classList.add('right'); else if(on&&!o.ok){ b.classList.add('wrong'); allOk=false } else if(!on&&o.ok) allOk=false }); if(allOk){ $$('.opt',body).forEach(x=>x.disabled=true); $('#btnCheck',body).disabled=true; feedback(true, t('allRight')) } else feedback(false) } },
- classify(act, body){ const ans = act.items.map(()=>null);
-  body.innerHTML = `<div class="gaugebox" id="gbox">${SV.gauge({value:act.items[0].val})}</div><div class="cls">${act.items.map((it,i)=>`<div class="clsrow" data-i="${i}"><button class="valbtn" data-v="${it.val}">pH ${it.val}</button><div class="cats">${act.cats.map((c,j)=>`<button class="cat" data-i="${i}" data-j="${j}"><b>${esc(L(c))}</b><small>${esc(L(c.sub))}</small></button>`).join('')}</div></div>`).join('')}</div>`;
-  $$('.valbtn',body).forEach(b=>b.onclick=()=>{ $('#gbox',body).innerHTML=SV.gauge({value:+b.dataset.v}) });
-  $$('.cat',body).forEach(b=>b.onclick=()=>{ const i=+b.dataset.i, j=+b.dataset.j; const it=act.items[i]; $('#gbox',body).innerHTML=SV.gauge({value:it.val}); const row=b.closest('.clsrow'); $$('.cat',row).forEach(x=>x.classList.remove('on','right','wrong')); b.classList.add('on'); if(j===it.ans){ b.classList.add('right'); ans[i]=true; $$('.cat',row).forEach(x=>x.disabled=true); if(ans.every(Boolean)) feedback(true, t('allRight')); else Speech.say(t('correct'), cur()) } else { b.classList.add('wrong'); ans[i]=false; feedback(false) } }) },
+ classify(act, body){ const ans = act.items.map(()=>null); const isPh = act.items.every(it=>typeof it.val==='number');
+  const vis = val => isPh ? SV.gauge({value:+val}) : `<div class="bigval">${esc(String(val))}</div>`;
+  body.innerHTML = `<div class="gaugebox" id="gbox">${vis(act.items[0].val)}</div><div class="cls">${act.items.map((it,i)=>`<div class="clsrow" data-i="${i}"><button class="valbtn" data-i="${i}">${isPh?'pH ':''}${esc(String(it.val))}</button><div class="cats">${act.cats.map((c,j)=>`<button class="cat" data-i="${i}" data-j="${j}"><b>${esc(L(c))}</b><small>${esc(L(c.sub))}</small></button>`).join('')}</div></div>`).join('')}</div>`;
+  $$('.valbtn',body).forEach(b=>b.onclick=()=>{ $('#gbox',body).innerHTML=vis(act.items[+b.dataset.i].val) });
+  $$('.cat',body).forEach(b=>b.onclick=()=>{ const i=+b.dataset.i, j=+b.dataset.j; const it=act.items[i]; $('#gbox',body).innerHTML=vis(it.val); const row=b.closest('.clsrow'); $$('.cat',row).forEach(x=>x.classList.remove('on','right','wrong')); b.classList.add('on'); if(j===it.ans){ b.classList.add('right'); ans[i]=true; $$('.cat',row).forEach(x=>x.disabled=true); if(ans.every(Boolean)) feedback(true, t('allRight')); else Speech.say(t('correct'), cur()) } else { b.classList.add('wrong'); ans[i]=false; feedback(false) } }) },
  order(act, body){ const n=act.items.length; let next=0; const idx=shuffle(act.items.map((_,i)=>i));
   body.innerHTML = `<p class="hint">${esc(t('tapOrder'))}</p><div class="seq">${act.items.map((_,i)=>`<span class="slot" data-s="${i}">${i+1}</span>`).join('')}</div><div class="opts">${idx.map(i=>optBtn(act.items[i],i)).join('')}</div>`;
-  $$('.opt',body).forEach(b=>b.onclick=()=>{ const i=+b.dataset.i; if(i===next){ b.classList.add('right'); b.disabled=true; const slot=$(`.slot[data-s="${next}"]`,body); slot.classList.add('filled'); slot.innerHTML=`<span class="em">${act.items[i].i}</span>`; next++; if(next===n) feedback(true, t('allRight')); else Speech.say(t('correct'), cur()) } else { b.classList.add('wrong'); setTimeout(()=>b.classList.remove('wrong'),600); feedback(false) } }) },
+  $$('.opt',body).forEach(b=>b.onclick=()=>{ const i=+b.dataset.i; if(i===next){ b.classList.add('right'); b.disabled=true; const slot=$(`.slot[data-s="${next}"]`,body); slot.classList.add('filled'); slot.innerHTML=`<span class="em">${act.items[i].i||'✓'}</span>`; next++; if(next===n) feedback(true, t('allRight')); else Speech.say(t('correct'), cur()) } else { b.classList.add('wrong'); setTimeout(()=>b.classList.remove('wrong'),600); feedback(false) } }) },
  match(act, body){ const n=act.pairs.length; const rIdx=shuffle(act.pairs.map((_,i)=>i)); let sel=null, done=0;
-  body.innerHTML = `<p class="hint">${esc(t('tapPair'))}</p><div class="matchgrid"><div class="col">${act.pairs.map((p,i)=>`<button class="opt m" data-side="l" data-i="${i}"><span class="ic em">${p.l.i}</span><span class="lb">${esc(L(p.l))}</span></button>`).join('')}</div><div class="col">${rIdx.map(i=>`<button class="opt m" data-side="r" data-i="${i}"><span class="ic em">${act.pairs[i].r.i}</span><span class="lb">${esc(L(act.pairs[i].r))}</span></button>`).join('')}</div></div>`;
+  body.innerHTML = `<p class="hint">${esc(t('tapPair'))}</p><div class="matchgrid"><div class="col">${act.pairs.map((p,i)=>`<button class="opt m" data-side="l" data-i="${i}"><span class="ic em">${p.l.i||''}</span><span class="lb">${esc(L(p.l))}</span></button>`).join('')}</div><div class="col">${rIdx.map(i=>`<button class="opt m" data-side="r" data-i="${i}"><span class="ic em">${act.pairs[i].r.i||''}</span><span class="lb">${esc(L(act.pairs[i].r))}</span></button>`).join('')}</div></div>`;
   $$('.opt',body).forEach(b=>b.onclick=()=>{ if(b.dataset.side==='l'){ $$('.opt[data-side="l"]',body).forEach(x=>x.classList.remove('on')); b.classList.add('on'); sel=+b.dataset.i; return } if(sel===null){ Speech.say(t('tapPair'), cur()); return } const i=+b.dataset.i; const lb=$(`.opt[data-side="l"][data-i="${sel}"]`,body); if(i===sel){ b.classList.add('right'); b.disabled=true; lb.classList.remove('on'); lb.classList.add('right'); lb.disabled=true; sel=null; done++; if(done===n) feedback(true, t('allRight')); else Speech.say(t('correct'), cur()) } else { b.classList.add('wrong'); setTimeout(()=>b.classList.remove('wrong'),600); feedback(false) } }) },
  calc(act, body){ const F={ tss:v=>(v.w2-v.w1)*1000/v.vol, bod:v=>(v.do1-v.do2)*v.df };
-  body.innerHTML = `<div class="calc">${act.fields.map(f=>`<label class="field"><span>${esc(L(f.label))}</span><input type="number" inputmode="decimal" id="f_${f.id}" value="${f.val}" step="${f.step}"></label>`).join('')}<div class="actbtns"><button class="btn primary" id="btnCalc">🧮 ${esc(t('calc'))}</button></div><div class="calcout" id="calcout" hidden></div><p class="hint">${esc(t('tryNumbers'))}</p></div>`;
+  body.innerHTML = `<div class="calc">${act.fields.map(f=>`<label class="field"><span>${esc(L(f.label))}</span><input type="number" inputmode="decimal" id="f_${f.id}" value="${f.val}" step="${f.step||'any'}"></label>`).join('')}<div class="actbtns"><button class="btn primary" id="btnCalc">🧮 ${esc(t('calc'))}</button></div><div class="calcout" id="calcout" hidden></div><p class="hint">${esc(t('tryNumbers'))}</p></div>`;
   let first=true;
-  $('#btnCalc',body).onclick=()=>{ const v={}; let bad=false; act.fields.forEach(f=>{ const x=parseFloat($('#f_'+f.id,body).value); if(!isFinite(x)) bad=true; v[f.id]=x }); if(bad) return; const r=F[act.fn](v); if(!isFinite(r)) return; const val=Math.round(r*10)/10; const out=$('#calcout',body); out.hidden=false; out.innerHTML=`<span class="res">${esc(act.name)} = ${val} ${esc(act.unit)}</span>`; const resTxt = `${act.name} = ${val} ${act.unit}`; if(first){ first=false; feedback(true, resTxt, t('correct')) } else Speech.say(t('correct'), cur()) } },
+  $('#btnCalc',body).onclick=()=>{ const v={}; let bad=false; act.fields.forEach(f=>{ const x=parseFloat($('#f_'+f.id,body).value); if(!isFinite(x)) bad=true; v[f.id]=x }); if(bad) return; const r = act.expr ? safeExpr(act.expr, v) : (F[act.fn] ? F[act.fn](v) : NaN); if(!isFinite(r)) return; const val=Math.round(r*10)/10; const out=$('#calcout',body); out.hidden=false; out.innerHTML=`<span class="res">${esc(act.name)} = ${val} ${esc(act.unit||'')}</span>`; if(first){ first=false; feedback(true, `${act.name} = ${val} ${act.unit||''}`, t('correct')) } else Speech.say(t('correct'), cur()) } },
  slider(act, body){ body.innerHTML = `<div class="sliderbox"><div id="tankbox">${SV.tank({value:2.2,range:true})}</div><label class="rng"><span>${esc(t('moveSlider'))}</span><input type="range" id="dorng" min="0" max="5" step="0.1" value="2.2" aria-label="DO"></label></div><div class="opts">${act.options.map((o,i)=>optBtn(o,i)).join('')}</div>`;
   $('#dorng',body).oninput=e=>{ $('#tankbox',body).innerHTML=SV.tank({value:+e.target.value,range:true}) }; singleChoice(act, body, act.options) },
  settle(act, body){ body.innerHTML = `<div class="settlebox"><div class="cylbig" id="cylbig">${SV.cyl({sludge:1,mixed:true},210)}</div><div class="timer" id="stimer">0 ${esc(t('minutes'))}</div><div class="actbtns"><button class="btn primary" id="btnStart">▶ ${esc(t('startTest'))}</button></div></div><div class="opts" id="settleopts" hidden>${act.options.map((o,i)=>optBtn(o,i)).join('')}</div>`;
@@ -728,50 +929,59 @@ const ACT = {
  spot(act, body){ body.innerHTML = `<p class="hint">${esc(t('tapOil'))}</p><div class="spotbox">${SV.oil({spot:true})}</div>`;
   $$('.hot',body).forEach(h=>h.addEventListener('click',()=>{ if(h.dataset.ok==='1'){ h.classList.add('right'); $$('.hot',body).forEach(x=>x.style.pointerEvents='none'); feedback(true) } else { h.classList.add('wrong'); setTimeout(()=>h.classList.remove('wrong'),600); feedback(false) } })) }
 };
-function startActivity(){ const ls=LESSONS[state.scene]; state.phase='act'; state.paused=false; if(ls.questions){ startQuiz(); return }
+function startActivity(){ const ls=LS()[state.scene]; state.phase='act'; state.paused=false; if(ls.questions){ startQuiz(); return }
  const act=ls.activity; const box=$('#act'); box.hidden=false; $('#stage').hidden=true; $('#done').hidden=true;
+ if(!act || !ACT[act.type]){ activityDone(); return }
  box.innerHTML = `<div class="acthead"><span class="chip turn">✋ ${esc(t('yourTurn'))}</span><h3>${esc(L(act.prompt))}</h3></div><div class="actbody" id="actbody"></div><div class="fb" id="fb" hidden></div>`;
- setCaption(L(act.prompt)); ACT[act.type](act, $('#actbody',box)); updateControls(); updateProgress(); Speech.say(L(act.prompt), cur());
+ setCaption(L(act.prompt)); try{ ACT[act.type](act, $('#actbody',box)) }catch(e){ activityDone(); return } updateControls(); updateProgress(); Speech.say(L(act.prompt), cur());
 }
-function nextLabel(){ return state.scene+1 < LESSONS.length ? t('next') : t('home') }
-function nextScene(){ if(state.scene+1 < LESSONS.length) openScene(state.scene+1); else goHome() }
-function activityDone(){ const ls=LESSONS[state.scene]; state.phase='done'; markDone(ls.id); const d=$('#done'); d.hidden=false; $('#act').hidden=true;
- d.innerHTML = `<div class="rem"><span class="chip rem">💡 ${esc(t('remember'))}</span><p>${esc(L(ls.remember))}</p></div><div class="donebtns"><span class="chip ok">✓ ${esc(t('sceneDone'))}</span><button class="btn primary big" id="btnNext">${esc(nextLabel())} ›</button></div>`;
- $('#btnNext').onclick=nextScene; setCaption(L(ls.remember)); updateControls(); updateProgress(); Speech.say(L(ls.remember), cur());
+function nextLabel(){ return state.scene+1 < LS().length ? t('next') : t('backLib') }
+function nextScene(){ if(state.scene+1 < LS().length) openScene(state.scene+1); else openChapter(state.chapter) }
+function activityDone(){ const ls=LS()[state.scene]; state.phase='done'; markDone(ls.id); const d=$('#done'); d.hidden=false; $('#act').hidden=true;
+ const rem = ls.remember ? L(ls.remember) : '';
+ d.innerHTML = `${rem?`<div class="rem"><span class="chip rem">💡 ${esc(t('remember'))}</span><p>${esc(rem)}</p></div>`:''}<div class="donebtns"><span class="chip ok">✓ ${esc(t('sceneDone'))}</span><button class="btn primary big" id="btnNext">${esc(nextLabel())} ›</button></div>`;
+ $('#btnNext').onclick=nextScene; if(rem) setCaption(rem); updateControls(); updateProgress(); if(rem) Speech.say(rem, cur());
 }
 /* ---- quiz ---- */
 function startQuiz(){ state.q=0; state.scoreN=0; state.phase='act'; renderQ() }
-function renderQ(){ const ls=LESSONS[state.scene]; const n=ls.questions.length; if(state.q>=n){ quizEnd(); return } const q=ls.questions[state.q]; const box=$('#act'); box.hidden=false; $('#stage').hidden=true; $('#done').hidden=true;
+function renderQ(){ const ls=LS()[state.scene]; const n=ls.questions.length; if(state.q>=n){ quizEnd(); return } const q=ls.questions[state.q]; const box=$('#act'); box.hidden=false; $('#stage').hidden=true; $('#done').hidden=true;
  box.innerHTML = `<div class="acthead"><span class="chip turn">${esc(t('question'))} ${state.q+1} / ${n}</span><h3>${esc(L(q.q))}</h3></div><div class="actbody"><div class="opts">${q.o.map((o,i)=>optBtn(o,i)).join('')}</div></div><div class="fb" id="fb" hidden></div>`;
  let answered=false;
  $$('.opt',box).forEach(b=>b.onclick=()=>{ if(answered) return; answered=true; const o=q.o[+b.dataset.i]; $$('.opt',box).forEach(x=>x.disabled=true); if(o.ok){ b.classList.add('right'); state.scoreN++ } else { b.classList.add('wrong'); const r=q.o.findIndex(x=>x.ok); if(r>=0) $$('.opt',box)[r].classList.add('right') } const fb=$('#fb',box); fb.hidden=false; fb.className='fb '+(o.ok?'good':'bad'); fb.textContent=o.ok?t('correct'):t('wrong'); Speech.say(fb.textContent, cur(), ()=>{ state.q++; renderQ() }) });
  setCaption(L(q.q)); updateControls(); updateProgress(); Speech.say(L(q.q), cur());
 }
-function quizEnd(){ const ls=LESSONS[state.scene]; const n=ls.questions.length; const s=state.scoreN; const pass = s>=Math.ceil(n*0.7); if(state.best===null || s>state.best){ state.best=s; save('wt_best',s) } markDone(ls.id); state.phase='done';
- const d=$('#done'); $('#act').hidden=true; $('#stage').hidden=true; d.hidden=false; let date=''; try{ date=new Date().toLocaleDateString(cur()==='hi'?'hi-IN':'en-IN',{day:'2-digit',month:'short',year:'numeric'}) }catch(e){ date=new Date().toDateString() }
- d.innerHTML = `<div class="result ${pass?'pass':'fail'}"><span class="big">${pass?'🏅':'💪'}</span><div class="scoreline">${esc(t('score'))}: <b>${s} / ${n}</b></div><h3>${esc(pass?t('badge'):t('fail'))}</h3>${pass?`<p class="cert">${esc(t('showSup'))}<br><small>${esc(t('date'))}: ${esc(date)}</small></p>`:''}<div class="donebtns"><button class="btn" id="btnRetry">↻ ${esc(t('retryQuiz'))}</button><button class="btn primary" id="btnHome2">${esc(t('home'))} ›</button></div></div>`;
- $('#btnRetry').onclick=startQuiz; $('#btnHome2').onclick=goHome; const scoreSay = cur()==='hi' ? `${n} में से ${s}` : `${s} out of ${n}`; setCaption(`${pass?t('pass'):t('fail')} ${t('score')}: ${scoreSay}`); updateControls(); updateProgress(); Speech.say(pass?t('pass'):t('fail'), cur());
+function quizEnd(){ const ch=CH(); const ls=LS()[state.scene]; const n=ls.questions.length; const s=state.scoreN; const pass = s>=Math.ceil(n*0.7); if(state.best[ch.id]==null || s>state.best[ch.id]){ state.best[ch.id]=s; save('wt_best',state.best) } markDone(ls.id); state.phase='done';
+ const d=$('#done'); $('#act').hidden=true; $('#stage').hidden=true; d.hidden=false; let date=''; try{ date=new Date().toLocaleDateString(langInfo(cur()).tts,{day:'2-digit',month:'short',year:'numeric'}) }catch(e){ date=new Date().toDateString() }
+ d.innerHTML = `<div class="result ${pass?'pass':'fail'}"><span class="big">${pass?'🏅':'💪'}</span><div class="scoreline">${esc(t('score'))}: <b>${s} / ${n}</b></div><h3>${esc(pass?t('badge'):t('fail'))}</h3><p class="hint">${esc(t('chapter'))} ${esc(ch.num)} · ${esc(L(ch.title))}</p>${pass?`<p class="cert">${esc(t('showSup'))}<br><small>${esc(t('date'))}: ${esc(date)}</small></p>`:''}<div class="donebtns"><button class="btn" id="btnRetry">↻ ${esc(t('retryQuiz'))}</button><button class="btn primary" id="btnHome2">${esc(t('backLib'))} ›</button></div></div>`;
+ $('#btnRetry').onclick=startQuiz; $('#btnHome2').onclick=goLibrary; const scoreSay = cur()==='hi' ? `${n} में से ${s}` : `${s} / ${n}`; setCaption(`${pass?t('pass'):t('fail')} ${t('score')}: ${scoreSay}`); updateControls(); updateProgress(); Speech.say(pass?t('pass'):t('fail'), cur());
 }
 
 /* ============ Production script tab ============ */
 const ACTNAME = {order:'tap the steps in order',multi:'tap all that apply',choice:'tap the right answer',classify:'sort readings into Low / OK / High',slider:'explore the DO slider, then answer',settle:'run the settling animation, then pick a cylinder',match:'match observation to action',calc:'enter numbers and calculate',spot:'tap the oil on the tank image'};
-function scriptText(lang){ const out=[]; LESSONS.forEach((l,i)=>{ out.push(`SCENE ${i+1} — ${l.title[lang]} [${UI.en[l.cat]}]`); l.lines.forEach((ln,j)=>{ out.push(`  ${i+1}.${j+1}  VISUAL: ${ln.shot||''}`); out.push(`       SAY: ${ln[lang]}`) }); if(l.questions){ out.push(`  CHECKPOINT (quiz):`); l.questions.forEach(q=>out.push(`       Q: ${q.q[lang]}  →  ${q.o.filter(o=>o.ok).map(o=>L2(o,lang)).join(', ')}`)) } else { out.push(`  CHECKPOINT (${ACTNAME[l.activity.type]}): ${l.activity.prompt[lang]}`) } if(l.remember) out.push(`  REMEMBER CARD: ${l.remember[lang]}`); out.push('') }); return out.join('\n') }
-function L2(o,lang){ return o[lang]!==undefined ? o[lang] : o.en }
-function renderScript(){ const s=$('#script');
+function scriptText(ch, lang){ const out=[]; const X = s => (typeof s==='string') ? s : (s[lang]!==undefined ? s[lang] : (Packs.tr(lang, s.en) || s.en)); out.push(`CHAPTER ${ch.num} — ${X(ch.title)}`); ch.lessons.forEach((l,i)=>{ out.push(`SCENE ${i+1} — ${X(l.title)} [${UI.en[l.cat]}]`); l.lines.forEach((ln,j)=>{ out.push(`  ${i+1}.${j+1}  VISUAL: ${ln.shot||''}`); out.push(`       SAY: ${X(ln)}`) }); if(l.questions){ out.push(`  CHECKPOINT (quiz):`); l.questions.forEach(q=>out.push(`       Q: ${X(q.q)}  →  ${q.o.filter(o=>o.ok).map(o=>X(o)).join(', ')}`)) } else if(l.activity){ out.push(`  CHECKPOINT (${ACTNAME[l.activity.type]||l.activity.type}): ${X(l.activity.prompt)}`) } if(l.remember) out.push(`  REMEMBER CARD: ${X(l.remember)}`); out.push('') }); return out.join('\n') }
+function renderScript(){ const s=$('#script'); const ci = Math.max(0, Math.min(CHAPTERS.length-1, state.scriptCh)); const ch=CHAPTERS[ci]; const other = (cur()!=='en' && cur()!=='hi') ? cur() : null;
  const card = (title, icon, items) => `<div class="bcard"><h3><span class="em">${icon}</span>${esc(title)}</h3><ul>${items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
- const pipeline = `<div class="pipeline"><div class="pstep"><span class="em">🧠</span><b>Claude</b><small>Script, visuals, checkpoints, this module</small></div><span class="parrow">›</span><div class="pstep"><span class="em">🧑‍🔧</span><b>Avatar agent</b><small>Renders Ritu per shot, 16:9 and 9:16</small></div><span class="parrow">›</span><div class="pstep"><span class="em">🌐</span><b>Localization agent</b><small>Dub + captions from the Hindi master</small></div><span class="parrow">›</span><div class="pstep"><span class="em">📱</span><b>Delivery</b><small>LMS, WhatsApp, toolbox talk</small></div></div>`;
- const rows = LESSONS.map((l,i)=>{ const shots=l.lines.map((ln,j)=>`<tr><td class="n">${i+1}.${j+1}</td><td class="shot">${esc(ln.shot||'')}</td><td class="en">${esc(ln.en)}</td><td class="hi">${esc(ln.hi)}</td></tr>`).join('');
-  const cp = l.questions ? `<tr class="cp"><td class="n">✋</td><td class="shot">Checkpoint: quiz, ${l.questions.length} questions, 70% to pass</td><td class="en">${l.questions.map(q=>esc(q.q.en)).join('<br>')}</td><td class="hi">${l.questions.map(q=>esc(q.q.hi)).join('<br>')}</td></tr>` : `<tr class="cp"><td class="n">✋</td><td class="shot">Checkpoint: ${esc(ACTNAME[l.activity.type])}</td><td class="en">${esc(l.activity.prompt.en)}</td><td class="hi">${esc(l.activity.prompt.hi)}</td></tr>`;
-  const rem = l.remember ? `<tr class="rem"><td class="n">💡</td><td class="shot">Remember card, end slate, 3 s</td><td class="en">${esc(l.remember.en)}</td><td class="hi">${esc(l.remember.hi)}</td></tr>` : '';
+ const pipeline = `<div class="pipeline"><div class="pstep"><span class="em">🧠</span><b>Claude</b><small>Script, visuals, checkpoints, translations, this module</small></div><span class="parrow">›</span><div class="pstep"><span class="em">🗣️</span><b>Voice (Sarvam Bulbul v3, "ritu")</b><small>Every line recorded per language</small></div><span class="parrow">›</span><div class="pstep"><span class="em">🧑‍🔧</span><b>Avatar agent</b><small>Renders Ritu per shot to the recorded track</small></div><span class="parrow">›</span><div class="pstep"><span class="em">📱</span><b>Delivery</b><small>GitHub Pages, LMS, WhatsApp, toolbox talk</small></div></div>`;
+ const chsel = `<div class="chsel">${CHAPTERS.map((c,i)=>`<button class="btn${i===ci?' primary':''}" data-i="${i}">${esc(t('chapter'))} ${esc(c.num)}</button>`).join('')}</div>`;
+ const tr = (s)=> other ? (Packs.tr(other, s.en) || '') : '';
+ const rows = ch.lessons.map((l,i)=>{ const shots=l.lines.map((ln,j)=>`<tr><td class="n">${i+1}.${j+1}</td><td class="shot">${esc(ln.shot||'')}</td><td class="en">${esc(ln.en)}</td><td class="hi">${esc(ln.hi)}</td>${other?`<td class="hi">${esc(tr(ln))}</td>`:''}</tr>`).join('');
+  const cp = l.questions ? `<tr class="cp"><td class="n">✋</td><td class="shot">Checkpoint: quiz, ${l.questions.length} questions, 70% to pass</td><td class="en">${l.questions.map(q=>esc(q.q.en)).join('<br>')}</td><td class="hi">${l.questions.map(q=>esc(q.q.hi)).join('<br>')}</td>${other?`<td class="hi">${l.questions.map(q=>esc(tr(q.q))).join('<br>')}</td>`:''}</tr>` : (l.activity ? `<tr class="cp"><td class="n">✋</td><td class="shot">Checkpoint: ${esc(ACTNAME[l.activity.type]||l.activity.type)}</td><td class="en">${esc(l.activity.prompt.en)}</td><td class="hi">${esc(l.activity.prompt.hi)}</td>${other?`<td class="hi">${esc(tr(l.activity.prompt))}</td>`:''}</tr>` : '');
+  const rem = l.remember ? `<tr class="rem"><td class="n">💡</td><td class="shot">Remember card, end slate, 3 s</td><td class="en">${esc(l.remember.en)}</td><td class="hi">${esc(l.remember.hi)}</td>${other?`<td class="hi">${esc(tr(l.remember))}</td>`:''}</tr>` : '';
   const words = l.lines.reduce((a,ln)=>a+ln.en.split(/\s+/).length,0); const secs = Math.round(words/110*60);
-  return `<details class="sc"${i===0?' open':''}><summary><span class="num">${i+1}</span><span class="em">${l.em}</span><span class="ttl">${esc(l.title.en)} <span class="hiTtl">· ${esc(l.title.hi)}</span></span><span class="tag ${l.cat}">${esc(UI.en[l.cat])}</span><span class="dur">${l.lines.length} shots · ~${secs} s narration</span></summary><div class="tw"><table><thead><tr><th>Shot</th><th>Visual / B-roll for the avatar agent</th><th>Narration · English</th><th>Narration · हिंदी (timing master)</th></tr></thead><tbody>${shots}${cp}${rem}</tbody></table></div></details>` }).join('');
- s.innerHTML = `<section class="brief"><div class="briefhead"><p class="eyebrow">Production pack</p><h1>Avatar video script and localization brief</h1><p class="lead">Every scene below is also what the Learn tab plays. Hand the shot list to the avatar agent, the Hindi column to the localization agent, and keep the checkpoints for the LMS. Source: Chapter 1, Water Parameters and On-site Water Testing.</p></div>${pipeline}<div class="bgrid">${card('Avatar agent brief','🧑‍🔧',BRIEF.avatar)}${card('Localization agent brief','🌐',BRIEF.localization)}${card('Running it on site','🏭',BRIEF.onsite)}</div></section><section class="scenes"><div class="scenehead"><h2>Scene-by-scene script · ${LESSONS.length} scenes</h2><div class="copybtns"><button class="btn" id="cpEn">⧉ ${esc(UI.en.copyEn)}</button><button class="btn" id="cpHi">⧉ ${esc(UI.en.copyHi)}</button></div></div><div id="cpmsg" class="hint" hidden></div><textarea id="cpfallback" class="cpfallback" hidden readonly></textarea>${rows}</section>`;
- const doCopy = lang => { const txt=scriptText(lang); const msg=$('#cpmsg'); const fb=$('#cpfallback'); const ok=()=>{ msg.hidden=false; msg.textContent=UI.en.copied; fb.hidden=true; setTimeout(()=>{ msg.hidden=true },2500) }; const fail=()=>{ msg.hidden=false; msg.textContent=UI.en.fallbackCopy; fb.hidden=false; fb.value=txt; fb.focus(); fb.select() }; try{ if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok, fail) } else fail() }catch(e){ fail() } };
- $('#cpEn').onclick=()=>doCopy('en'); $('#cpHi').onclick=()=>doCopy('hi');
+  return `<details class="sc"${i===0?' open':''}><summary><span class="num">${i+1}</span><span class="em">${l.em}</span><span class="ttl">${esc(l.title.en)} <span class="hiTtl">· ${esc(l.title.hi)}</span></span><span class="tag ${l.cat}">${esc(UI.en[l.cat])}</span><span class="dur">${l.lines.length} shots · ~${secs} s narration</span></summary><div class="tw"><table><thead><tr><th>Shot</th><th>Visual / B-roll for the avatar agent</th><th>Narration · English</th><th>Narration · हिंदी (timing master)</th>${other?`<th>Narration · ${esc(langInfo(other).native)}</th>`:''}</tr></thead><tbody>${shots}${cp}${rem}</tbody></table></div></details>` }).join('');
+ s.innerHTML = `<section class="brief"><div class="briefhead"><p class="eyebrow">Production pack</p><h1>Avatar video scripts and localization brief</h1><p class="lead">Every scene below is what the Learn tab plays. Hand the shot list to the avatar agent and reuse the recorded Ritu tracks as the voice. Translations for the other nine languages are in the i18n packs and shown here when that language is selected.</p></div>${pipeline}<div class="bgrid">${card('Avatar agent brief','🧑‍🔧',BRIEF.avatar)}${card('Localization agent brief','🌐',BRIEF.localization)}${card('Running it on site','🏭',BRIEF.onsite)}</div></section><section class="scenes"><div class="scenehead"><h2>${esc(t('scriptFor'))} ${esc(t('chapter'))} ${esc(ch.num)} · ${esc(ch.title.en)}</h2><div class="copybtns"><button class="btn" id="cpEn">⧉ ${esc(UI.en.copyEn)}</button><button class="btn" id="cpHi">⧉ ${esc(UI.en.copyHi)}</button>${other?`<button class="btn" id="cpOther">⧉ Copy ${esc(langInfo(other).name)}</button>`:''}</div></div>${chsel}<div id="cpmsg" class="hint" hidden></div><textarea id="cpfallback" class="cpfallback" hidden readonly></textarea>${rows}</section>`;
+ $$('.chsel .btn',s).forEach(b=>b.onclick=()=>{ state.scriptCh=+b.dataset.i; renderScript(); window.scrollTo(0, $('.scenes').offsetTop-80) });
+ const doCopy = lang => { const txt=scriptText(ch, lang); const msg=$('#cpmsg'); const fb=$('#cpfallback'); const ok=()=>{ msg.hidden=false; msg.textContent=UI.en.copied; fb.hidden=true; setTimeout(()=>{ msg.hidden=true },2500) }; const fail=()=>{ msg.hidden=false; msg.textContent=UI.en.fallbackCopy; fb.hidden=false; fb.value=txt; fb.focus(); fb.select() }; try{ if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok, fail) } else fail() }catch(e){ fail() } };
+ $('#cpEn').onclick=()=>doCopy('en'); $('#cpHi').onclick=()=>doCopy('hi'); const co=$('#cpOther'); if(co) co.onclick=()=>doCopy(other);
 }
 
 /* ============ Init ============ */
-function init(){ Speech.init(); AudioBank.init(); $$('.avwrap').forEach(a=>{ a.innerHTML=SV.avatar() }); renderChrome(); renderHome(); bindControls(); ['touchend','click'].forEach(ev=>document.addEventListener(ev, ()=>AudioBank.unlock(), {once:true, capture:true})); }
+function init(){ Speech.init(); AudioBank.init(); $$('.avwrap').forEach(a=>{ a.innerHTML=SV.avatar() }); renderChrome(); bindControls();
+ ['touchend','click'].forEach(ev=>document.addEventListener(ev, ()=>AudioBank.unlock(), {once:true, capture:true}));
+ const start = ()=>{ const h=(location.hash||'').replace('#',''); const ci=CHAPTERS.findIndex(c=>c.id===h); if(ci>=0){ state.chapter=ci; state.phase='chapter'; renderChapter() } else renderLibrary() };
+ if(state.lang && !Packs.has(state.lang)){ Packs.load(state.lang).then(start) } else start();
+ window.addEventListener('hashchange',()=>{ const h=(location.hash||'').replace('#',''); const ci=CHAPTERS.findIndex(c=>c.id===h); if(ci>=0 && ci!==state.chapter) openChapter(ci); else if(!h && state.phase!=='library') goLibrary() });
+}
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 
